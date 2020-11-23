@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.box{
+	display: inline-block;
+	position: relative;
+	width: 1000px;
+	height: 1000px;
+	background-color: #00ff00;
+}
+.box img {
+	display: block;
+	animation-name:trans;
+  	animation-duration:30s;
+  	animation-timing-function:linear;
+  	animation-iteration-count: infinite;
+}
+@keyframes trans {
+  0%  { top:200px;left: 0px;background: red; }
+  25% { top:150px;left: 10px;background: green; }
+  50% { top:100px;left: 20px;background: yellow; }
+  75% { top:50px;left: 30px;background: blue; }
+  100%{ top:0px; left: 10px;background: pink; }
+}
+</style>
+</head>
+<body>
+	<div class="box">
+    	<img src="https://image2.cqcb.com/d/file/personage/2017-07-24/f0d20661d9473a95225d910eb983a4f8.jpg" width="44" height="64"> 
+	</div>
+</body>
+</html>
