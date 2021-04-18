@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="性能优化">
+<meta name="description" content="动态规划">
 
-<title>性能优化 | 十万个为什么</title>
+<title>动态规划 | 十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -365,7 +365,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="gdoc-nav__entry is-active">
+                    <a href="/interview/android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="gdoc-nav__entry ">
                         性能优化
                     </a>
                 </span>
@@ -733,7 +733,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="gdoc-nav__entry ">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="gdoc-nav__entry is-active">
                         动态规划
                     </a>
                 </span>
@@ -1047,7 +1047,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>性能优化</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/%E7%AE%97%E6%B3%95/' href='/interview/%E7%AE%97%E6%B3%95/'><span itemprop='name'>算法</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>动态规划</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1064,54 +1064,214 @@
 
 
     <article class="gdoc-markdown">
-        <h1>性能优化</h1>
+        <h1>动态规划</h1>
         
 
 
   <div class="gdoc-toc gdoc-toc__level--6"><nav id="TableOfContents">
   <ul>
-    <li><a href="#q常用内存命令有哪些">Q:常用内存命令有哪些?</a></li>
-    <li><a href="#q启动优化">Q:启动优化?</a></li>
-  </ul>
-</nav><hr></div>
+    <li><a href="#最长递增子序列">最长递增子序列</a>
+      <ul>
+        <li><a href="#q给你一个整数数组-nums-找到其中最长严格递增子序列的长度">Q:给你一个整数数组 nums ，找到其中最长严格递增子序列的长度</a></li>
+      </ul>
+    </li>
+    <li><a href="#零钱兑换-真题">零钱兑换 [真题]</a>
+      <ul>
+        <li><a href="#q给定不同面额的硬币-coins-和一个总金额-amount编写一个函数来计算可以凑成总金额所需的最少的硬币个数如果没有任何一种硬币组合能组成总金额返回-1">Q:给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1</a></li>
+      </ul>
+    </li>
+    <li><a href="#最长公共子序列-真题">最长公共子序列 [真题]</a>
+      <ul>
+        <li><a href="#q给定两个字符串-text1-和-text2返回这两个字符串的最长-公共子序列-的长度如果不存在-公共子序列-返回-0">Q:给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在 公共子序列 ，返回 0</a></li>
+      </ul>
+    </li>
+    <li><a href="#最大子序和-真题">最大子序和 [真题]</a>
+      <ul>
+        <li><a href="#q给定一个整数数组-nums-找到一个具有最大和的连续子数组子数组最少包含一个元素返回其最大和">Q:给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和</a></li>
+      </ul>
+    </li>
+    <li><a href="#买卖股票-真题">买卖股票 [真题]</a>
+      <ul>
+        <li><a href="#q给定一个整数数组-nums-找到一个具有最大和的连续子数组子数组最少包含一个元素返回其最大和-1">Q:给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和</a></li>
+      </ul></nav><hr></div>
 
 
 <div class="gdoc-page__anchorwrap">
-    <h2 id="q常用内存命令有哪些">
-        Q:常用内存命令有哪些?
-        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/#q常用内存命令有哪些" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:常用内存命令有哪些?" href="#q%e5%b8%b8%e7%94%a8%e5%86%85%e5%ad%98%e5%91%bd%e4%bb%a4%e6%9c%89%e5%93%aa%e4%ba%9b">
+    <h2 id="最长递增子序列">
+        最长递增子序列
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#最长递增子序列" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 最长递增子序列" href="#%e6%9c%80%e9%95%bf%e9%80%92%e5%a2%9e%e5%ad%90%e5%ba%8f%e5%88%97">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><ul>
-<li>USS	Unique Set Size	物理内存	进程独占的内存
-PSS	Proportional Set Size	物理内存	PSS= USS+ 按比例包含共享库</li>
-<li>RSS	Resident Set Size	物理内存	RSS= USS+ 包含共享库</li>
-<li>VSS	Virtual Set Size	虚拟内存	VSS= RSS+ 未分配实际物理内存</li>
-</ul>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="q给你一个整数数组-nums-找到其中最长严格递增子序列的长度">
+        Q:给你一个整数数组 nums ，找到其中最长严格递增子序列的长度
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#q给你一个整数数组-nums-找到其中最长严格递增子序列的长度" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:给你一个整数数组 nums ，找到其中最长严格递增子序列的长度" href="#q%e7%bb%99%e4%bd%a0%e4%b8%80%e4%b8%aa%e6%95%b4%e6%95%b0%e6%95%b0%e7%bb%84-nums-%e6%89%be%e5%88%b0%e5%85%b6%e4%b8%ad%e6%9c%80%e9%95%bf%e4%b8%a5%e6%a0%bc%e9%80%92%e5%a2%9e%e5%ad%90%e5%ba%8f%e5%88%97%e7%9a%84%e9%95%bf%e5%ba%a6">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><pre><code>输入：nums = [10,9,2,5,3,7,101,18]
+输出：4
+解释：最长递增子序列是 [2,3,7,101]，因此长度为 4
+</code></pre>
+<blockquote>
+<p>关键点</p>
 <ul>
-<li>dumpsys meminfo  //dumpsys meminfo &ndash;package <!-- raw HTML omitted --> // 输出指定包名的进程，可能包含多个进程  适用场景： 查看进程的oom adj，或者dalvik/native等区域内存情况，或者某个进程或apk的内存情况，功能非常强大；</li>
-<li>procrank         //适用场景： 查看进程的VSS/RSS/PSS/USS各个内存指标；</li>
-<li>cat /proc/meminfo  //适用场景： 查看系统的详尽内存信息，包含内核情况；</li>
-<li>free  //适用场景： 只查看系统的可用内存；</li>
-<li>showmap  //适用场景： 查看进程的虚拟地址空间的内存分配情况；</li>
-<li>vmstat   //适用场景： 周期性地打印出进程运行队列、系统切换、CPU时间占比等情况</li>
+<li>动态规划:dp[i]=max(dp[j])+1,其中0≤j&lt;i且num[j]&lt;num[i]</li>
 </ul>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="q启动优化">
-        Q:启动优化?
-        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/#q启动优化" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:启动优化?" href="#q%e5%90%af%e5%8a%a8%e4%bc%98%e5%8c%96">
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">lengthOfLIS</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">0</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
+    <span class="n">dp</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">maxans</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">{</span>
+                <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">dp</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="n">maxans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">maxans</span><span class="o">,</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">maxans</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="零钱兑换-真题">
+        零钱兑换 [真题]
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#零钱兑换-真题" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 零钱兑换 [真题]" href="#%e9%9b%b6%e9%92%b1%e5%85%91%e6%8d%a2-%e7%9c%9f%e9%a2%98">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><ul>
-<li>attachBaseContext</li>
-<li>Application attach</li>
-<li>installContentProviders</li>
-<li>Application onCreate</li>
-<li>Looper.loop</li>
-<li>Activity onCreate，onResume</li>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="q给定不同面额的硬币-coins-和一个总金额-amount编写一个函数来计算可以凑成总金额所需的最少的硬币个数如果没有任何一种硬币组合能组成总金额返回-1">
+        Q:给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#q给定不同面额的硬币-coins-和一个总金额-amount编写一个函数来计算可以凑成总金额所需的最少的硬币个数如果没有任何一种硬币组合能组成总金额返回-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1" href="#q%e7%bb%99%e5%ae%9a%e4%b8%8d%e5%90%8c%e9%9d%a2%e9%a2%9d%e7%9a%84%e7%a1%ac%e5%b8%81-coins-%e5%92%8c%e4%b8%80%e4%b8%aa%e6%80%bb%e9%87%91%e9%a2%9d-amount%e7%bc%96%e5%86%99%e4%b8%80%e4%b8%aa%e5%87%bd%e6%95%b0%e6%9d%a5%e8%ae%a1%e7%ae%97%e5%8f%af%e4%bb%a5%e5%87%91%e6%88%90%e6%80%bb%e9%87%91%e9%a2%9d%e6%89%80%e9%9c%80%e7%9a%84%e6%9c%80%e5%b0%91%e7%9a%84%e7%a1%ac%e5%b8%81%e4%b8%aa%e6%95%b0%e5%a6%82%e6%9e%9c%e6%b2%a1%e6%9c%89%e4%bb%bb%e4%bd%95%e4%b8%80%e7%a7%8d%e7%a1%ac%e5%b8%81%e7%bb%84%e5%90%88%e8%83%bd%e7%bb%84%e6%88%90%e6%80%bb%e9%87%91%e9%a2%9d%e8%bf%94%e5%9b%9e-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><pre><code>输入：coins = [1, 2, 5], amount = 11
+输出：3 
+解释：11 = 5 + 5 + 1
+</code></pre>
+<blockquote>
+<p>关键点</p>
+<ul>
+<li>动态规划</li>
 </ul>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">coinChange</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">coins</span><span class="o">,</span> <span class="kt">int</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">amount</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">amount</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
+    <span class="n">Arrays</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">dp</span><span class="o">,</span> <span class="n">max</span><span class="o">);</span>
+    <span class="n">dp</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">amount</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">coins</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">coins</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">coins</span><span class="o">[</span><span class="n">j</span><span class="o">]]</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">dp</span><span class="o">[</span><span class="n">amount</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">amount</span> <span class="o">?</span> <span class="o">-</span><span class="n">1</span> <span class="o">:</span> <span class="n">dp</span><span class="o">[</span><span class="n">amount</span><span class="o">];</span>
+<span class="o">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="最长公共子序列-真题">
+        最长公共子序列 [真题]
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#最长公共子序列-真题" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 最长公共子序列 [真题]" href="#%e6%9c%80%e9%95%bf%e5%85%ac%e5%85%b1%e5%ad%90%e5%ba%8f%e5%88%97-%e7%9c%9f%e9%a2%98">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="q给定两个字符串-text1-和-text2返回这两个字符串的最长-公共子序列-的长度如果不存在-公共子序列-返回-0">
+        Q:给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在 公共子序列 ，返回 0
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#q给定两个字符串-text1-和-text2返回这两个字符串的最长-公共子序列-的长度如果不存在-公共子序列-返回-0" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在 公共子序列 ，返回 0" href="#q%e7%bb%99%e5%ae%9a%e4%b8%a4%e4%b8%aa%e5%ad%97%e7%ac%a6%e4%b8%b2-text1-%e5%92%8c-text2%e8%bf%94%e5%9b%9e%e8%bf%99%e4%b8%a4%e4%b8%aa%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%9a%84%e6%9c%80%e9%95%bf-%e5%85%ac%e5%85%b1%e5%ad%90%e5%ba%8f%e5%88%97-%e7%9a%84%e9%95%bf%e5%ba%a6%e5%a6%82%e6%9e%9c%e4%b8%8d%e5%ad%98%e5%9c%a8-%e5%85%ac%e5%85%b1%e5%ad%90%e5%ba%8f%e5%88%97-%e8%bf%94%e5%9b%9e-0">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><pre><code>输入：text1 = &quot;abcde&quot;, text2 = &quot;ace&quot; 
+输出：3  
+解释：最长公共子序列是 &quot;ace&quot; ，它的长度为 3 
+</code></pre>
+<blockquote>
+<p>关键点</p>
+<ul>
+<li>动态规划</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">longestCommonSubsequence</span><span class="o">(</span><span class="n">String</span> <span class="n">text1</span><span class="o">,</span> <span class="n">String</span> <span class="n">text2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">text1</span><span class="o">.</span><span class="na">length</span><span class="o">(),</span> <span class="n">n</span> <span class="o">=</span> <span class="n">text2</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+    <span class="kt">int</span><span class="o">[][]</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">m</span> <span class="o">+</span> <span class="n">1</span><span class="o">][</span><span class="n">n</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="kt">char</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">text1</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="kt">char</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">text2</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">c1</span> <span class="o">==</span> <span class="n">c2</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">1</span><span class="o">][</span><span class="n">j</span> <span class="o">-</span> <span class="n">1</span><span class="o">]</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">dp</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">1</span><span class="o">][</span><span class="n">j</span><span class="o">],</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span> <span class="o">-</span> <span class="n">1</span><span class="o">]);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">dp</span><span class="o">[</span><span class="n">m</span><span class="o">][</span><span class="n">n</span><span class="o">];</span>
+<span class="o">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="最大子序和-真题">
+        最大子序和 [真题]
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#最大子序和-真题" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 最大子序和 [真题]" href="#%e6%9c%80%e5%a4%a7%e5%ad%90%e5%ba%8f%e5%92%8c-%e7%9c%9f%e9%a2%98">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="q给定一个整数数组-nums-找到一个具有最大和的连续子数组子数组最少包含一个元素返回其最大和">
+        Q:给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#q给定一个整数数组-nums-找到一个具有最大和的连续子数组子数组最少包含一个元素返回其最大和" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和" href="#q%e7%bb%99%e5%ae%9a%e4%b8%80%e4%b8%aa%e6%95%b4%e6%95%b0%e6%95%b0%e7%bb%84-nums-%e6%89%be%e5%88%b0%e4%b8%80%e4%b8%aa%e5%85%b7%e6%9c%89%e6%9c%80%e5%a4%a7%e5%92%8c%e7%9a%84%e8%bf%9e%e7%bb%ad%e5%ad%90%e6%95%b0%e7%bb%84%e5%ad%90%e6%95%b0%e7%bb%84%e6%9c%80%e5%b0%91%e5%8c%85%e5%90%ab%e4%b8%80%e4%b8%aa%e5%85%83%e7%b4%a0%e8%bf%94%e5%9b%9e%e5%85%b6%e6%9c%80%e5%a4%a7%e5%92%8c">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><pre><code>输入：nums = [-2,1,-3,4,-1,2,1,-5,4]
+输出：6
+解释：连续子数组 [4,-1,2,1] 的和最大，为 6  
+</code></pre>
+<blockquote>
+<p>关键点</p>
+<ul>
+<li>动态规划</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxSubArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">pre</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">maxAns</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">x</span> <span class="o">:</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">pre</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">pre</span> <span class="o">+</span> <span class="n">x</span><span class="o">,</span> <span class="n">x</span><span class="o">);</span>
+        <span class="n">maxAns</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">maxAns</span><span class="o">,</span> <span class="n">pre</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">maxAns</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="买卖股票-真题">
+        买卖股票 [真题]
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#买卖股票-真题" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 买卖股票 [真题]" href="#%e4%b9%b0%e5%8d%96%e8%82%a1%e7%a5%a8-%e7%9c%9f%e9%a2%98">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="q给定一个整数数组-nums-找到一个具有最大和的连续子数组子数组最少包含一个元素返回其最大和-1">
+        Q:给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#q给定一个整数数组-nums-找到一个具有最大和的连续子数组子数组最少包含一个元素返回其最大和-1" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和" href="#q%e7%bb%99%e5%ae%9a%e4%b8%80%e4%b8%aa%e6%95%b4%e6%95%b0%e6%95%b0%e7%bb%84-nums-%e6%89%be%e5%88%b0%e4%b8%80%e4%b8%aa%e5%85%b7%e6%9c%89%e6%9c%80%e5%a4%a7%e5%92%8c%e7%9a%84%e8%bf%9e%e7%bb%ad%e5%ad%90%e6%95%b0%e7%bb%84%e5%ad%90%e6%95%b0%e7%bb%84%e6%9c%80%e5%b0%91%e5%8c%85%e5%90%ab%e4%b8%80%e4%b8%aa%e5%85%83%e7%b4%a0%e8%bf%94%e5%9b%9e%e5%85%b6%e6%9c%80%e5%a4%a7%e5%92%8c-1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><pre><code>输入：nums = [-2,1,-3,4,-1,2,1,-5,4]
+输出：6
+解释：连续子数组 [4,-1,2,1] 的和最大，为 6  
+</code></pre>
+<blockquote>
+<p>关键点</p>
+<ul>
+<li>动态规划</li>
+</ul>
+</blockquote>
 
 
     </article>

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="性能优化">
+<meta name="description" content="插件化&amp;热修复">
 
-<title>性能优化 | 十万个为什么</title>
+<title>插件化&amp;热修复 | 十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -171,7 +171,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/android/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%83%AD%E4%BF%AE%E5%A4%8D/" class="gdoc-nav__entry ">
+                    <a href="/interview/android/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%83%AD%E4%BF%AE%E5%A4%8D/" class="gdoc-nav__entry is-active">
                         插件化&amp;热修复
                     </a>
                 </span>
@@ -365,7 +365,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="gdoc-nav__entry is-active">
+                    <a href="/interview/android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="gdoc-nav__entry ">
                         性能优化
                     </a>
                 </span>
@@ -1047,7 +1047,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>性能优化</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>插件化&热修复</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1064,53 +1064,144 @@
 
 
     <article class="gdoc-markdown">
-        <h1>性能优化</h1>
+        <h1>插件化&amp;热修复</h1>
         
 
 
   <div class="gdoc-toc gdoc-toc__level--6"><nav id="TableOfContents">
   <ul>
-    <li><a href="#q常用内存命令有哪些">Q:常用内存命令有哪些?</a></li>
-    <li><a href="#q启动优化">Q:启动优化?</a></li>
+    <li><a href="#qandroid中的classloader">Q:Android中的ClassLoader?</a></li>
+    <li><a href="#qandroid中classloader加载过程">Q:Android中ClassLoader加载过程?</a></li>
+    <li><a href="#q热修复方案">Q:热修复方案?</a></li>
+    <li><a href="#q插件化需要的技术">Q:插件化需要的技术</a></li>
   </ul>
 </nav><hr></div>
 
 
 <div class="gdoc-page__anchorwrap">
-    <h2 id="q常用内存命令有哪些">
-        Q:常用内存命令有哪些?
-        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/#q常用内存命令有哪些" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:常用内存命令有哪些?" href="#q%e5%b8%b8%e7%94%a8%e5%86%85%e5%ad%98%e5%91%bd%e4%bb%a4%e6%9c%89%e5%93%aa%e4%ba%9b">
+    <h2 id="qandroid中的classloader">
+        Q:Android中的ClassLoader?
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%83%AD%E4%BF%AE%E5%A4%8D/#qandroid中的classloader" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:Android中的ClassLoader?" href="#qandroid%e4%b8%ad%e7%9a%84classloader">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div><ul>
-<li>USS	Unique Set Size	物理内存	进程独占的内存
-PSS	Proportional Set Size	物理内存	PSS= USS+ 按比例包含共享库</li>
-<li>RSS	Resident Set Size	物理内存	RSS= USS+ 包含共享库</li>
-<li>VSS	Virtual Set Size	虚拟内存	VSS= RSS+ 未分配实际物理内存</li>
-</ul>
+<li>系统类加载器
 <ul>
-<li>dumpsys meminfo  //dumpsys meminfo &ndash;package <!-- raw HTML omitted --> // 输出指定包名的进程，可能包含多个进程  适用场景： 查看进程的oom adj，或者dalvik/native等区域内存情况，或者某个进程或apk的内存情况，功能非常强大；</li>
-<li>procrank         //适用场景： 查看进程的VSS/RSS/PSS/USS各个内存指标；</li>
-<li>cat /proc/meminfo  //适用场景： 查看系统的详尽内存信息，包含内核情况；</li>
-<li>free  //适用场景： 只查看系统的可用内存；</li>
-<li>showmap  //适用场景： 查看进程的虚拟地址空间的内存分配情况；</li>
-<li>vmstat   //适用场景： 周期性地打印出进程运行队列、系统切换、CPU时间占比等情况</li>
+<li>BootClassLoader
+<ul>
+<li>java实现,包访问修饰符</li>
+</ul>
+</li>
+<li>PathClassLoader
+<ul>
+<li>PathClassLoader来加载系统类和应用程序类
+<ul>
+<li>PathClassLoader通常用来加载已经安装的apk的dex文件（安装的apk的dex文件在/data/dalvik-cache)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DexClassLoader
+<ul>
+<li>DexClassLoader可以加载dex文件和包含dex文件的压缩文件（比如jar和apk文件），不管加载那种文件，最终都是加载dex文件
+<ul>
+<li>dexPath：dex相关文件的路径集合，多个文件用路径分割符分割，默认的文件分割符为  &ldquo;:&rdquo;</li>
+<li>optimizedDirectory:解压的dex文件储存的路径，这个路径必须是一个内部储存路径，一般情况下使用当钱应用程序的私有路径/data/data/Package Name/&hellip;</li>
+<li>librarySearchPath:包含C++库的路径集合，多个路径用文件分割符分割，可以为null</li>
+<li>parent：父加载器</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>自定义加载器</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="q启动优化">
-        Q:启动优化?
-        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/#q启动优化" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:启动优化?" href="#q%e5%90%af%e5%8a%a8%e4%bc%98%e5%8c%96">
+    <h2 id="qandroid中classloader加载过程">
+        Q:Android中ClassLoader加载过程?
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%83%AD%E4%BF%AE%E5%A4%8D/#qandroid中classloader加载过程" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:Android中ClassLoader加载过程?" href="#qandroid%e4%b8%adclassloader%e5%8a%a0%e8%bd%bd%e8%bf%87%e7%a8%8b">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ol>
+<li>新建DexPathList对象pathList</li>
+<li>调用pathList.findClass
+<ul>
+<li>新建dexElements</li>
+<li>遍历dexElements,调用element.findClass方法</li>
+<li>获取DexFile对象dexFile,调用dexFile.findClass方法</li>
+</ul>
+</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="q热修复方案">
+        Q:热修复方案?
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%83%AD%E4%BF%AE%E5%A4%8D/#q热修复方案" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:热修复方案?" href="#q%e7%83%ad%e4%bf%ae%e5%a4%8d%e6%96%b9%e6%a1%88">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div><ul>
-<li>attachBaseContext</li>
-<li>Application attach</li>
-<li>installContentProviders</li>
-<li>Application onCreate</li>
-<li>Looper.loop</li>
-<li>Activity onCreate，onResume</li>
+<li>底层替换方案
+<ul>
+<li>System.load：可以加载自定义路径下的so</li>
+<li>System.loadLibaray：用来加载已经安装APK中的so</li>
+</ul>
+</li>
+<li>类加载方案
+<ul>
+<li>在element.findClass时加载bugfix的包 <img src="/classloader_bugfix.png" alt="image"  /></li>
+</ul>
+</li>
+<li>Instant Run方案
+<ul>
+<li>创建新的AssetManager，并通过反射调用addAssetPath方法加载外部资源，这样新建的AssetManager就包含了外部资源</li>
+<li>将AssetManager类型的mAsset字段的引用全部替换为新创建的AssetManager,主要是Resources中</li>
+</ul>
+</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="q插件化需要的技术">
+        Q:插件化需要的技术
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%83%AD%E4%BF%AE%E5%A4%8D/#q插件化需要的技术" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:插件化需要的技术" href="#q%e6%8f%92%e4%bb%b6%e5%8c%96%e9%9c%80%e8%a6%81%e7%9a%84%e6%8a%80%e6%9c%af">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>Hook技术
+<ul>
+<li>用来启动指定组件,一般hook点为Instrumentation中的execStartActivity</li>
+<li>通过静态代理ProxyInstrumentation获取到Instrumentation对象</li>
+<li>通过反射执行execStartActivity的方法</li>
+<li>通过反射将Activity中的Instrumentation对象替换为ProxyInstrumentation</li>
+</ul>
+</li>
+<li>插件的类加载
+<ul>
+<li>获取插件apk地址</li>
+<li>传入插件apk地址新建插件类加载DexClassLoader对象</li>
+<li>通过反射dexElements获取插件中的类</li>
+<li>通过反射dexElements获取当前应用中的类</li>
+<li>创建新的dexElements数组合并两个中的类</li>
+<li>用新的数组替换应用dexElements中的数组</li>
+</ul>
+</li>
+<li>插件的资源加载
+<ul>
+<li>通过addAssetPath加载外部资源,再构建新的Resource替换Application中的Resource</li>
+</ul>
+</li>
+<li>启动插件Activity
+<ul>
+<li>使用占坑的Activity通过AMS中对AndroidManifest.xml的验证
+<ul>
+<li>hook execStartActivity时将intent替换为跳转到占坑Activity的intent,其中原始跳转intent存储在占坑intent中</li>
+<li>hook ActivityThread中的mH,读取占坑intent中的原始intent,通过setCompnent加载原始intent</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
 

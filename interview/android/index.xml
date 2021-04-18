@@ -23,6 +23,15 @@ Q:一个点击事件是如何从屏幕传递到view的?    Q:MotionEvent是什�
     </item>
     
     <item>
+      <title>插件化&amp;热修复</title>
+      <link>https://gyzboy.github.io/interview/android/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%83%AD%E4%BF%AE%E5%A4%8D/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gyzboy.github.io/interview/android/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%83%AD%E4%BF%AE%E5%A4%8D/</guid>
+      <description>Q:Android中的ClassLoader? Q:Android中ClassLoader加载过程? Q:热修复方案? Q:插件化需要的技术   Q:Android中的ClassLoader?     系统类加载器  BootClassLoader  java实现,包访问修饰符   PathClassLoader  PathClassLoader来加载系统类和应用程序类  PathClassLoader通常用来加载已经安装的apk的dex文件（安装的apk的dex文件在/data/dalvik-cache)     DexClassLoader  DexClassLoader可以加载dex文件和包含dex文件的压缩文件（比如jar和apk文件），不管加载那种文件，最终都是加载dex文件  dexPath：dex相关文件的路径集合，多个文件用路径分割符分割，默认的文件分割符为 &amp;ldquo;:&amp;rdquo; optimizedDirectory:解压的dex文件储存的路径，这个路径必须是一个内部储存路径，一般情况下使用当钱应用程序的私有路径/data/data/Package Name/&amp;hellip; librarySearchPath:包含C++库的路径集合，多个路径用文件分割符分割，可以为null parent：父加载器       自定义加载器  Q:Android中ClassLoader加载过程?     新建DexPathList对象pathList 调用pathList.findClass  新建dexElements 遍历dexElements,调用element.findClass方法 获取DexFile对象dexFile,调用dexFile.findClass方法    Q:热修复方案?     底层替换方案  System.load：可以加载自定义路径下的so System.loadLibaray：用来加载已经安装APK中的so   类加载方案  在element.</description>
+    </item>
+    
+    <item>
       <title>Activity</title>
       <link>https://gyzboy.github.io/interview/android/activity/</link>
       <pubDate>Tue, 13 Apr 2021 16:12:16 +0800</pubDate>
@@ -115,6 +124,17 @@ Q:Choreographer是如何控制实现在下一个Vsync信号到来时实现View�
  管道：在创建时分配一个page大小的内存，缓存区大小比较有限； 消息队列：信息复制两次，额外的CPU消耗；不合适频繁或信息量大的通信； 共享内存：无须复制，共享缓冲区直接付附加到进程虚拟地址空间，速度快；但进程间的同步问题操作系统无法实现，必须各进程利用同步工具解决； 套接字：作为更通用的接口，传输效率低，主要用于不通机器或跨网络的通信； 信号量：常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同线程之间的同步手段。 信号: 不适用于信息交换，更适用于进程中断控制，比如非法内存访问，杀死某个进程等； Android: Binder Socket Handler  Q:什么是Binder?为什么使用Binder作为Android IPC？     使用mmap只拷贝一次内存使Binder变的高效  binder_mmap通过加锁，保证一次只有一个进程分配内存，保证多进程间的并发访问。 虚拟进程地址空间(vm_area_struct)和虚拟内核地址空间(vm_struct)都映射到同一块物理内存空间。当Client端与Server端发送数据时，Client（作为数据发送端）先从自己的进程空间把IPC通信数据copy_from_user拷贝到内核空间，而Server端（作为数据接收端）与内核共享数据，不再需要拷贝数据，而是通过内存地址空间的偏移量，即可获悉内存地址，整个过程只发生一次内存拷贝  Q:什么是mmap?    mmap是一种内存映射文件的方法，即将一个文件或者其它对象映射到进程的地址空间，实现文件磁盘地址和进程虚拟地址空间中一段虚拟地址的一一对映关系
 Q:为什么有共享内存了还需要设计Binder?    共享内存实现方式复杂，没有客户与服务端之别， 需要充分考虑到访问临界资源的并发同步问题，否则可能会出现死锁等问题；从这稳定性角度看，Binder架构优越于共享内存
 Q:ServiceManager启动流程?     打开binder驱动，并调用mmap()方法分配128k的内存映射空间：binder_open(); 通知binder驱动使其成为守护进程：binder_become_context_manager()； 验证selinux权限，判断进程是否有权注册或查看指定服务； 进入循环状态，等待Client端的请求：binder_loop()。 注册服务的过程，根据服务名称，但同一个服务已注册，重新注册前会先移除之前的注册信息； 死亡通知: 当binder所在进程死亡后,会调用binder_release方法,然后调用binder_node_release.</description>
+    </item>
+    
+    <item>
+      <title>组件化</title>
+      <link>https://gyzboy.github.io/interview/android/%E7%BB%84%E4%BB%B6%E5%8C%96/</link>
+      <pubDate>Tue, 13 Apr 2021 16:12:16 +0800</pubDate>
+      
+      <guid>https://gyzboy.github.io/interview/android/%E7%BB%84%E4%BB%B6%E5%8C%96/</guid>
+      <description>Q:组件化与模块化区别? Q:业务组件，如何实现单独运行调试？ Q:业务组件间 没有依赖，如何实现页面的跳转？ Q:业务组件间 没有依赖，如何实现组件间通信/方法调用？ Q:业务组件不能反向依赖壳工程，如何获取Application实例、如何获取Application onCreate()回调（用于任务初始化）？ Q:如何实现一个路由框架?   Q:组件化与模块化区别?     组件化:组件化，去除模块间的耦合，使得每个业务模块可以独立当做App存在，对于其他模块没有直接的依赖关系 模块化:模块化就是拆分成多个模块放在不同的Module里面，每个功能的代码都在自己所属的 module 中添加  Q:业务组件，如何实现单独运行调试？     单工程方案，组件以module形式存在，动态配置组件的工程类型；  动态修改gradle文件,集成时变为Library插件,独立调试时变为Application插件 动态配置ApplicationId 和 AndroidManifest   多工程方案，业务组件以library module形式存在于独立的工程，且只有这一个library module。  业务组件以library module形式存在于独立的工程 发布到Maven仓库,通过引入第三方依赖方式使用    Q:业务组件间 没有依赖，如何实现页面的跳转？    使用路由
+Q:业务组件间 没有依赖，如何实现组件间通信/方法调用？     服务暴露组件  Q:业务组件不能反向依赖壳工程，如何获取Application实例、如何获取Application onCreate()回调（用于任务初始化）？    通过AppLifeCycle回调
+Q:如何实现一个路由框架?     不使用注解器  手动把每个界面和相应的Activity对应起来。这个处理过程可以在Application里面做的  routers.</description>
     </item>
     
     <item>

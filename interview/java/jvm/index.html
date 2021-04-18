@@ -158,6 +158,30 @@
             </li>
             
             
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/interview/android/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%83%AD%E4%BF%AE%E5%A4%8D/" class="gdoc-nav__entry ">
+                        插件化&amp;热修复
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
         
             
             
@@ -391,6 +415,30 @@
                 <span class="flex">
                     <a href="/interview/android/%E6%B6%88%E6%81%AF%E9%80%9A%E4%BF%A1/" class="gdoc-nav__entry ">
                         消息通信
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/interview/android/%E7%BB%84%E4%BB%B6%E5%8C%96/" class="gdoc-nav__entry ">
+                        组件化
                     </a>
                 </span>
             
@@ -640,9 +688,53 @@
             <li>
             
             
+                <span class="flex">Dfs</span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
                 <span class="flex">
-                    <a href="/interview/%E7%AE%97%E6%B3%95/%E5%8F%8C%E6%8C%87%E9%92%88/" class="gdoc-nav__entry ">
-                        双指针
+                    <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="gdoc-nav__entry ">
+                        二叉树
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="gdoc-nav__entry ">
+                        动态规划
                     </a>
                 </span>
             
@@ -691,6 +783,30 @@
                 <span class="flex">
                     <a href="/interview/%E7%AE%97%E6%B3%95/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="gdoc-nav__entry ">
                         字符串
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F/" class="gdoc-nav__entry ">
+                        排序
                     </a>
                 </span>
             
@@ -960,6 +1076,8 @@
     <li><a href="#q说一下对象的创建过程变量创建过程种放在虚拟机哪里">Q:说一下对象的创建过程？变量创建过程种放在虚拟机哪里？</a></li>
     <li><a href="#q什么情况下会触发类的初始化">Q:什么情况下会触发类的初始化?</a></li>
     <li><a href="#q什么是双亲委派模型有什么优势">Q:什么是双亲委派模型?有什么优势?</a></li>
+    <li><a href="#q如何自定义一个类加载器">Q:如何自定义一个类加载器?</a></li>
+    <li><a href="#q如何使用自定义类加载器加载文件">Q:如何使用自定义类加载器加载文件?</a></li>
     <li><a href="#q为什么会出现破坏双亲委派的模型是解决了什么问题">Q:为什么会出现破坏双亲委派的模型？是解决了什么问题？</a></li>
     <li><a href="#q基本数据类型一定存储在栈中吗">Q:基本数据类型一定存储在栈中吗？</a></li>
     <li><a href="#q泛型是什么">Q:泛型是什么?</a></li>
@@ -1004,6 +1122,18 @@
     </h2>
 </div><p><img src="/class_load.png" alt="image"  />
 加载、验证、准备、初始化、卸载这五个阶段的顺序是确定的，是依次有序的。但是解析阶段有可能会在初始化之后才会进行，这是为了支持java动态绑定的特性</p>
+<ul>
+<li>加载
+<ul>
+<li>通过一个类的全限定名获取定义此类的二进制字节流给了开发人员很大的灵活性,比如可以通过ZIP、网络、动态代理等技术加载指定二进制流</li>
+</ul>
+</li>
+<li>准备
+<ul>
+<li>正式为类变量（static变量）分配内存并设置初始值,此时变量所使用的内存，将在<strong>方法区</strong>分配,并且初始值为默认值</li>
+</ul>
+</li>
+</ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="qclassforname-和classloaderloadclass区别实际开发你用那种为什么">
         Q:Class.forName() 和ClassLoader.loadClass()区别？实际开发你用那种，为什么？
@@ -1072,6 +1202,61 @@
         </a>
     </h2>
 </div><p>双亲委派模型就是说一个类加载器收到了类加载的请求，不会自己先加载，而是把它交给自己的父类去加载，层层迭代,优势就是所有的类都会交给顶层父类加载器去实现,这样就实现了jvm中类的唯一性</p>
+<ul>
+<li>避免重复加载，如果已经加载，就不需要再次加载</li>
+<li>安全，如果你定义String类来代替系统的String类，这样会导致风险，但是在双亲委托模型中，String类在java虚拟机启动时就被加载了，你自定义的String类是不会被加载的</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">loadClass</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">resolve</span><span class="o">)</span>
+        <span class="kd">throws</span> <span class="n">ClassNotFoundException</span><span class="o">{</span>
+            <span class="c1">// 首先检查类是否被加载过
+</span><span class="c1"></span>            <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">findLoadedClass</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">parent</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span><span class="c1">//先用父加载器加载
+</span><span class="c1"></span>                        <span class="n">c</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="na">loadClass</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+                    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span><span class="c1">//没有父加载器了用启动加载器加载
+</span><span class="c1"></span>                        <span class="n">c</span> <span class="o">=</span> <span class="n">findBootstrapClassOrNull</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ClassNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c1">//如果父类抛出ClassNotFoundException异常
+</span><span class="c1"></span>                    <span class="c1">//则说明父类不能加载该类
+</span><span class="c1"></span>                <span class="o">}</span>
+
+                <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c1">//如果父类无法加载，则调用自身的findClass进行加
+</span><span class="c1"></span>                    <span class="n">c</span> <span class="o">=</span> <span class="n">findClass</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="n">c</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="q如何自定义一个类加载器">
+        Q:如何自定义一个类加载器?
+        <a data-clipboard-text="https://gyzboy.github.io/interview/java/jvm/#q如何自定义一个类加载器" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:如何自定义一个类加载器?" href="#q%e5%a6%82%e4%bd%95%e8%87%aa%e5%ae%9a%e4%b9%89%e4%b8%80%e4%b8%aa%e7%b1%bb%e5%8a%a0%e8%bd%bd%e5%99%a8">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>定义一个类并继承ClassLoader</li>
+<li>重写findClass方法，并且在findClass方法中调用defineClass方法
+<ul>
+<li>byte[] data = loadClassData(name);//将文件内容转换为字节流</li>
+<li>defineClass(name, data, 0, data.length)//将字节流转换为class实例</li>
+</ul>
+</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="q如何使用自定义类加载器加载文件">
+        Q:如何使用自定义类加载器加载文件?
+        <a data-clipboard-text="https://gyzboy.github.io/interview/java/jvm/#q如何使用自定义类加载器加载文件" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:如何使用自定义类加载器加载文件?" href="#q%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8%e8%87%aa%e5%ae%9a%e4%b9%89%e7%b1%bb%e5%8a%a0%e8%bd%bd%e5%99%a8%e5%8a%a0%e8%bd%bd%e6%96%87%e4%bb%b6">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ol>
+<li>CustomClassLoader customClassLoader = new CustomClassLoader(filePath);//传入class文件路径</li>
+<li>Class&lt;?&gt; aClass = customClassLoader.findClass(&ldquo;com.gyz.Hello&rdquo;);//生成指定包名class文件</li>
+<li>通过反射调用方法</li>
+</ol>
 <div class="gdoc-page__anchorwrap">
     <h2 id="q为什么会出现破坏双亲委派的模型是解决了什么问题">
         Q:为什么会出现破坏双亲委派的模型？是解决了什么问题？
