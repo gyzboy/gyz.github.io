@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://gyzboy.github.io/interview/android/jni/</loc>
+  </url><url>
     <loc>https://gyzboy.github.io/interview/android/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/</loc>
   </url><url>
     <loc>https://gyzboy.github.io/interview/android/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%83%AD%E4%BF%AE%E5%A4%8D/</loc>
@@ -13,6 +15,12 @@
     <lastmod>2021-04-13T16:12:16+08:00</lastmod>
   </url><url>
     <loc>https://gyzboy.github.io/interview/android/%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6/</loc>
+    <lastmod>2021-04-13T16:12:16+08:00</lastmod>
+  </url><url>
+    <loc>https://gyzboy.github.io/interview/c&#43;&#43;/</loc>
+    <lastmod>2021-04-13T16:12:16+08:00</lastmod>
+  </url><url>
+    <loc>https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
     <lastmod>2021-04-13T16:12:16+08:00</lastmod>
   </url><url>
     <loc>https://gyzboy.github.io/interview/java/gc/</loc>
@@ -84,6 +92,9 @@
     <loc>https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2021-04-13T16:12:16+08:00</lastmod>
   </url><url>
+    <loc>https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/</loc>
+    <lastmod>2021-04-13T16:12:16+08:00</lastmod>
+  </url><url>
     <loc>https://gyzboy.github.io/interview/android/%E7%BB%84%E4%BB%B6%E5%8C%96/</loc>
     <lastmod>2021-04-13T16:12:16+08:00</lastmod>
   </url><url>
@@ -106,8 +117,6 @@
     <lastmod>2021-04-13T16:12:16+08:00</lastmod>
   </url><url>
     <loc>https://gyzboy.github.io/interview/android/%E5%8A%A8%E7%94%BB/</loc>
-  </url><url>
-    <loc>https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/dfs/</loc>
   </url><url>
     <loc>https://gyzboy.github.io/categories/</loc>
   </url><url>

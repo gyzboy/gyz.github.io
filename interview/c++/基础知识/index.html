@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GC">
+<meta name="description" content="C&#43;&#43;基础知识">
 
-<title>GC | 十万个为什么</title>
+<title>C&#43;&#43;基础知识 | 十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -515,7 +515,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="gdoc-nav__entry ">
+                    <a href="/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="gdoc-nav__entry is-active">
                         C&#43;&#43;基础知识
                     </a>
                 </span>
@@ -569,7 +569,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/java/gc/" class="gdoc-nav__entry is-active">
+                    <a href="/interview/java/gc/" class="gdoc-nav__entry ">
                         GC
                     </a>
                 </span>
@@ -1129,7 +1129,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/java/' href='/interview/java/'><span itemprop='name'>Java</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>GC</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/c++/' href='/interview/c++/'><span itemprop='name'>C++</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>C++基础知识</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1146,70 +1146,212 @@
 
 
     <article class="gdoc-markdown">
-        <h1>GC</h1>
+        <h1>C&#43;&#43;基础知识</h1>
         
 
 
   <div class="gdoc-toc gdoc-toc__level--6"><nav id="TableOfContents">
   <ul>
-    <li><a href="#q垃圾收集算法">Q:垃圾收集算法?</a></li>
-    <li><a href="#q如和判断一个对象是否存活引用计数法和可达性算法哪个更加好如何理解一个对象不一定会被回收">Q:如和判断一个对象是否存活?引用计数法和可达性算法哪个更加好？如何理解一个对象不一定会被回收？</a></li>
+    <li><a href="#什么是命名空间">什么是命名空间?</a></li>
+    <li><a href="#带默认形参的函数">带默认形参的函数</a></li>
+    <li><a href="#函数模板">函数模板</a></li>
+    <li><a href="#内联函数">内联函数</a></li>
+    <li><a href="#类的定义">类的定义</a></li>
+    <li><a href="#对象的建立和使用">对象的建立和使用</a>
+      <ul>
+        <li><a href="#对象创建">对象创建</a></li>
+        <li><a href="#对象指针">对象指针</a></li>
+        <li><a href="#对象引用">对象引用</a></li>
+      </ul>
+    </li>
+    <li><a href="#友元函数">友元函数</a></li>
+    <li><a href="#虚基类和虚基类的使用">虚基类和虚基类的使用</a></li>
+    <li><a href="#虚函数">虚函数</a></li>
+    <li><a href="#文件读写">文件读写</a></li>
   </ul>
 </nav><hr></div>
 
 
 <div class="gdoc-page__anchorwrap">
-    <h2 id="q垃圾收集算法">
-        Q:垃圾收集算法?
-        <a data-clipboard-text="https://gyzboy.github.io/interview/java/gc/#q垃圾收集算法" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:垃圾收集算法?" href="#q%e5%9e%83%e5%9c%be%e6%94%b6%e9%9b%86%e7%ae%97%e6%b3%95">
+    <h2 id="什么是命名空间">
+        什么是命名空间?
+        <a data-clipboard-text="https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#什么是命名空间" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 什么是命名空间?" href="#%e4%bb%80%e4%b9%88%e6%98%af%e5%91%bd%e5%90%8d%e7%a9%ba%e9%97%b4">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><ol>
-<li>标记-清除:在标记阶段，程序会检查每个对象是否为活动对象，如果是活动对象，则程序会在对象头部打上标记。在清除阶段，会进行对象回收并取消标志位，另外，还会判断回收后的分块与前一个空闲分块是否连续，若连续，会合并这两个分块</li>
-<li>标记-整理:让所有存活的对象都向一端移动，然后直接清理掉端边界以外的内存</li>
-<li>复制:将内存划分为大小相等的两块，每次只使用其中一块，当这一块内存用完了就将还存活的对象复制到另一块上面，然后再把使用过的内存空间进行一次清理。</li>
-<li>分代收集:新生代使用：复制算法,老年代使用：标记 - 清除 或者 标记 - 整理 算法</li>
-</ol>
+</div><p>using namespace std;<br>
+类似于java中的包名,主要是为了解决多个模块间命名出冲突的问题</p>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="q如和判断一个对象是否存活引用计数法和可达性算法哪个更加好如何理解一个对象不一定会被回收">
-        Q:如和判断一个对象是否存活?引用计数法和可达性算法哪个更加好？如何理解一个对象不一定会被回收？
-        <a data-clipboard-text="https://gyzboy.github.io/interview/java/gc/#q如和判断一个对象是否存活引用计数法和可达性算法哪个更加好如何理解一个对象不一定会被回收" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:如和判断一个对象是否存活?引用计数法和可达性算法哪个更加好？如何理解一个对象不一定会被回收？" href="#q%e5%a6%82%e5%92%8c%e5%88%a4%e6%96%ad%e4%b8%80%e4%b8%aa%e5%af%b9%e8%b1%a1%e6%98%af%e5%90%a6%e5%ad%98%e6%b4%bb%e5%bc%95%e7%94%a8%e8%ae%a1%e6%95%b0%e6%b3%95%e5%92%8c%e5%8f%af%e8%be%be%e6%80%a7%e7%ae%97%e6%b3%95%e5%93%aa%e4%b8%aa%e6%9b%b4%e5%8a%a0%e5%a5%bd%e5%a6%82%e4%bd%95%e7%90%86%e8%a7%a3%e4%b8%80%e4%b8%aa%e5%af%b9%e8%b1%a1%e4%b8%8d%e4%b8%80%e5%ae%9a%e4%bc%9a%e8%a2%ab%e5%9b%9e%e6%94%b6">
+    <h2 id="带默认形参的函数">
+        带默认形参的函数
+        <a data-clipboard-text="https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#带默认形参的函数" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 带默认形参的函数" href="#%e5%b8%a6%e9%bb%98%e8%ae%a4%e5%bd%a2%e5%8f%82%e7%9a%84%e5%87%bd%e6%95%b0">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><ul>
-<li>
-<ol>
-<li>引用计数法</li>
-</ol>
+</div><div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">int</span>  <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span><span class="mi">5</span><span class="p">){</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">add</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">//9
+</span></code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="函数模板">
+        函数模板
+        <a data-clipboard-text="https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#函数模板" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 函数模板" href="#%e5%87%bd%e6%95%b0%e6%a8%a1%e6%9d%bf">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>C++和java一样都有函数的重载，函数重载可以处理多种类型，同一个方法名，但依然需要分开定义，如果可以让他代码更精简一点，模板化就更好了,为此C++提供了函数模板这一机制，可以大大提高函数的通用性(自我感觉像泛型)</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="err">类型名1，</span><span class="nc">class</span> <span class="err">类型名</span><span class="mi">2</span><span class="err">…</span><span class="o">&gt;</span>
+<span class="err">返回值</span> <span class="err">函数名（形参表列）</span> <span class="err">模板参数表</span>
+<span class="p">{</span>
+   <span class="err">函数体</span>
+<span class="p">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="内联函数">
+        内联函数
+        <a data-clipboard-text="https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#内联函数" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 内联函数" href="#%e5%86%85%e8%81%94%e5%87%bd%e6%95%b0">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>通过在函数上添加inline关键字,在编译的时候，把函数代码插入到函数调用的地方， 就像普通的程序执行代码一样</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="类的定义">
+        类的定义
+        <a data-clipboard-text="https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#类的定义" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 类的定义" href="#%e7%b1%bb%e7%9a%84%e5%ae%9a%e4%b9%89">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">Sts</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span><span class="c1">//访问修饰符跟java类似
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">socre</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="nf">print</span><span class="p">();</span>
+<span class="p">};</span><span class="c1">//注意这个分号
+</span><span class="c1"></span><span class="kt">int</span> <span class="n">Sts</span><span class="o">::</span><span class="n">print</span><span class="p">(){</span><span class="c1">//在类外定义函数体，在类外定义函数体的需要类名加上::域限定符
+</span><span class="c1"></span>     <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="s">&#34;/&#34;</span><span class="o">&lt;&lt;</span><span class="n">name</span><span class="o">&lt;&lt;</span><span class="s">&#34;/&#34;</span><span class="o">&lt;&lt;</span><span class="n">socre</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="对象的建立和使用">
+        对象的建立和使用
+        <a data-clipboard-text="https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#对象的建立和使用" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 对象的建立和使用" href="#%e5%af%b9%e8%b1%a1%e7%9a%84%e5%bb%ba%e7%ab%8b%e5%92%8c%e4%bd%bf%e7%94%a8">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="对象创建">
+        对象创建
+        <a data-clipboard-text="https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#对象创建" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 对象创建" href="#%e5%af%b9%e8%b1%a1%e5%88%9b%e5%bb%ba">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">int</span> <span class="o">*</span><span class="n">a</span><span class="o">=</span>  <span class="k">new</span> <span class="kt">int</span><span class="p">;</span><span class="c1">//动态分配一个int类型的内存空间；
+</span><span class="c1"></span><span class="k">delete</span> <span class="n">a</span><span class="p">;</span><span class="c1">//释放内存；    
+</span><span class="c1">//分配10个int数据空间
+</span><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">aa</span><span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="k">delete</span> <span class="p">[]</span><span class="n">aa</span><span class="p">;</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h3 id="对象指针">
+        对象指针
+        <a data-clipboard-text="https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#对象指针" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 对象指针" href="#%e5%af%b9%e8%b1%a1%e6%8c%87%e9%92%88">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">Sts</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+<span class="n">Sts</span> <span class="n">s</span><span class="p">;</span>    
+<span class="n">s</span><span class="p">.</span><span class="n">a</span><span class="o">=</span><span class="mi">100</span><span class="p">;</span>
+<span class="n">s</span><span class="p">.</span><span class="n">socre</span><span class="o">=</span><span class="mi">200</span><span class="p">;</span>
+<span class="n">strcpy</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="s">&#34;xin&#34;</span><span class="p">);</span>    
+<span class="n">p</span><span class="o">=&amp;</span><span class="n">s</span><span class="p">;</span>
+<span class="n">p</span><span class="o">-&gt;</span><span class="n">print</span><span class="p">();</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h3 id="对象引用">
+        对象引用
+        <a data-clipboard-text="https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#对象引用" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 对象引用" href="#%e5%af%b9%e8%b1%a1%e5%bc%95%e7%94%a8">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">Student</span> <span class="n">A</span><span class="p">;</span>
+<span class="n">Student</span> <span class="o">&amp;</span><span class="n">Aq</span><span class="o">=</span><span class="n">A</span><span class="p">;</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="友元函数">
+        友元函数
+        <a data-clipboard-text="https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#友元函数" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 友元函数" href="#%e5%8f%8b%e5%85%83%e5%87%bd%e6%95%b0">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>利用友元函数(声明加上friend)，把外部的函数声明为友元类型,赋予它可以在类外访问类的私有变量,友元函数既可以是全局函数，也可以是其他类的成员函数，不仅如此，友元还可以是一个类，叫做友元类</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="虚基类和虚基类的使用">
+        虚基类和虚基类的使用
+        <a data-clipboard-text="https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#虚基类和虚基类的使用" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 虚基类和虚基类的使用" href="#%e8%99%9a%e5%9f%ba%e7%b1%bb%e5%92%8c%e8%99%9a%e5%9f%ba%e7%b1%bb%e7%9a%84%e4%bd%bf%e7%94%a8">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>虚基类就是在继承的public之前加上virtual关键字，只要加上这个关键字派生类就维护一份基类对象，避免在多继承情况下多次拷贝，出现歧义</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="虚函数">
+        虚函数
+        <a data-clipboard-text="https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#虚函数" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 虚函数" href="#%e8%99%9a%e5%87%bd%e6%95%b0">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>类似于java中的多态,在运行时判断属于哪个类型,执行什么函数</p>
+<blockquote>
 <ul>
-<li>所谓引用计数法就是给每一个对象设置一个引用计数器，每当有一个地方引用这个对象时，就将计数器加一，引用失效时，计数器就减一。当一个对象的引用计数器为零时，说明此对象没有被引用，也就是“死对象”,将会被垃圾回收.</li>
-<li>引用计数法有一个缺陷就是无法解决循环引用问题，也就是说当对象A引用对象B，对象B又引用者对象A，那么此时A,B对象的引用计数器都不为零，也就造成无法完成垃圾回收，所以主流的虚拟机都没有采用这种算法。</li>
+<li>虚函数不能是静态成员函数，或友元函数，因为他们不属于某个对象</li>
+<li>内联函数不能运行中动态指定其位置，及时虚函数在类内定义，编译时，仍将看做非内联</li>
+<li>构造函数不能是虚函数，析构函数可以是虚函数，而且通常声明为虚函数</li>
 </ul>
-</li>
-<li>2.可达性算法(引用链法)
-<ul>
-<li>该算法的思想是：从一个被称为GC Roots的对象开始向下搜索，如果一个对象到GC Roots没有任何引用链相连时，则说明此对象不可用。</li>
-<li>在java中可以作为GC Roots的对象有以下几种:
-<ul>
-<li>虚拟机栈中引用的对象</li>
-<li>方法区类静态属性引用的对象</li>
-<li>方法区常量池引用的对象</li>
-<li>本地方法栈JNI引用的对象</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>如何理解一个对象不一定会被回收？
-<ul>
-<li>虽然这些算法可以判定一个对象是否能被回收，但是当满足上述条件时，一个对象比不一定会被回收。当一个对象不可达GC Root时，这个对象并不会立马被回收，而是出于一个死缓的阶段，若要被真正的回收需要经历两次标记</li>
-<li>如果对象在可达性分析中没有与GCRoot的引用链，那么此时就会被第一次标记并且进行一次筛选，筛选的条件是是否有必要执行finalize()方法。当对象没有覆盖finalize()方法或者已被虚拟机调用过，那么就认为是没必要的。</li>
-<li>如果该对象有必要执行finalize()方法，那么这个对象将会放在一个称为F-Queue的对队列中，虚拟机会触发一个Finalize()线程去执行，此线程是低优先级的，并且虚拟机不会承诺一直等待它运行完，这是因为如果finalize()执行缓慢或者发生了死锁，那么就会造成F-Queue队列一直等待，造成了内存回收系统的崩溃。GC对处于F-Queue中的对象进行第二次被标记，这时，该对象将被移除”即将回收”集合，等待回收。</li>
-</ul>
-</li>
-</ul>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">print</span><span class="p">(){</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&#34;A&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+<span class="k">class</span> <span class="nc">B</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">print</span><span class="p">(){</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span><span class="s">&#34;B&#34;</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="n">A</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>
+    <span class="n">B</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">b</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>
+    <span class="n">A</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+    <span class="n">p</span><span class="o">=&amp;</span><span class="n">b</span><span class="p">;</span>
+    <span class="n">p</span><span class="o">-&gt;</span><span class="n">print</span><span class="p">();</span>
+    <span class="n">A</span> <span class="o">&amp;</span><span class="n">pp</span><span class="o">=</span><span class="n">b</span><span class="p">;</span>
+    <span class="n">pp</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span><span class="c1">//ABBB
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="文件读写">
+        文件读写
+        <a data-clipboard-text="https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#文件读写" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 文件读写" href="#%e6%96%87%e4%bb%b6%e8%af%bb%e5%86%99">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">data</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+    <span class="c1">//读文件
+</span><span class="c1"></span>    <span class="n">ifstream</span> <span class="n">in</span><span class="p">;</span>
+    <span class="n">in</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#34;/Users/renxiaohui/Desktop/test.txt&#34;</span><span class="p">);</span>
+    <span class="n">in</span><span class="o">&gt;&gt;</span><span class="n">data</span><span class="p">;</span>
+    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">data</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">in</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
 
+    <span class="c1">//写文件
+</span><span class="c1"></span>    <span class="n">ofstream</span> <span class="n">out</span><span class="p">;</span>
+    <span class="n">out</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#34;/Users/renxiaohui/Desktop/test1.txt&#34;</span><span class="p">);</span>
+    <span class="n">out</span><span class="o">&lt;&lt;</span><span class="n">name</span><span class="p">;</span>
+    <span class="n">out</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 
     </article>
 

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GC">
+<meta name="description" content="算法模板">
 
-<title>GC | 十万个为什么</title>
+<title>算法模板 | 十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -569,7 +569,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/java/gc/" class="gdoc-nav__entry is-active">
+                    <a href="/interview/java/gc/" class="gdoc-nav__entry ">
                         GC
                     </a>
                 </span>
@@ -911,7 +911,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" class="gdoc-nav__entry ">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" class="gdoc-nav__entry is-active">
                         算法模板
                     </a>
                 </span>
@@ -1129,7 +1129,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/java/' href='/interview/java/'><span itemprop='name'>Java</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>GC</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/%E7%AE%97%E6%B3%95/' href='/interview/%E7%AE%97%E6%B3%95/'><span itemprop='name'>算法</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>算法模板</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1146,70 +1146,318 @@
 
 
     <article class="gdoc-markdown">
-        <h1>GC</h1>
+        <h1>算法模板</h1>
         
 
 
   <div class="gdoc-toc gdoc-toc__level--6"><nav id="TableOfContents">
   <ul>
-    <li><a href="#q垃圾收集算法">Q:垃圾收集算法?</a></li>
-    <li><a href="#q如和判断一个对象是否存活引用计数法和可达性算法哪个更加好如何理解一个对象不一定会被回收">Q:如和判断一个对象是否存活?引用计数法和可达性算法哪个更加好？如何理解一个对象不一定会被回收？</a></li>
+    <li><a href="#二分查找法">二分查找法</a></li>
+    <li><a href="#kmp">KMP</a></li>
+    <li><a href="#二叉树">二叉树</a>
+      <ul>
+        <li><a href="#深度优先遍历递归">深度优先遍历（递归）</a></li>
+        <li><a href="#深度优先遍历迭代法">深度优先遍历（迭代法）</a></li>
+        <li><a href="#广度优先遍历队列">广度优先遍历（队列）</a></li>
+        <li><a href="#二叉树深度">二叉树深度</a></li>
+        <li><a href="#二叉树节点数量">二叉树节点数量</a></li>
+      </ul>
+    </li>
+    <li><a href="#回溯算法">回溯算法</a></li>
+    <li><a href="#并查集">并查集</a></li>
   </ul>
 </nav><hr></div>
 
 
 <div class="gdoc-page__anchorwrap">
-    <h2 id="q垃圾收集算法">
-        Q:垃圾收集算法?
-        <a data-clipboard-text="https://gyzboy.github.io/interview/java/gc/#q垃圾收集算法" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:垃圾收集算法?" href="#q%e5%9e%83%e5%9c%be%e6%94%b6%e9%9b%86%e7%ae%97%e6%b3%95">
+    <h2 id="二分查找法">
+        二分查找法
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#二分查找法" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 二分查找法" href="#%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be%e6%b3%95">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><ol>
-<li>标记-清除:在标记阶段，程序会检查每个对象是否为活动对象，如果是活动对象，则程序会在对象头部打上标记。在清除阶段，会进行对象回收并取消标志位，另外，还会判断回收后的分块与前一个空闲分块是否连续，若连续，会合并这两个分块</li>
-<li>标记-整理:让所有存活的对象都向一端移动，然后直接清理掉端边界以外的内存</li>
-<li>复制:将内存划分为大小相等的两块，每次只使用其中一块，当这一块内存用完了就将还存活的对象复制到另一块上面，然后再把使用过的内存空间进行一次清理。</li>
-<li>分代收集:新生代使用：复制算法,老年代使用：标记 - 清除 或者 标记 - 整理 算法</li>
-</ol>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="q如和判断一个对象是否存活引用计数法和可达性算法哪个更加好如何理解一个对象不一定会被回收">
-        Q:如和判断一个对象是否存活?引用计数法和可达性算法哪个更加好？如何理解一个对象不一定会被回收？
-        <a data-clipboard-text="https://gyzboy.github.io/interview/java/gc/#q如和判断一个对象是否存活引用计数法和可达性算法哪个更加好如何理解一个对象不一定会被回收" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:如和判断一个对象是否存活?引用计数法和可达性算法哪个更加好？如何理解一个对象不一定会被回收？" href="#q%e5%a6%82%e5%92%8c%e5%88%a4%e6%96%ad%e4%b8%80%e4%b8%aa%e5%af%b9%e8%b1%a1%e6%98%af%e5%90%a6%e5%ad%98%e6%b4%bb%e5%bc%95%e7%94%a8%e8%ae%a1%e6%95%b0%e6%b3%95%e5%92%8c%e5%8f%af%e8%be%be%e6%80%a7%e7%ae%97%e6%b3%95%e5%93%aa%e4%b8%aa%e6%9b%b4%e5%8a%a0%e5%a5%bd%e5%a6%82%e4%bd%95%e7%90%86%e8%a7%a3%e4%b8%80%e4%b8%aa%e5%af%b9%e8%b1%a1%e4%b8%8d%e4%b8%80%e5%ae%9a%e4%bc%9a%e8%a2%ab%e5%9b%9e%e6%94%b6">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div><ul>
-<li>
-<ol>
-<li>引用计数法</li>
-</ol>
-<ul>
-<li>所谓引用计数法就是给每一个对象设置一个引用计数器，每当有一个地方引用这个对象时，就将计数器加一，引用失效时，计数器就减一。当一个对象的引用计数器为零时，说明此对象没有被引用，也就是“死对象”,将会被垃圾回收.</li>
-<li>引用计数法有一个缺陷就是无法解决循环引用问题，也就是说当对象A引用对象B，对象B又引用者对象A，那么此时A,B对象的引用计数器都不为零，也就造成无法完成垃圾回收，所以主流的虚拟机都没有采用这种算法。</li>
-</ul>
-</li>
-<li>2.可达性算法(引用链法)
-<ul>
-<li>该算法的思想是：从一个被称为GC Roots的对象开始向下搜索，如果一个对象到GC Roots没有任何引用链相连时，则说明此对象不可用。</li>
-<li>在java中可以作为GC Roots的对象有以下几种:
-<ul>
-<li>虚拟机栈中引用的对象</li>
-<li>方法区类静态属性引用的对象</li>
-<li>方法区常量池引用的对象</li>
-<li>本地方法栈JNI引用的对象</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>如何理解一个对象不一定会被回收？
-<ul>
-<li>虽然这些算法可以判定一个对象是否能被回收，但是当满足上述条件时，一个对象比不一定会被回收。当一个对象不可达GC Root时，这个对象并不会立马被回收，而是出于一个死缓的阶段，若要被真正的回收需要经历两次标记</li>
-<li>如果对象在可达性分析中没有与GCRoot的引用链，那么此时就会被第一次标记并且进行一次筛选，筛选的条件是是否有必要执行finalize()方法。当对象没有覆盖finalize()方法或者已被虚拟机调用过，那么就认为是没必要的。</li>
-<li>如果该对象有必要执行finalize()方法，那么这个对象将会放在一个称为F-Queue的对队列中，虚拟机会触发一个Finalize()线程去执行，此线程是低优先级的，并且虚拟机不会承诺一直等待它运行完，这是因为如果finalize()执行缓慢或者发生了死锁，那么就会造成F-Queue队列一直等待，造成了内存回收系统的崩溃。GC对处于F-Queue中的对象进行第二次被标记，这时，该对象将被移除”即将回收”集合，等待回收。</li>
-</ul>
-</li>
-</ul>
+</div><pre><code>class Solution {
+public:
+    int searchInsert(vector&lt;int&gt;&amp; nums, int target) {
+        int n = nums.size();
+        int left = 0;
+        int right = n; // 我们定义target在左闭右开的区间里，[left, right)  
+        while (left &lt; right) { // 因为left == right的时候，在[left, right)是无效的空间
+            int middle = left + ((right - left) &gt;&gt; 1);
+            if (nums[middle] &gt; target) {
+                right = middle; // target 在左区间，因为是左闭右开的区间，nums[middle]一定不是我们的目标值，所以right = middle，在[left, middle)中继续寻找目标值
+            } else if (nums[middle] &lt; target) {
+                left = middle + 1; // target 在右区间，在 [middle+1, right)中
+            } else { // nums[middle] == target
+                return middle; // 数组中找到目标值的情况，直接返回下标
+            }
+        }
+        return right;
+    }
+};
 
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h2 id="kmp">
+        KMP
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#kmp" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor KMP" href="#kmp">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><pre><code>void kmp(int* next, const string&amp; s){
+    next[0] = -1;
+    int j = -1;
+    for(int i = 1; i &lt; s.size(); i++){
+        while (j &gt;= 0 &amp;&amp; s[i] != s[j + 1]) {
+            j = next[j];
+        }
+        if (s[i] == s[j + 1]) {
+            j++;
+        }
+        next[i] = j;
+    }
+}
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h2 id="二叉树">
+        二叉树
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#二叉树" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 二叉树" href="#%e4%ba%8c%e5%8f%89%e6%a0%91">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>二叉树的定义：</p>
+<pre><code>struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="深度优先遍历递归">
+        深度优先遍历（递归）
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#深度优先遍历递归" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 深度优先遍历（递归）" href="#%e6%b7%b1%e5%ba%a6%e4%bc%98%e5%85%88%e9%81%8d%e5%8e%86%e9%80%92%e5%bd%92">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>前序遍历（中左右）</p>
+<pre><code>void traversal(TreeNode* cur, vector&lt;int&gt;&amp; vec) {
+    if (cur == NULL) return;
+    vec.push_back(cur-&gt;val);    // 中 ，同时也是处理节点逻辑的地方
+    traversal(cur-&gt;left, vec);  // 左
+    traversal(cur-&gt;right, vec); // 右
+}
+</code></pre><p>中序遍历（左中右）</p>
+<pre><code>void traversal(TreeNode* cur, vector&lt;int&gt;&amp; vec) {
+    if (cur == NULL) return;
+    traversal(cur-&gt;left, vec);  // 左
+    vec.push_back(cur-&gt;val);    // 中 ，同时也是处理节点逻辑的地方
+    traversal(cur-&gt;right, vec); // 右
+}
+</code></pre><p>前序遍历（中左右）</p>
+<pre><code>void traversal(TreeNode* cur, vector&lt;int&gt;&amp; vec) {
+    if (cur == NULL) return;
+    vec.push_back(cur-&gt;val);    // 中 ，同时也是处理节点逻辑的地方
+    traversal(cur-&gt;left, vec);  // 左
+    traversal(cur-&gt;right, vec); // 右
+}
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="深度优先遍历迭代法">
+        深度优先遍历（迭代法）
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#深度优先遍历迭代法" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 深度优先遍历（迭代法）" href="#%e6%b7%b1%e5%ba%a6%e4%bc%98%e5%85%88%e9%81%8d%e5%8e%86%e8%bf%ad%e4%bb%a3%e6%b3%95">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>相关题解：<a class="gdoc-markdown__link" href="https://github.com/youngyangyang04/leetcode/blob/master/problems/0094.%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e4%b8%ad%e5%ba%8f%e9%81%8d%e5%8e%86.md">0094.二叉树的中序遍历</a></p>
+<p>前序遍历（中左右）</p>
+<pre><code>vector&lt;int&gt; preorderTraversal(TreeNode* root) {
+    vector&lt;int&gt; result;
+    stack&lt;TreeNode*&gt; st;
+    if (root != NULL) st.push(root);
+    while (!st.empty()) {
+        TreeNode* node = st.top();
+        if (node != NULL) {
+            st.pop();
+            if (node-&gt;right) st.push(node-&gt;right);  // 右
+            if (node-&gt;left) st.push(node-&gt;left);    // 左
+            st.push(node);                          // 中
+            st.push(NULL);                          
+        } else {
+            st.pop();
+            node = st.top();
+            st.pop();
+            result.push_back(node-&gt;val);            // 节点处理逻辑
+        }
+    }
+    return result;
+}
+
+</code></pre><p>中序遍历（左中右）</p>
+<pre><code>vector&lt;int&gt; inorderTraversal(TreeNode* root) {
+    vector&lt;int&gt; result; // 存放中序遍历的元素
+    stack&lt;TreeNode*&gt; st;
+    if (root != NULL) st.push(root);
+    while (!st.empty()) {
+        TreeNode* node = st.top();
+        if (node != NULL) {
+            st.pop(); 
+            if (node-&gt;right) st.push(node-&gt;right);  // 右
+            st.push(node);                          // 中
+            st.push(NULL); 
+            if (node-&gt;left) st.push(node-&gt;left);    // 左
+        } else {
+            st.pop(); 
+            node = st.top(); 
+            st.pop();
+            result.push_back(node-&gt;val);            // 节点处理逻辑
+        }
+    }
+    return result;
+}
+</code></pre><p>后序遍历（左右中）</p>
+<pre><code>vector&lt;int&gt; postorderTraversal(TreeNode* root) {
+    vector&lt;int&gt; result;
+    stack&lt;TreeNode*&gt; st;
+    if (root != NULL) st.push(root);
+    while (!st.empty()) {
+        TreeNode* node = st.top();
+        if (node != NULL) {
+            st.pop();
+            st.push(node);                          // 中
+            st.push(NULL);
+            if (node-&gt;right) st.push(node-&gt;right);  // 右
+            if (node-&gt;left) st.push(node-&gt;left);    // 左
+
+        } else {
+            st.pop();
+            node = st.top();
+            st.pop();
+            result.push_back(node-&gt;val);            // 节点处理逻辑
+        }
+    }
+    return result;
+}
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="广度优先遍历队列">
+        广度优先遍历（队列）
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#广度优先遍历队列" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 广度优先遍历（队列）" href="#%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e9%81%8d%e5%8e%86%e9%98%9f%e5%88%97">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>相关题解：<a class="gdoc-markdown__link" href="https://github.com/youngyangyang04/leetcode/blob/master/problems/0102.%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%b1%82%e5%ba%8f%e9%81%8d%e5%8e%86.md">0102.二叉树的层序遍历</a></p>
+<pre><code>vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) {
+    queue&lt;TreeNode*&gt; que;
+    if (root != NULL) que.push(root);
+    vector&lt;vector&lt;int&gt;&gt; result;
+    while (!que.empty()) {
+        int size = que.size();
+        vector&lt;int&gt; vec;
+        for (int i = 0; i &lt; size; i++) {// 这里一定要使用固定大小size，不要使用que.size()
+            TreeNode* node = que.front();
+            que.pop();
+            vec.push_back(node-&gt;val);   // 节点处理的逻辑
+            if (node-&gt;left) que.push(node-&gt;left);
+            if (node-&gt;right) que.push(node-&gt;right);
+        }
+        result.push_back(vec);
+    }
+    return result;
+}
+
+</code></pre><p>可以直接解决如下题目：</p>
+<ul>
+<li>
+<p><a class="gdoc-markdown__link" href="https://github.com/youngyangyang04/leetcode/blob/master/problems/0102.%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%b1%82%e5%ba%8f%e9%81%8d%e5%8e%86.md">0102.二叉树的层序遍历</a></p>
+</li>
+<li>
+<p><a class="gdoc-markdown__link" href="https://github.com/youngyangyang04/leetcode/blob/master/problems/0199.%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%8f%b3%e8%a7%86%e5%9b%be.md">0199.二叉树的右视图</a></p>
+</li>
+<li>
+<p><a class="gdoc-markdown__link" href="https://github.com/youngyangyang04/leetcode/blob/master/problems/0637.%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%b1%82%e5%b9%b3%e5%9d%87%e5%80%bc.md">0637.二叉树的层平均值</a></p>
+</li>
+<li>
+<p><a class="gdoc-markdown__link" href="https://github.com/youngyangyang04/leetcode/blob/master/problems/0104.%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%9c%80%e5%a4%a7%e6%b7%b1%e5%ba%a6.md">0104.二叉树的最大深度 （迭代法）</a></p>
+</li>
+<li>
+<p><a class="gdoc-markdown__link" href="%28https://github.com/youngyangyang04/leetcode/blob/master/problems/0111.%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%9c%80%e5%b0%8f%e6%b7%b1%e5%ba%a6.md%29">0111.二叉树的最小深度（迭代法）</a></p>
+</li>
+<li>
+<p><a class="gdoc-markdown__link" href="https://github.com/youngyangyang04/leetcode/blob/master/problems/0222.%e5%ae%8c%e5%85%a8%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e8%8a%82%e7%82%b9%e4%b8%aa%e6%95%b0.md">0222.完全二叉树的节点个数（迭代法）</a></p>
+</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="二叉树深度">
+        二叉树深度
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#二叉树深度" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 二叉树深度" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e6%b7%b1%e5%ba%a6">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><pre><code>int getDepth(TreeNode* node) {
+    if (node == NULL) return 0;
+    return 1 + max(getDepth(node-&gt;left), getDepth(node-&gt;right));
+}
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h3 id="二叉树节点数量">
+        二叉树节点数量
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#二叉树节点数量" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 二叉树节点数量" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e8%8a%82%e7%82%b9%e6%95%b0%e9%87%8f">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><pre><code>int countNodes(TreeNode* root) {
+    if (root == NULL) return 0;
+    return 1 + countNodes(root-&gt;left) + countNodes(root-&gt;right);
+}
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h2 id="回溯算法">
+        回溯算法
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#回溯算法" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 回溯算法" href="#%e5%9b%9e%e6%ba%af%e7%ae%97%e6%b3%95">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><pre><code>void backtracking(参数) {
+    if (终止条件) {
+        存放结果;
+        return;
+    }
+
+    for (选择：本层集合中元素（树中节点孩子的数量就是集合的大小）) {
+        处理节点;
+        backtracking(路径，选择列表); // 递归
+        回溯，撤销处理结果
+    }
+}
+
+</code></pre><div class="gdoc-page__anchorwrap">
+    <h2 id="并查集">
+        并查集
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#并查集" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 并查集" href="#%e5%b9%b6%e6%9f%a5%e9%9b%86">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><pre><code>    int n = 1005; // 更具题意而定 
+    int father[1005];
+
+    // 并查集初始化
+    void init() {
+        for (int i = 0; i &lt; n; ++i) {
+            father[i] = i;
+        }
+    }
+    // 并查集里寻根的过程
+    int find(int u) {
+        return u == father[u] ? u : father[u] = find(father[u]);
+    }
+    // 将v-&gt;u 这条边加入并查集
+    void join(int u, int v) {
+        u = find(u);
+        v = find(v);
+        if (u == v) return ;
+        father[v] = u;
+    }
+    // 判断 u 和 v是否找到同一个根
+    bool same(int u, int v) {
+        u = find(u);
+        v = find(v);
+        return u == v;
+    }
+</code></pre>
 
     </article>
 

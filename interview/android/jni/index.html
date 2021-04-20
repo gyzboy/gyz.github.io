@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="GC">
+<meta name="description" content="JNI">
 
-<title>GC | 十万个为什么</title>
+<title>JNI | 十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -147,7 +147,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/android/jni/" class="gdoc-nav__entry ">
+                    <a href="/interview/android/jni/" class="gdoc-nav__entry is-active">
                         JNI
                     </a>
                 </span>
@@ -569,7 +569,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/java/gc/" class="gdoc-nav__entry is-active">
+                    <a href="/interview/java/gc/" class="gdoc-nav__entry ">
                         GC
                     </a>
                 </span>
@@ -1129,7 +1129,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/java/' href='/interview/java/'><span itemprop='name'>Java</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>GC</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>JNI</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1146,69 +1146,254 @@
 
 
     <article class="gdoc-markdown">
-        <h1>GC</h1>
+        <h1>JNI</h1>
         
 
 
   <div class="gdoc-toc gdoc-toc__level--6"><nav id="TableOfContents">
   <ul>
-    <li><a href="#q垃圾收集算法">Q:垃圾收集算法?</a></li>
-    <li><a href="#q如和判断一个对象是否存活引用计数法和可达性算法哪个更加好如何理解一个对象不一定会被回收">Q:如和判断一个对象是否存活?引用计数法和可达性算法哪个更加好？如何理解一个对象不一定会被回收？</a></li>
+    <li><a href="#jni加载流程">JNI加载流程</a></li>
+    <li><a href="#jni环境配置">JNI环境配置</a></li>
+    <li><a href="#cmakelist文件解析">CmakeList文件解析</a></li>
+    <li><a href="#jni作用">JNI作用？</a></li>
+    <li><a href="#jni中注册方法的方式">JNI中注册方法的方式?</a></li>
+    <li><a href="#jni访问java对象">JNI访问java对象</a></li>
+    <li><a href="#jni中字符串操作">JNI中字符串操作</a></li>
+    <li><a href="#jni中的引用">JNI中的引用</a></li>
   </ul>
 </nav><hr></div>
 
 
 <div class="gdoc-page__anchorwrap">
-    <h2 id="q垃圾收集算法">
-        Q:垃圾收集算法?
-        <a data-clipboard-text="https://gyzboy.github.io/interview/java/gc/#q垃圾收集算法" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:垃圾收集算法?" href="#q%e5%9e%83%e5%9c%be%e6%94%b6%e9%9b%86%e7%ae%97%e6%b3%95">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h2>
-</div><ol>
-<li>标记-清除:在标记阶段，程序会检查每个对象是否为活动对象，如果是活动对象，则程序会在对象头部打上标记。在清除阶段，会进行对象回收并取消标志位，另外，还会判断回收后的分块与前一个空闲分块是否连续，若连续，会合并这两个分块</li>
-<li>标记-整理:让所有存活的对象都向一端移动，然后直接清理掉端边界以外的内存</li>
-<li>复制:将内存划分为大小相等的两块，每次只使用其中一块，当这一块内存用完了就将还存活的对象复制到另一块上面，然后再把使用过的内存空间进行一次清理。</li>
-<li>分代收集:新生代使用：复制算法,老年代使用：标记 - 清除 或者 标记 - 整理 算法</li>
-</ol>
-<div class="gdoc-page__anchorwrap">
-    <h2 id="q如和判断一个对象是否存活引用计数法和可达性算法哪个更加好如何理解一个对象不一定会被回收">
-        Q:如和判断一个对象是否存活?引用计数法和可达性算法哪个更加好？如何理解一个对象不一定会被回收？
-        <a data-clipboard-text="https://gyzboy.github.io/interview/java/gc/#q如和判断一个对象是否存活引用计数法和可达性算法哪个更加好如何理解一个对象不一定会被回收" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:如和判断一个对象是否存活?引用计数法和可达性算法哪个更加好？如何理解一个对象不一定会被回收？" href="#q%e5%a6%82%e5%92%8c%e5%88%a4%e6%96%ad%e4%b8%80%e4%b8%aa%e5%af%b9%e8%b1%a1%e6%98%af%e5%90%a6%e5%ad%98%e6%b4%bb%e5%bc%95%e7%94%a8%e8%ae%a1%e6%95%b0%e6%b3%95%e5%92%8c%e5%8f%af%e8%be%be%e6%80%a7%e7%ae%97%e6%b3%95%e5%93%aa%e4%b8%aa%e6%9b%b4%e5%8a%a0%e5%a5%bd%e5%a6%82%e4%bd%95%e7%90%86%e8%a7%a3%e4%b8%80%e4%b8%aa%e5%af%b9%e8%b1%a1%e4%b8%8d%e4%b8%80%e5%ae%9a%e4%bc%9a%e8%a2%ab%e5%9b%9e%e6%94%b6">
+    <h2 id="jni加载流程">
+        JNI加载流程
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/jni/#jni加载流程" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor JNI加载流程" href="#jni%e5%8a%a0%e8%bd%bd%e6%b5%81%e7%a8%8b">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
 </div><ul>
-<li>
-<ol>
-<li>引用计数法</li>
-</ol>
+<li>Gradle调用外部构建脚本CMklist.txt</li>
+<li>CMake按照脚本中的命令将C++源文件native-lib.cpp编译成native-lib.so动态库,并把它编译到APK中</li>
+<li>运行时首先加载native-lib.so,然后调用相应的native方法</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="jni环境配置">
+        JNI环境配置
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/jni/#jni环境配置" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor JNI环境配置" href="#jni%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>在Gradle配置文件俩个地方配置externalNativeBuild {}，一个在defaultConfig里面一个在defaultConfig外面</p>
 <ul>
-<li>所谓引用计数法就是给每一个对象设置一个引用计数器，每当有一个地方引用这个对象时，就将计数器加一，引用失效时，计数器就减一。当一个对象的引用计数器为零时，说明此对象没有被引用，也就是“死对象”,将会被垃圾回收.</li>
-<li>引用计数法有一个缺陷就是无法解决循环引用问题，也就是说当对象A引用对象B，对象B又引用者对象A，那么此时A,B对象的引用计数器都不为零，也就造成无法完成垃圾回收，所以主流的虚拟机都没有采用这种算法。</li>
+<li>在defaultConfig外面的externalNativeBuild {}代码块用cmake制定了CMakeList.txt的路径</li>
+<li>在defaultConfig里面的externalNativeBuild {}代码块用cmake主要是填写CMake命令参数</li>
 </ul>
-</li>
-<li>2.可达性算法(引用链法)
+<div class="gdoc-page__anchorwrap">
+    <h2 id="cmakelist文件解析">
+        CmakeList文件解析
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/jni/#cmakelist文件解析" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor CmakeList文件解析" href="#cmakelist%e6%96%87%e4%bb%b6%e8%a7%a3%e6%9e%90">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>add_library(native-lib SHARED native-lib.cpp) 可以定义多个库，CMake会构建他们，Gradle将自动把共享库打入APK中
+<blockquote>
 <ul>
-<li>该算法的思想是：从一个被称为GC Roots的对象开始向下搜索，如果一个对象到GC Roots没有任何引用链相连时，则说明此对象不可用。</li>
-<li>在java中可以作为GC Roots的对象有以下几种:
+<li>第一个参数：设置这个库的名字</li>
+<li>第二个参数：设置库的类型，SHARE 动态库.so后缀 ,STATIC 静态库 .a后缀</li>
+<li>第三个参数：源文件的相对路径</li>
+</ul>
+</blockquote>
+</li>
+<li>find_library(log-lib log) 找到一个NDK库，并且把这个库的路径储存在一个变量中
+<blockquote>
 <ul>
-<li>虚拟机栈中引用的对象</li>
-<li>方法区类静态属性引用的对象</li>
-<li>方法区常量池引用的对象</li>
-<li>本地方法栈JNI引用的对象</li>
+<li>第一个参数：变量名</li>
+<li>第二个参数：使用的NDK原生库名称</li>
 </ul>
+</blockquote>
 </li>
-</ul>
-</li>
-<li>如何理解一个对象不一定会被回收？
+<li>target_link_libraries(native-lib ${log-lib})关联库，将指定的库关联起来
+<blockquote>
 <ul>
-<li>虽然这些算法可以判定一个对象是否能被回收，但是当满足上述条件时，一个对象比不一定会被回收。当一个对象不可达GC Root时，这个对象并不会立马被回收，而是出于一个死缓的阶段，若要被真正的回收需要经历两次标记</li>
-<li>如果对象在可达性分析中没有与GCRoot的引用链，那么此时就会被第一次标记并且进行一次筛选，筛选的条件是是否有必要执行finalize()方法。当对象没有覆盖finalize()方法或者已被虚拟机调用过，那么就认为是没必要的。</li>
-<li>如果该对象有必要执行finalize()方法，那么这个对象将会放在一个称为F-Queue的对队列中，虚拟机会触发一个Finalize()线程去执行，此线程是低优先级的，并且虚拟机不会承诺一直等待它运行完，这是因为如果finalize()执行缓慢或者发生了死锁，那么就会造成F-Queue队列一直等待，造成了内存回收系统的崩溃。GC对处于F-Queue中的对象进行第二次被标记，这时，该对象将被移除”即将回收”集合，等待回收。</li>
+<li>第一个参数：目标库</li>
+<li>第二个参数：将目标库链接到日志库包含在NDK中。</li>
 </ul>
+</blockquote>
 </li>
 </ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="jni作用">
+        JNI作用？
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/jni/#jni作用" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor JNI作用？" href="#jni%e4%bd%9c%e7%94%a8">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>调用java函数：使用JNIEnv调用java中的代码</li>
+<li>操作java对象：java对象传入jni层是jstring，可以使用JNIEnv来操作这个对象</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="jni中注册方法的方式">
+        JNI中注册方法的方式?
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/jni/#jni中注册方法的方式" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor JNI中注册方法的方式?" href="#jni%e4%b8%ad%e6%b3%a8%e5%86%8c%e6%96%b9%e6%b3%95%e7%9a%84%e6%96%b9%e5%bc%8f">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>静态注册
+<blockquote>
+<ul>
+<li>Java+包名+类名+方法名</li>
+</ul>
+</blockquote>
+</li>
+<li>动态注册
+<ul>
+<li>加载动态库
+<blockquote>
+<ul>
+<li>java层通过System.loadLibrary()方法可以加载一个动态库,此时虚拟机就会调用jni库中的JNI_OnLoad()函数</li>
+</ul>
+</blockquote>
+</li>
+<li>注册函数
+<blockquote>
+<ul>
+<li>JNI_OnLoad()函数经常用来做一些初始化操作，动态注册就是在这里进行的,动态注册通过_JNIEnv的RegisterNatives()函数来完成</li>
+</ul>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">jint</span> <span class="nf">RegisterNatives</span><span class="p">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span><span class="p">,</span> <span class="n">jclass</span> <span class="n">clazz</span><span class="p">,</span> <span class="k">const</span> <span class="n">JNINativeMethod</span> <span class="o">*</span><span class="n">methods</span><span class="p">,</span> <span class="n">jint</span> <span class="n">nMethods</span><span class="p">);</span>
+<span class="c1">//第一个参数：JNIEnv *指针
+</span><span class="c1">//第二个参数：代表一个java类
+</span><span class="c1">//第三个参数：代表JNINativeMethod结构体数组，JNINativeMethod定义了java层函数和native层函数的映射关系
+</span><span class="c1">//第四个参数:代表第三个参数methods数组的大小
+</span><span class="c1">//return 0代表成功，负值代表失败
+</span></code></pre></div></li>
+<li>例子</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">jint</span> <span class="nf">native_text</span><span class="p">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span><span class="p">,</span> <span class="n">jobject</span> <span class="n">jobject1</span><span class="p">,</span> <span class="n">jstring</span> <span class="n">msg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">jint</span> <span class="nf">native_staic_text</span><span class="p">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span><span class="p">,</span> <span class="n">jobject</span> <span class="n">jclass1</span><span class="p">,</span> <span class="n">jstring</span> <span class="n">meg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">static</span> <span class="k">const</span> <span class="n">JNINativeMethod</span> <span class="n">nativeMethod</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">{</span><span class="s">&#34;text&#34;</span><span class="p">,</span>        <span class="s">&#34;(Ljava/lang/String;)I&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="n">native_text</span><span class="p">},</span>
+    <span class="p">{</span><span class="s">&#34;static_text&#34;</span><span class="p">,</span> <span class="s">&#34;(Ljava/lang/String;)I&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="n">native_staic_text</span><span class="p">}</span>
+<span class="p">};</span>  
+<span class="k">static</span> <span class="kt">int</span> <span class="nf">registNativeMethod</span><span class="p">(</span><span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">jclass</span> <span class="n">class_text</span> <span class="o">=</span> <span class="n">env</span><span class="o">-&gt;</span><span class="n">FindClass</span><span class="p">(</span><span class="s">&#34;com.text.ndk1.TextJni&#34;</span><span class="p">);</span><span class="c1">//java层调用System.loadLibrary的地方
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">env</span><span class="o">-&gt;</span><span class="n">RegisterNatives</span><span class="p">(</span><span class="n">class_text</span><span class="p">,</span> <span class="n">nativeMethod</span><span class="p">,</span>
+                         <span class="k">sizeof</span><span class="p">(</span><span class="n">nativeMethod</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">nativeMethod</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">==</span> <span class="n">JNI_OK</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">jint</span> <span class="nf">JNI_OnLoad</span><span class="p">(</span><span class="n">JavaVM</span> <span class="o">*</span><span class="n">vm</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">reserved</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">JNIEnv</span> <span class="o">*</span><span class="n">env</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">vm</span><span class="o">-&gt;</span><span class="n">GetEnv</span><span class="p">((</span><span class="kt">void</span> <span class="o">**</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">env</span><span class="p">,</span> <span class="n">JNI_VERSION_1_1</span><span class="p">)</span> <span class="o">==</span> <span class="n">JNI_OK</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">registNativeMethod</span><span class="p">(</span><span class="n">env</span><span class="p">)</span> <span class="o">==</span> <span class="n">JNI_OK</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">JNI_VERSION_1_6</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="jni访问java对象">
+        JNI访问java对象
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/jni/#jni访问java对象" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor JNI访问java对象" href="#jni%e8%ae%bf%e9%97%aejava%e5%af%b9%e8%b1%a1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="c1">//获取class对象
+</span><span class="c1"></span><span class="n">jclass</span> <span class="n">jclass_student</span> <span class="o">=</span> <span class="n">env</span><span class="o">-&gt;</span><span class="n">GetObjectClass</span><span class="p">(</span><span class="n">jobject1</span><span class="p">);</span>
+<span class="c1">//从class中获取变量
+</span><span class="c1"></span><span class="n">jfieldID</span> <span class="n">jfieldId</span> <span class="o">=</span> <span class="n">env</span><span class="o">-&gt;</span><span class="n">GetFieldID</span><span class="p">(</span><span class="n">jclass_student</span><span class="p">,</span> <span class="s">&#34;name&#34;</span><span class="p">,</span> <span class="s">&#34;Ljava/lang/String;&#34;</span><span class="p">);</span>
+<span class="c1">//获取class对象中的print方法
+</span><span class="c1"></span><span class="n">jmethodID</span> <span class="n">print</span> <span class="o">=</span> <span class="n">env</span><span class="o">-&gt;</span><span class="n">GetMethodID</span><span class="p">(</span><span class="n">jclass_student</span><span class="p">,</span> <span class="s">&#34;print&#34;</span><span class="p">,</span> <span class="s">&#34;()V&#34;</span><span class="p">);</span>
+<span class="c1">//调用java对象中的print方法
+</span><span class="c1"></span><span class="n">env</span><span class="o">-&gt;</span><span class="n">CallVoidMethod</span><span class="p">(</span><span class="n">jobject1</span><span class="p">,</span> <span class="n">print</span><span class="p">);</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="jni中字符串操作">
+        JNI中字符串操作
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/jni/#jni中字符串操作" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor JNI中字符串操作" href="#jni%e4%b8%ad%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%93%8d%e4%bd%9c">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>Java默认使用unicode编码,C/C++使用utf编码</p>
+<ul>
+<li>对于小字符串来说，GetStringRegion 和 GetStringUTFRegion 这两对函数是最佳选择，因为缓冲区可以被编译器提前分配，而且永远不会产生内存溢出的异常。当你需要处理一个字符串的一部分时，使用这对函数也是不错。因为它们提供了一个开始索引和子字符串的长度值。另外，复制少量字符串的消耗 也是非常小的。</li>
+<li>使用 GetStringCritical 和 ReleaseStringCritical 这对函数时，必须非常小心。一定要确保在持有一个由 GetStringCritical 获取到的指针时，本地代码不会在 JVM 内部分配新对象，或者做任何其它可能导致系统死锁的阻塞性调用。它会触发GC的暂停,之后任何会导致GC的操作都会阻塞</li>
+<li>获取 Unicode 字符串和长度，使用 GetStringChars 和 GetStringLength 函数。</li>
+<li>获取 UTF-8 字符串的长度，使用 GetStringUTFLength 函数。</li>
+<li>创建 Unicode 字符串，使用 NewString 函数。</li>
+<li>创建 UTF-8 字符串,使用NewStringUTF 函数</li>
+<li>从 Java 字符串转换成 C/C++ 字符串，使用 GetStringUTFChars 函数。</li>
+<li>通过 GetStringUTFChars、GetStringChars、GetStringCritical 获取字符串，这些函数内部会分配内存，必须调用相对应的 ReleaseXXXX 函数释放内存。</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="jni中的引用">
+        JNI中的引用
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/jni/#jni中的引用" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor JNI中的引用" href="#jni%e4%b8%ad%e7%9a%84%e5%bc%95%e7%94%a8">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>局部引用</li>
+</ul>
+<blockquote>
+<ul>
+<li>通过NewLocalRef创建,会阻止GC回收所引用的对象，不在本地函数中跨函数使用，不能跨线程使用。函数返回后局部引用所引用的对象会被JVM自动释放，或调用DeleteLocalRef释放,本地方法返回到Java层之后，如果Java层没有对返回的局部引用使用的话，局部引用就会被JVM自动释放</li>
+</ul>
+<blockquote>
+<ul>
+<li>为什么建议手动调用DeleteLocalRef是否释放局部引用</li>
+</ul>
+<blockquote>
+<ul>
+<li>1、JNI会将创建的局部引用都存储在一个局部引用表中，如果这个表超过了最大容量限制，就会造成局部引用表溢出，使程序崩溃。经测试，Android上的JNI局部引用表最大数量是512个。当我们在实现一个本地方法时，可能需要创建大量的局部引用，如果没有及时释放，就有可能导致JNI局部引用表的溢出，所以，在不需要局部引用时就立即调用DeleteLocalRef手动删除</li>
+<li>2、在编写JNI工具函数时，工具函数在程序当中是公用的，被谁调用你是不知道的。所以在工具函数中使用完局部引用后，需要调用DeleteLocalRef删除。</li>
+<li>3、如果你的本地函数不会返回。比如一个接收消息的函数，里面有一个死循环，用于等待别人发送消息过来while(true) { if (有新的消息) ｛ 处理之。。。。｝ else { 等待新的消息。。。}}。如果在消息循环当中创建的引用你不显示删除，很快将会造成JVM局部引用表溢出。</li>
+<li>4、局部引用会阻止所引用的对象被GC回收。比如你写的一个本地函数中刚开始需要访问一个大对象，因此一开始就创建了一个对这个对象的引用，但在函数返回前会有一个大量的非常复杂的计算过程，而在这个计算过程当中是不需要前面创建的那个大对象的引用的。但是，在计算的过程当中，如果这个大对象的引用还没有被释放的话，会阻止GC回收这个对象，内存一直占用者，造成资源的浪费。所以这种情况下，在进行复杂计算之前就应该把引用给释放了，以免不必要的资源浪费</li>
+</ul>
+</blockquote>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<ul>
+<li>局部引用管理:JNI提供了一系列函数来管理局部引用的生命周期。这些函数包括：EnsureLocalCapacity、NewLocalRef、PushLocalFrame、PopLocalFrame、DeleteLocalRef</li>
+</ul>
+<blockquote>
+<ul>
+<li>EnsureLocalCapacity  确保函数能创建len个局部引用</li>
+<li>PushLocalFrame 为当前函数中需要用到的局部引用创建了一个引用堆栈,当返回一个局部引用时，JVM会自动将该引用压入当前局部引用栈中</li>
+<li>PopLocalFrame  销毁栈中所有的引用,这样就不用一个个调用DeleteLocalRef去删除引用了</li>
+</ul>
+</blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<li>全局引用</li>
+</ul>
+<blockquote>
+<ul>
+<li>调用NewGlobalRef基于局部引用创建，会阻GC回收所引用的对象。可以跨方法、跨线程使用。JVM不会自动释放，必须调用DeleteGlobalRef手动释放</li>
+</ul>
+</blockquote>
+<ul>
+<li>弱全局引用</li>
+</ul>
+<blockquote>
+<ul>
+<li>调用NewWeakGlobalRef基于局部引用或全局引用创建，不会阻止GC回收所引用的对象，可以跨方法、跨线程使用。引用不会自动释放，在JVM认为应该回收它的时候（比如内存紧张的时候）进行回收而被释放。或调用DeleteWeakGlobalRef手动释放。</li>
+</ul>
+</blockquote>
 
 
     </article>
