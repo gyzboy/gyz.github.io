@@ -195,6 +195,30 @@
             
             
                 <span class="flex">
+                    <a href="/interview/android/%E5%8A%A8%E6%80%81%E5%8C%96/" class="gdoc-nav__entry ">
+                        动态化
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/interview/android/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%83%AD%E4%BF%AE%E5%A4%8D/" class="gdoc-nav__entry ">
                         插件化&amp;热修复
                     </a>
@@ -295,6 +319,30 @@
                 <span class="flex">
                     <a href="/interview/android/glide/" class="gdoc-nav__entry ">
                         Glide
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/interview/android/leakcanary/" class="gdoc-nav__entry ">
+                        LeakCanary
                     </a>
                 </span>
             
@@ -715,6 +763,60 @@
                 <span class="flex">
                     <a href="/interview/java/%E9%9B%86%E5%90%88/" class="gdoc-nav__entry ">
                         集合
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">JavaScript</span>
+            
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/interview/js/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="gdoc-nav__entry ">
+                        JS基础知识
                     </a>
                 </span>
             
@@ -1168,6 +1270,7 @@
     <li><a href="#虚基类和虚基类的使用">虚基类和虚基类的使用</a></li>
     <li><a href="#虚函数">虚函数</a></li>
     <li><a href="#文件读写">文件读写</a></li>
+    <li><a href="#智能指针">智能指针</a></li>
   </ul>
 </nav><hr></div>
 
@@ -1351,7 +1454,19 @@
     <span class="n">out</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
     <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="智能指针">
+        智能指针
+        <a data-clipboard-text="https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/#智能指针" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 智能指针" href="#%e6%99%ba%e8%83%bd%e6%8c%87%e9%92%88">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>unique_ptr:专属所有权,unique_ptr 代表的是专属所有权，即由 unique_ptr 管理的内存，只能被一个对象持有。所以unique_ptr 不支持复制和赋值,make_unique</li>
+<li>shared_ptr:共享所有权,即多个 shared_ptr 可以共享同一块内存</li>
+<li>weak_ptr:可共享的未来的所有权,weak_ptr 不会增加引用计数，因此可以打破 shared_ptr 的循环引用</li>
+</ul>
+
 
     </article>
 

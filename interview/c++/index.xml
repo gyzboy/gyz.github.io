@@ -13,7 +13,7 @@
       <pubDate>Tue, 13 Apr 2021 16:12:16 +0800</pubDate>
       
       <guid>https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
-      <description>什么是命名空间? 带默认形参的函数 函数模板 内联函数 类的定义 对象的建立和使用  对象创建 对象指针 对象引用   友元函数 虚基类和虚基类的使用 虚函数 文件读写   什么是命名空间?    using namespace std;
+      <description>什么是命名空间? 带默认形参的函数 函数模板 内联函数 类的定义 对象的建立和使用  对象创建 对象指针 对象引用   友元函数 虚基类和虚基类的使用 虚函数 文件读写 智能指针   什么是命名空间?    using namespace std;
 类似于java中的包名,主要是为了解决多个模块间命名出冲突的问题
 带默认形参的函数    int add(int a =4,int b =5){ return a+b; } cout &amp;lt;&amp;lt; add() &amp;lt;&amp;lt; endl; //9 函数模板    C++和java一样都有函数的重载，函数重载可以处理多种类型，同一个方法名，但依然需要分开定义，如果可以让他代码更精简一点，模板化就更好了,为此C++提供了函数模板这一机制，可以大大提高函数的通用性(自我感觉像泛型)
 template&amp;lt;class 类型名1，class 类型名2…&amp;gt; 返回值 函数名（形参表列） 模板参数表 { 函数体 } 内联函数    通过在函数上添加inline关键字,在编译的时候，把函数代码插入到函数调用的地方， 就像普通的程序执行代码一样

@@ -33,6 +33,15 @@ Q:一个点击事件是如何从屏幕传递到view的?    Q:MotionEvent是什�
     </item>
     
     <item>
+      <title>动态化</title>
+      <link>https://gyzboy.github.io/interview/android/%E5%8A%A8%E6%80%81%E5%8C%96/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://gyzboy.github.io/interview/android/%E5%8A%A8%E6%80%81%E5%8C%96/</guid>
+      <description>Q:Android与JS交互?  Android调用js代码 JS调用Android代码   Q:J2V8引擎 Q:一个JSRuntime如何区分多个js环境?   Q:Android与JS交互?    Android调用js代码      通过WebView的loadUrl（）   //会触发页面刷新 mWebView.loadUrl(&amp;#34;javascript:callJS()&amp;#34;);   通过WebView的evaluateJavascript（）   //不会触发界面刷新,可以获取到返回结果 mWebView.evaluateJavascript（&amp;#34;javascript:callJS()&amp;#34;, new ValueCallback&amp;lt;String&amp;gt;() { @Override public void onReceiveValue(String value) { //此处为 js 返回的结果  } }); JS调用Android代码      通过WebView的addJavascriptInterface（）进行对象映射   //参数1：Javascript对象名 参数2：Java对象名 mWebView.addJavascriptInterface(new AndroidtoJs(), &amp;#34;test&amp;#34;);//AndroidtoJS类对象映射到js的test对象   通过 WebViewClient 的shouldOverrideUrlLoading ()方法回调拦截 url 通过 WebChromeClient 的onJsAlert()、onJsConfirm()、onJsPrompt（）方法回调拦截JS对话框alert()、confirm()、prompt（） 消息   Q:J2V8引擎    V8.</description>
+    </item>
+    
+    <item>
       <title>插件化&amp;热修复</title>
       <link>https://gyzboy.github.io/interview/android/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%83%AD%E4%BF%AE%E5%A4%8D/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -69,7 +78,7 @@ Q:一个点击事件是如何从屏幕传递到view的?    Q:MotionEvent是什�
       <pubDate>Tue, 13 Apr 2021 16:12:16 +0800</pubDate>
       
       <guid>https://gyzboy.github.io/interview/c&#43;&#43;/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
-      <description>什么是命名空间? 带默认形参的函数 函数模板 内联函数 类的定义 对象的建立和使用  对象创建 对象指针 对象引用   友元函数 虚基类和虚基类的使用 虚函数 文件读写   什么是命名空间?    using namespace std;
+      <description>什么是命名空间? 带默认形参的函数 函数模板 内联函数 类的定义 对象的建立和使用  对象创建 对象指针 对象引用   友元函数 虚基类和虚基类的使用 虚函数 文件读写 智能指针   什么是命名空间?    using namespace std;
 类似于java中的包名,主要是为了解决多个模块间命名出冲突的问题
 带默认形参的函数    int add(int a =4,int b =5){ return a+b; } cout &amp;lt;&amp;lt; add() &amp;lt;&amp;lt; endl; //9 函数模板    C++和java一样都有函数的重载，函数重载可以处理多种类型，同一个方法名，但依然需要分开定义，如果可以让他代码更精简一点，模板化就更好了,为此C++提供了函数模板这一机制，可以大大提高函数的通用性(自我感觉像泛型)
 template&amp;lt;class 类型名1，class 类型名2…&amp;gt; 返回值 函数名（形参表列） 模板参数表 { 函数体 } 内联函数    通过在函数上添加inline关键字,在编译的时候，把函数代码插入到函数调用的地方， 就像普通的程序执行代码一样
@@ -104,13 +113,37 @@ template&amp;lt;class 类型名1，class 类型名2…&amp;gt; 返回值 函数�
     </item>
     
     <item>
+      <title>JS基础知识</title>
+      <link>https://gyzboy.github.io/interview/js/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
+      <pubDate>Tue, 13 Apr 2021 16:12:16 +0800</pubDate>
+      
+      <guid>https://gyzboy.github.io/interview/js/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
+      <description>Q:JS引擎线程的执行过程的三个阶段?  语法分析 预编译阶段 执行阶段   Q:变量提升的原因? Q:什么是闭包？ Q:什么是解构赋值? Q:yield关键字? Q:Promise函数? Q:Call&amp;amp;Apply方法 Q:箭头函数   Q:JS引擎线程的执行过程的三个阶段?    语法分析    预编译阶段     js的运行环境
+1.全局环境（JS代码加载完毕后，进入代码预编译即进入全局环境）
+2.函数环境（函数调用执行时，进入该函数环境，不同的函数则函数环境不同)
+3.eval（不建议使用，会有安全，性能等问题）
+每进入一个不同的运行环境都会创建一个相应的执行上下文（Execution Context），那么在一段JS程序中一般都会创建多个执行上下文，js引擎会以栈的方式对这些执行上下文进行处理，形成函数调用栈（call stack），栈底永远是全局执行上下文（Global Execution Context），栈顶则永远是当前执行上下文。 函数调用栈   首次运行JS代码时，会创建一个全局执行上下文并Push到当前的执行栈中。每当发生函数调用，引擎都会为该函数创建一个新的函数执行上下文并Push到当前执行栈的栈顶。当栈顶函数运行完成后，其对应的函数执行上下文将会从执行栈中Pop出，上下文控制权将移到当前执行栈的下一个执行上下文。
+ 执行上下文的创建    创建变量对象（Variable Object） 建立作用域链（Scope Chain）:变量对象（Variable Object）转为活动对象（Active Object）   var num = 30; function test() { var a = 10; function innerTest() { var b = 20; return a + b } innerTest() } test() //innerTest的调用链  innerTestEC = { //变量对象  VO: {b: undefined}, //作用域链  scopeChain: [VO(innerTest), AO(test), AO(global)], //this指向  this: window }    确定this的指向    执行阶段      永远只有JS引擎线程在执行JS脚本程序 宏任务    同步任务指的是在JS引擎主线程上按顺序执行的任务，只有前一个任务执行完毕后，才能执行后一个任务，形成一个执行栈（函数调用栈）。 异步任务指的是不直接进入JS引擎主线程，而是满足触发条件时，相关的线程将该异步任务推进任务队列(task queue)，等待JS引擎主线程上的任务执行完毕，空闲时读取执行的任务，例如异步Ajax，DOM事件，setTimeout等    事件循环    主线程执行栈 异步任务等待触发 任务队列    微任务:微任务（micro-task）的API主要有:Promise， process.</description>
+    </item>
+    
+    <item>
       <title>JVM</title>
       <link>https://gyzboy.github.io/interview/java/jvm/</link>
       <pubDate>Tue, 13 Apr 2021 16:12:16 +0800</pubDate>
       
       <guid>https://gyzboy.github.io/interview/java/jvm/</guid>
-      <description>Q:jvm的内存模型是啥样的? Q:类的加载过程? Q:Class.forName() 和ClassLoader.loadClass()区别？实际开发你用那种，为什么？ Q:说一下对象的创建过程？变量创建过程种放在虚拟机哪里？ Q:什么情况下会触发类的初始化? Q:什么是双亲委派模型?有什么优势? Q:如何自定义一个类加载器? Q:如何使用自定义类加载器加载文件? Q:为什么会出现破坏双亲委派的模型？是解决了什么问题？ Q:基本数据类型一定存储在栈中吗？ Q:泛型是什么? Q:泛型通配符? Q:泛型擦除是什么?存在什么问题?有哪些补救方案?应用场景是哪些？ Q：泛型和反射有何联系？使用反射来获取泛型信息？getType和getGenericType有何区别？ Q:为什么说反射的效率低? Q:HashCode为什么使用31作为乘数? Q:static变量存储位置是哪里？静态变量的生命周期？静态变量何时销毁？静态引用的对象回收如何理解？ Q:什么是绑定？静态和动态绑定如何区别？动态绑定编译原理是什么？动态绑定运行原理是什么？ Q:为什么内部类调用的局部变量必须是final修饰的？局部变量对垃圾回收机制有什么样的影响？ Q:什么是多态?多态有哪些弊端？Java实现多态有哪些必要条件？什么是向上、向下转型? Q:常见代码块有哪些?执行顺序是什么样子的？ Q:带有类名.变量加载时,加载顺序是怎么样的? Q:Java数据类型有哪些？什么是值传递？什么是引用传递？如何理解值传递和引用传递，以及它们有何区别？   Q:jvm的内存模型是啥样的?     程序计数器:在jvm中，它就是程序控制流的指示器，循环，跳转，异常处理，线程的恢复等工作都需要依赖程序计数器去完成,此内存区域是唯一一个在Java虚拟机规范中没有规定任何OutOfMemotyError情况的区域 虚拟机栈:在每个方法执行的时候，jvm都会同步创建一个栈帧去存储局部变量表，操作数栈，动态连接，方法返回值等信息。一个方法的生命周期就贯彻了一个栈帧从入栈到出栈的全部过程。局部变量表应该是我们接触的最多的，里面存储了java的8大基本数据类型（byte、short、char、int、float、long、double、boolean）、对象引用(reference类型，不是对象本身，是指向对象的引用)和returnAddress类型（指向一条字节码指令的地址）， 本地方法栈:native方法栈 堆:所有线程共享的一块内存区域，用于存放几乎所有的对象实例和数组，TLAB是线程私有的，在堆空间中分配，对象会首先存放在这个线程私有的TLAB中，可以提升线程分配的效率 方法区:方法区也是所有线程共享的区域，储存虚拟机加载的类信息，常量，静态变量，编译后的代码。运行时常量池就是方法区的一部分，代表运行时每个class文件中的常量表。包括几种常量：编译时的数字常量、方法或者域的引用,Java语言并不要求常量一定只有编译期才能产生，也就是可能将新的常量放入池中，这种特性被开发人员利用得比较多的便是String类的intern()方法  Q:类的加载过程?    加载、验证、准备、初始化、卸载这五个阶段的顺序是确定的，是依次有序的。但是解析阶段有可能会在初始化之后才会进行，这是为了支持java动态绑定的特性
- 加载  通过一个类的全限定名获取定义此类的二进制字节流给了开发人员很大的灵活性,比如可以通过ZIP、网络、动态代理等技术加载指定二进制流   准备  正式为类变量（static变量）分配内存并设置初始值,此时变量所使用的内存，将在方法区分配,并且初始值为默认值    Q:Class.forName() 和ClassLoader.loadClass()区别？实际开发你用那种，为什么？     Class.forName() 和ClassLoader.loadClass()区别？  Class.forName() 默认执行类加载过程中的连接与初始化动作，一旦执行初始化动作，静态变量就会被初始化为程序员设置的值，如果有静态代码块，静态代码块也会被执行 ClassLoader.loadClass() 默认只执行类加载过程中的加载动作，后面的动作都不会执行    Q:说一下对象的创建过程？变量创建过程种放在虚拟机哪里？     说一下对象的创建过程？比如：Dog dog= new Dog()；  当虚拟机执行到new指令时，它先在常量池中查找“Dog”，看能否定位到Dog类的符号引用；如果能，说明这个类已经被加载到方法区了，则继续执行。如果没有，就让Class Loader先执行类的加载。 然后，虚拟机开始为该对象分配内存，对象所需要的内存大小在类加载完成后就已经确定了。这时候只要在堆中按需求分配空间即可。具体分配内存时有两种方式，第一种，内存绝对规整，那么只要在被占用内存和空闲内存间放置指针即可，每次分配空间时只要把指针向空闲内存空间移动相应距离即可，当某对象被GC回收后，则需要进行某些对象内存的迁移。第二种，空闲内存和非空闲内存夹杂在一起，那么就需要用一个列表来记录堆内存的使用情况，然后按需分配内存。 对于多线程的情况，如何确保一个线程分配了对象内存但尚未修改内存管理指针时，其他线程又分配该块内存而覆盖的情况？有一种方法，就是让每一个线程在堆中先预分配一小块内存（TLAB本地线程分配缓冲），每个线程只在自己的内存中分配内存。但对象本身按其访问属性是可以线程共享访问的。 内存分配到后，虚拟机将分配的内存空间都初始化为零值(不包括对象头)。实例变量按变量类型初始化相应的默认值（数值型为0，boolan为false），所以实例变量不赋初值也能使用。接着设置对象头信息，比如对象的哈希值，GC分代年龄等。 从虚拟机角度，此时一个新的对象已经创建完成了。但从我们程序运行的角度，新建对象才刚刚开始，对象的构造方法还没有执行。只有执行完构造方法，按构造方法进行初始化后，对象才是彻底创建完成了。构造函数的执行还涉及到调用父类构造器，如果没有显式声明调用父类构造器，则自动添加默认构造器。 new运算符可以返回堆中这个对象的引用   变量创建过程种放在虚拟机哪里？  变量是实例变量、局部变量或静态变量的不同将引用放在不同的地方：  如果dog局部变量，dog变量在栈帧的局部变量表，这个对象的引用就放在栈帧。 如果dog是实例变量，dog变量在堆中，对象的引用就放在堆。 如果dog是静态变量，dog变量在方法区，对象的引用就放在方法区。      Q:什么情况下会触发类的初始化?</description>
+      <description>Q:jvm的内存模型是啥样的? Q:类的加载过程? Q:Class.forName() 和ClassLoader.loadClass()区别？实际开发你用那种，为什么？ Q:说一下对象的创建过程？变量创建过程种放在虚拟机哪里？ Q:什么情况下会触发类的初始化? Q:什么是双亲委派模型?有什么优势? Q:如何自定义一个类加载器? Q:如何使用自定义类加载器加载文件? Q:为什么会出现破坏双亲委派的模型？是解决了什么问题？ Q:基本数据类型一定存储在栈中吗？ Q:泛型是什么? Q:泛型通配符? Q:泛型擦除是什么?存在什么问题?有哪些补救方案?应用场景是哪些？ Q：泛型和反射有何联系？使用反射来获取泛型信息？getType和getGenericType有何区别？ Q:为什么说反射的效率低? Q:HashCode为什么使用31作为乘数? Q:static变量存储位置是哪里？静态变量的生命周期？静态变量何时销毁？静态引用的对象回收如何理解？ Q:什么是绑定？静态和动态绑定如何区别？动态绑定编译原理是什么？动态绑定运行原理是什么？ Q:为什么内部类调用的局部变量必须是final修饰的？局部变量对垃圾回收机制有什么样的影响？ Q:什么是多态?多态有哪些弊端？Java实现多态有哪些必要条件？什么是向上、向下转型? Q:常见代码块有哪些?执行顺序是什么样子的？ Q:带有类名.变量加载时,加载顺序是怎么样的? Q:Java数据类型有哪些？什么是值传递？什么是引用传递？如何理解值传递和引用传递，以及它们有何区别？   Q:java中方法参数的几种使用情况?   Q:jvm的内存模型是啥样的?     程序计数器:在jvm中，它就是程序控制流的指示器，循环，跳转，异常处理，线程的恢复等工作都需要依赖程序计数器去完成,此内存区域是唯一一个在Java虚拟机规范中没有规定任何OutOfMemotyError情况的区域 虚拟机栈:在每个方法执行的时候，jvm都会同步创建一个栈帧去存储局部变量表，操作数栈，动态连接，方法返回值等信息。一个方法的生命周期就贯彻了一个栈帧从入栈到出栈的全部过程。局部变量表应该是我们接触的最多的，里面存储了java的8大基本数据类型（byte、short、char、int、float、long、double、boolean）、对象引用(reference类型，不是对象本身，是指向对象的引用)和returnAddress类型（指向一条字节码指令的地址）， 本地方法栈:native方法栈 堆:所有线程共享的一块内存区域，用于存放几乎所有的对象实例和数组，TLAB是线程私有的，在堆空间中分配，对象会首先存放在这个线程私有的TLAB中，可以提升线程分配的效率 方法区:方法区也是所有线程共享的区域，储存虚拟机加载的类信息，常量，静态变量，编译后的代码。运行时常量池就是方法区的一部分，代表运行时每个class文件中的常量表。包括几种常量：编译时的数字常量、方法或者域的引用,Java语言并不要求常量一定只有编译期才能产生，也就是可能将新的常量放入池中，这种特性被开发人员利用得比较多的便是String类的intern()方法  Q:类的加载过程?    加载、验证、准备、初始化、卸载这五个阶段的顺序是确定的，是依次有序的。但是解析阶段有可能会在初始化之后才会进行，这是为了支持java动态绑定的特性
+ 加载  通过一个类的全限定名获取定义此类的二进制字节流给了开发人员很大的灵活性,比如可以通过ZIP、网络、动态代理等技术加载指定二进制流   准备  正式为类变量（static变量）分配内存并设置初始值,此时变量所使用的内存，将在方法区分配,并且初始值为默认值    Q:Class.forName() 和ClassLoader.loadClass()区别？实际开发你用那种，为什么？     Class.forName() 和ClassLoader.loadClass()区别？  Class.forName() 默认执行类加载过程中的连接与初始化动作，一旦执行初始化动作，静态变量就会被初始化为程序员设置的值，如果有静态代码块，静态代码块也会被执行 ClassLoader.</description>
+    </item>
+    
+    <item>
+      <title>LeakCanary</title>
+      <link>https://gyzboy.github.io/interview/android/leakcanary/</link>
+      <pubDate>Tue, 13 Apr 2021 16:12:16 +0800</pubDate>
+      
+      <guid>https://gyzboy.github.io/interview/android/leakcanary/</guid>
+      <description>Q:Java中各种引用类型?  强引用 软引用 弱引用 虚引用   如何通过引用队列判断是否发生内存泄漏? LeakCanary原理?   Q:Java中各种引用类型?    强引用      强引用是使用最普遍的引用。一个对象具有强引用，则在GC发生时，该对象将不会回收。当Jvm虚拟机内存空间不足时，虚拟机会抛出OutOfMemoryError错误，不会回收具有强引用的对象来解决内存不足的问题   软引用      当一个对象只有软引用，若虚拟机内存空间足够，垃圾回收器就不会回收该对象； 若内存空间不足，下次GC时这些只有软引用对象将被回收。若垃圾回收器没有回收它，该对象就可以被程序使用。软引用可用来实现内存敏感的高速缓存。 在创建软引用实例时，可以传入一个引用队列（ReferenceQueue）将该软引用与引用队列关联，这样当软引用所引用的对象被垃圾回收器回收前，Jvm虚拟机会把这个软引用加入到与之关联的引用队列中   弱引用      弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。在GC发生时，若一个对象只有弱引用，不管虚拟机内存空间是否足够，都会回收它的内存。 在创建弱引用实例时，可以传入一个引用队列（ReferenceQueue）将该软引用与引用队列关联，这样当软引用所引用的对象被垃圾回收器回收前，Jvm虚拟机就会把这个软引用加入到与之关联的引用队列中   虚引用      虚引用并不会决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收器回收。 在创建虚引用实例时，可以传入一个引用队列（ReferenceQueue）将该软引用与引用队列关联，这样当软引用所引用的对象被垃圾回收器回收前，Jvm虚拟机就会把这个软引用加入到与之关联的引用队列中   如何通过引用队列判断是否发生内存泄漏?    软引用、弱引用、虚引用的构造方法均可以传入一个ReferenceQueue与之关联。在引用所指的对象被回收后，引用（reference)本身将会被加入到ReferenceQueue之中，此时引用所引用的对象reference.get()已被回收 (reference此时不为null，reference.get()此时为null)。 所以，在一个非强引用所引用的对象回收时，如果引用reference没有被加入到被关联的ReferenceQueue中，则表示还有引用所引用的对象还没有被回收。如果判断一个对象的非强引用本该出现在ReferenceQueue中，实际上却没有出现，则表示该对象发送内存泄漏
+LeakCanary原理?     在onDestory发生时创建一个弱引用指R向Activity，并关联一个RefrenceQuence,当Activity被正常回收，弱引用实例本身应该出现在该RefrenceQuence中，否则便可以判断该Activity存在内存泄漏。 通过Application.</description>
     </item>
     
     <item>
@@ -128,7 +161,7 @@ template&amp;lt;class 类型名1，class 类型名2…&amp;gt; 返回值 函数�
       <pubDate>Tue, 13 Apr 2021 16:12:16 +0800</pubDate>
       
       <guid>https://gyzboy.github.io/interview/android/view/</guid>
-      <description>Q:View.getContext()一定会返回activity对象吗? Q:View.inflate和LayoutInflater.inflate方法区别？ Q:Inflate的三个参数(int resource, ViewGroup root, boolean attachToRoot),组合设置后分别有什么效果? Q:子线程中可以更新UI吗?为什么? Q:View坐标体系是什么? Q:为什么setTranslation会移动View的位置? Q:为什么View移动的位置跟mScrollX，mScrollY是相反的? Q:都有什么获取view区域的方法?怎么用? Q:View的绘制流程分几步，从哪开始？哪个过程结束以后能看到view？ Q:View什么时候发生绘制? Q:ViewGroup有onMeasure方法吗？为什么? Q:setContentView之后发生了什么？ Q:setContentView可以在其他生命周期内执行吗?为什么? Q:view、drawable、bitmap之间的关系? Q:有了view，为什么还要设计drawable? Q:如何设计一个曝光系统?需要注意些什么? Q:有用过LayoutInflater.Factory吗？都有哪些应用场景? Q:如何计算一个Bitmap的内存空间,如何加载一张高清大图?一般的图片加载优化都有哪些手段? Q:一个viewGroup 绘制了4-5个view，当其中一个子view。例如背景变了。就会导致整个viewGroup的刷新。。请问有没有办法？仅仅只让对应的view更改UI。避免让viewGroup重新测量 绘制? Q:在绘制阶段，ViewGroup 不光要绘制自身，还需循环绘制其一众子 View，这个绘制策略默认为顺序绘制，即 [0 ~ childCount)。这个默认的策略，有办法调整吗？修改了之后，事件分发需要特殊处理吗？还是需要特殊处理?getChildAt会有相应变化吗? Q:通过ViewTreeObserver都可以监听什么回调?原理是什么? Q:你知道detachViewFromParent/attachViewToParent 这一组方法在哪些控件中被使用中？detachViewFromParent/attachViewToParent 与 removeView/addView 有什么区别呢？detachViewFromParent/attachViewToParent在什么场景下非常适合使用？ Q:requestLayout和invalidate的区别?都会执行到哪些生命周期? Q:ViewStub是什么?有什么应用场景?原理是什么? Q:系统可以在子线程中访问UI吗？为什么这样设计? Q:为什么Toast和showDialog可以在子线程显示?需要做些什么? Q:View.post为何可以获取宽高信息?   Q:View.getContext()一定会返回activity对象吗?    并不是,有这么几种情况:
+      <description>Q:View.getContext()一定会返回activity对象吗? Q:View.inflate和LayoutInflater.inflate方法区别？ Q:Inflate的三个参数(int resource, ViewGroup root, boolean attachToRoot),组合设置后分别有什么效果? Q:子线程中可以更新UI吗?为什么? Q:View坐标体系是什么? Q:为什么setTranslation会移动View的位置? Q:为什么View移动的位置跟mScrollX，mScrollY是相反的? Q:都有什么获取view区域的方法?怎么用? Q:View的绘制流程分几步，从哪开始？哪个过程结束以后能看到view？ Q:View什么时候发生绘制? Q:ViewGroup有onMeasure方法吗？为什么? Q:setContentView之后发生了什么？ Q:setContentView可以在其他生命周期内执行吗?为什么? Q:view、drawable、bitmap之间的关系? Q:有了view，为什么还要设计drawable? Q:如何设计一个曝光系统?需要注意些什么? Q:有用过LayoutInflater.Factory吗？都有哪些应用场景? Q:如何计算一个Bitmap的内存空间,如何加载一张高清大图?一般的图片加载优化都有哪些手段? Q:一个viewGroup 绘制了4-5个view，当其中一个子view。例如背景变了。就会导致整个viewGroup的刷新。。请问有没有办法？仅仅只让对应的view更改UI。避免让viewGroup重新测量 绘制? Q:在绘制阶段，ViewGroup 不光要绘制自身，还需循环绘制其一众子 View，这个绘制策略默认为顺序绘制，即 [0 ~ childCount)。这个默认的策略，有办法调整吗？修改了之后，事件分发需要特殊处理吗？还是需要特殊处理?getChildAt会有相应变化吗? Q:通过ViewTreeObserver都可以监听什么回调?原理是什么? Q:你知道detachViewFromParent/attachViewToParent 这一组方法在哪些控件中被使用中？detachViewFromParent/attachViewToParent 与 removeView/addView 有什么区别呢？detachViewFromParent/attachViewToParent在什么场景下非常适合使用？ Q:requestLayout和invalidate的区别?都会执行到哪些生命周期? Q:ViewStub是什么?有什么应用场景?原理是什么? Q:系统可以在子线程中访问UI吗？为什么这样设计? Q:为什么Toast和showDialog可以在子线程显示?需要做些什么? Q:View.post为何可以获取宽高信息? Q:View如何转换为Drawable?   Q:View.getContext()一定会返回activity对象吗?    并不是,有这么几种情况:
  View.inflate的时候手动传的不是activity 当使用AppCompatActivity时,context是TintWrapContext  Q:View.inflate和LayoutInflater.inflate方法区别？    View.inflate是对LayoutInflater的封装,其内部就是调用的LayoutInflater.inflate 创建view的方法是LayoutInflater的createViewFromTag方法。会依次调用mFactory2、mFactory和mPrivateFactory三者之一的onCreateView方法去创建一个View。如果不存在Factory，则调用LayoutInflater自身的onCreateView或者createView来实例化View
 Q:Inflate的三个参数(int resource, ViewGroup root, boolean attachToRoot),组合设置后分别有什么效果?     如果root为null，attachToRoot将失去作用，则resource布局文件最外层设置任何值都没有意义，仅仅是解析布局文件的子View。 如果root不为null，attachToRoot设为true，则会给布局文件指定一个父布局，即root。（merge作为父布局标签为什么需要attachToRoot设为true的原因）,不需要调用addView 如果root不为null，attachToRoot设为false，则会将布局文件最外层的所有layout属性进行设置，当该view被添加到父view当中时，这些layout属性会自动生效。需要调用addView 在不设置attachToRoot参数的情况下，如果root不为null，attachToRoot参数默认为true；如果root为null，attachToRoot参数为false。  Q:子线程中可以更新UI吗?</description>
     </item>
