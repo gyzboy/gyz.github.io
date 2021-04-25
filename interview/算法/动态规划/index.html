@@ -317,6 +317,30 @@
             
             
                 <span class="flex">
+                    <a href="/interview/android/contentprovider/" class="gdoc-nav__entry ">
+                        ContentProvider
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/interview/android/glide/" class="gdoc-nav__entry ">
                         Glide
                     </a>
@@ -343,6 +367,30 @@
                 <span class="flex">
                     <a href="/interview/android/leakcanary/" class="gdoc-nav__entry ">
                         LeakCanary
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/interview/android/okhttp/" class="gdoc-nav__entry ">
+                        OkHttp
                     </a>
                 </span>
             
@@ -791,7 +839,7 @@
             <li>
             
             
-                <span class="flex">JavaScript</span>
+                <span class="flex">openGL</span>
             
             
 
@@ -817,6 +865,60 @@
                 <span class="flex">
                     <a href="/interview/js/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="gdoc-nav__entry ">
                         JS基础知识
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">openGL</span>
+            
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/interview/opengl/opengl/" class="gdoc-nav__entry ">
+                        openGL
                     </a>
                 </span>
             
@@ -871,6 +973,30 @@
                 <span class="flex">
                     <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="gdoc-nav__entry ">
                         二叉树
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%94%E5%A4%A7%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3/" class="gdoc-nav__entry ">
+                        五大算法思想
                     </a>
                 </span>
             
@@ -1254,6 +1380,7 @@
 
   <div class="gdoc-toc gdoc-toc__level--6"><nav id="TableOfContents">
   <ul>
+    <li><a href="#概述">概述</a></li>
     <li><a href="#最长递增子序列">最长递增子序列</a>
       <ul>
         <li><a href="#q给你一个整数数组-nums-找到其中最长严格递增子序列的长度">Q:给你一个整数数组 nums ，找到其中最长严格递增子序列的长度</a></li>
@@ -1280,6 +1407,28 @@
       </ul></nav><hr></div>
 
 
+<div class="gdoc-page__anchorwrap">
+    <h2 id="概述">
+        概述
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/#概述" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 概述" href="#%e6%a6%82%e8%bf%b0">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>正向递归,记录每一次执行的结果,用于下一次计算</p>
+<blockquote>
+<p>可以用来解决的问题:</p>
+<ul>
+<li>需要大量遍历寻找最优解
+框架公式</li>
+<li>单个数组或者字符串要用动态规划时，可以把动态规划 dp[i] 定义为 nums[0:i] 中想要求的结果</li>
+<li>当两个数组或者字符串要用动态规划时，可以把动态规划定义成两维的 dp[i][j] ，其含义是在 A[0:i] 与 B[0:j] 之间匹配得到的想要的结果</li>
+<li>1.状态定义</li>
+<li>2.状态转移方程</li>
+<li>3.状态的初始化</li>
+<li>4.遍历方向与范围</li>
+<li>5.最终返回结果</li>
+</ul>
+</blockquote>
 <div class="gdoc-page__anchorwrap">
     <h2 id="最长递增子序列">
         最长递增子序列
@@ -1346,20 +1495,37 @@
 <li>动态规划</li>
 </ul>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">coinChange</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">coins</span><span class="o">,</span> <span class="kt">int</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">amount</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
-    <span class="kt">int</span><span class="o">[]</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">amount</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
-    <span class="n">Arrays</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">dp</span><span class="o">,</span> <span class="n">max</span><span class="o">);</span>
-    <span class="n">dp</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">amount</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">coins</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">coins</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">dp</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">dp</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">coins</span><span class="o">[</span><span class="n">j</span><span class="o">]]</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">//amount=11,可以从dp[10],dp[9],dp[6]3个地方到达
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">coinChange</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">coins</span><span class="o">,</span> <span class="kt">int</span> <span class="n">amount</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">amount</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="k">return</span> <span class="n">0</span><span class="o">;</span>
+        <span class="c1">//(1)初始化DP table，零钱为0则硬币0个
+</span><span class="c1"></span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">amount</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
+        <span class="n">dp</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+        <span class="c1">//(2)遍历每种【状态】即金额，【选择】即保存最少硬币数量
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">amounttt</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">amounttt</span> <span class="o">&lt;=</span> <span class="n">amount</span><span class="o">;</span> <span class="n">amounttt</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">//(1.1)初始化DP table。初始为最大硬币数量即amount个，因为最小面额为1元，那么+1即为无法到达的硬币个数。当然取(amount+1,Integer.MAX_VALUE - 1)(ps:后面存在1+dp[balance]计算)范围都可
+</span><span class="c1"></span>            <span class="n">dp</span><span class="o">[</span><span class="n">amounttt</span><span class="o">]</span> <span class="o">=</span> <span class="n">amount</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
+            <span class="c1">//(3)遍历每种面额的硬币
+</span><span class="c1"></span>            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">coin</span> <span class="o">:</span> <span class="n">coins</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">//(3.1)剩余金额balance，为当前amount-某额度硬币
+</span><span class="c1"></span>                <span class="kt">int</span> <span class="n">balance</span> <span class="o">=</span> <span class="n">amounttt</span> <span class="o">-</span> <span class="n">coin</span><span class="o">;</span>
+                <span class="c1">//(3.2)剩余额度&gt;=0，说明该种硬币的组合可行
+</span><span class="c1"></span>                <span class="k">if</span> <span class="o">(</span><span class="n">balance</span> <span class="o">&gt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c1">//(3.3)说明amount额度足以减去某额度硬币。balance&lt;amounttt，balance于前面已经计算保存好【状态】，+1为加上当前硬币
+</span><span class="c1"></span>                    <span class="c1">//例如1：coins[1,2,5]，amounttt=4
+</span><span class="c1"></span>                    <span class="c1">//①balance=4-1，此时dp[4]=min(初始值,1+dp[3]）,而dp[3]由1元+2元组合为2枚。保存最小值dp[4]=3
+</span><span class="c1"></span>                    <span class="c1">//②balance=4-2，此时dp[4]=min(初始值,1+dp[2])，而dp[2]由2元组合为1枚。保存最小值dp[4]=2
+</span><span class="c1"></span>                    <span class="c1">//③balance=4-5，不足以减去该面额
+</span><span class="c1"></span>                    <span class="c1">//例如2:coins[3]，amounttt=5。dp则为[0,max,max,1,max,max,max]，毕竟max&lt;max+1
+</span><span class="c1"></span>                    <span class="n">dp</span><span class="o">[</span><span class="n">amounttt</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">dp</span><span class="o">[</span><span class="n">amounttt</span><span class="o">],</span> <span class="n">1</span> <span class="o">+</span> <span class="n">dp</span><span class="o">[</span><span class="n">balance</span><span class="o">]);</span>
+                <span class="o">}</span>
             <span class="o">}</span>
         <span class="o">}</span>
+
+        <span class="c1">//(4)如amount等于初始值，说明在给定种类的硬币中无法组合成amount元。比如coin[2,3] amount=1,4...
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">dp</span><span class="o">[</span><span class="n">amount</span><span class="o">]</span> <span class="o">==</span> <span class="o">(</span><span class="n">amount</span> <span class="o">+</span> <span class="n">1</span><span class="o">)</span> <span class="o">?</span> <span class="o">-</span><span class="n">1</span> <span class="o">:</span> <span class="n">dp</span><span class="o">[</span><span class="n">amount</span><span class="o">];</span>
     <span class="o">}</span>
-    <span class="k">return</span> <span class="n">dp</span><span class="o">[</span><span class="n">amount</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">amount</span> <span class="o">?</span> <span class="o">-</span><span class="n">1</span> <span class="o">:</span> <span class="n">dp</span><span class="o">[</span><span class="n">amount</span><span class="o">];</span>
-<span class="o">}</span>
 </code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="最长公共子序列-真题">
         最长公共子序列 [真题]
@@ -1386,7 +1552,8 @@
 </blockquote>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">longestCommonSubsequence</span><span class="o">(</span><span class="n">String</span> <span class="n">text1</span><span class="o">,</span> <span class="n">String</span> <span class="n">text2</span><span class="o">)</span> <span class="o">{</span>
     <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">text1</span><span class="o">.</span><span class="na">length</span><span class="o">(),</span> <span class="n">n</span> <span class="o">=</span> <span class="n">text2</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
-    <span class="kt">int</span><span class="o">[][]</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">m</span> <span class="o">+</span> <span class="n">1</span><span class="o">][</span><span class="n">n</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
+    <span class="c1">//初始化为+1是为了当dp[0][0]时可以表示的为空字符串和另外一个字符串的匹配
+</span><span class="c1"></span>    <span class="kt">int</span><span class="o">[][]</span> <span class="n">dp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">m</span> <span class="o">+</span> <span class="n">1</span><span class="o">][</span><span class="n">n</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
         <span class="kt">char</span> <span class="n">c1</span> <span class="o">=</span> <span class="n">text1</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
@@ -1456,7 +1623,19 @@
 <li>动态规划</li>
 </ul>
 </blockquote>
-
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxProfit</span><span class="o">(</span><span class="kt">int</span> <span class="n">prices</span><span class="o">[])</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">minprice</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">maxprofit</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">prices</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">minprice</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">minprice</span> <span class="o">=</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="n">minprice</span> <span class="o">&gt;</span> <span class="n">maxprofit</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">maxprofit</span> <span class="o">=</span> <span class="n">prices</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">-</span> <span class="n">minprice</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">maxprofit</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div>
 
     </article>
 

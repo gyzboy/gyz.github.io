@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Java">
+<meta name="description" content="五大算法思想">
 
-<title>Java | 十万个为什么</title>
+<title>五大算法思想 | 十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -31,7 +31,6 @@
 <link rel="preload" href="/custom.css" as="style">
 <link rel="stylesheet" href="/custom.css" media="all">
 
-<link rel="alternate" type="application/rss+xml" href="https://gyzboy.github.io/interview/java/index.xml" title="十万个为什么" />
 
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
@@ -996,7 +995,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%94%E5%A4%A7%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3/" class="gdoc-nav__entry ">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%94%E5%A4%A7%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3/" class="gdoc-nav__entry is-active">
                         五大算法思想
                     </a>
                 </span>
@@ -1352,7 +1351,15 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Java</span><meta itemprop='position' content='3' /></li>
+        
+        
+        
+        
+    
+    
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/%E7%AE%97%E6%B3%95/' href='/interview/%E7%AE%97%E6%B3%95/'><span itemprop='name'>算法</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>五大算法思想</span><meta itemprop='position' content='4' /></li>
+    
+
     
 
     
@@ -1365,9 +1372,53 @@
     
 </div>
 
+
     <article class="gdoc-markdown">
-        <h1>Java</h1>
+        <h1>五大算法思想</h1>
         
+
+
+  <div class="gdoc-toc gdoc-toc__level--6"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#分治法">分治法</a></li>
+    <li><a href="#动态规划">动态规划</a></li>
+  </ul>
+</nav><hr></div>
+
+
+<div class="gdoc-page__anchorwrap">
+    <h2 id="分治法">
+        分治法
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%BA%94%E5%A4%A7%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3/#分治法" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 分治法" href="#%e5%88%86%e6%b2%bb%e6%b3%95">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>设计思想：将一个难以直接解决的大问题分解成规模较小的相同问题，以便分而治之。
+实际的应用：快速排序、归并排序
+分治法在每一层递归上的基本步骤：
+①　分解：将原问题分解为若干个规模较小、相互独立、与原问题形式相同的子问题。
+②　解决：若子问题规模较小就直接解决，不然就递归解决各个子问题
+③　合并：将各个子问题的解合并为原问题的解</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="动态规划">
+        动态规划
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%BA%94%E5%A4%A7%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3/#动态规划" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 动态规划" href="#%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ol start="2">
+<li>动态规划法</li>
+</ol>
+<p>设计思想：最优化原理，即一个过程的最优决策具有这样的性质：即无论其初始状态和初始决策如何，其今后诸策略对以第一个决策所形成的状态作为初始状态的过程而言，必须构成最优策略
+动态规划法所要满足的条件：
+①　问题中的状态满足最优化原理
+②　问题中的状态必须满足无后效性，无后效性指的是下一时刻的状态只与当前的状态 有关而与当前状态的之前状态无关。
+动态规划三要素：
+①　问题的阶段
+②　每个阶段的状态
+③　从前一个阶段转换到后一个阶段的递推关系
+实际的应用：0/1背包问题 最长公共子串问题</p>
+
 
     </article>
 

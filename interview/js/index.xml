@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>JavaScript on 十万个为什么</title>
+    <title>openGL on 十万个为什么</title>
     <link>https://gyzboy.github.io/interview/js/</link>
-    <description>Recent content in JavaScript on 十万个为什么</description>
+    <description>Recent content in openGL on 十万个为什么</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 13 Apr 2021 16:12:16 +0800</lastBuildDate><atom:link href="https://gyzboy.github.io/interview/js/index.xml" rel="self" type="application/rss+xml" />

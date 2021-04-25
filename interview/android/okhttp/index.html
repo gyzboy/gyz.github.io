@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Java">
+<meta name="description" content="OkHttp">
 
-<title>Java | 十万个为什么</title>
+<title>OkHttp | 十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -31,7 +31,6 @@
 <link rel="preload" href="/custom.css" as="style">
 <link rel="stylesheet" href="/custom.css" media="all">
 
-<link rel="alternate" type="application/rss+xml" href="https://gyzboy.github.io/interview/java/index.xml" title="十万个为什么" />
 
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
@@ -390,7 +389,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/android/okhttp/" class="gdoc-nav__entry ">
+                    <a href="/interview/android/okhttp/" class="gdoc-nav__entry is-active">
                         OkHttp
                     </a>
                 </span>
@@ -1352,7 +1351,15 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Java</span><meta itemprop='position' content='3' /></li>
+        
+        
+        
+        
+    
+    
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>OkHttp</span><meta itemprop='position' content='4' /></li>
+    
+
     
 
     
@@ -1365,9 +1372,34 @@
     
 </div>
 
+
     <article class="gdoc-markdown">
-        <h1>Java</h1>
+        <h1>OkHttp</h1>
         
+
+
+  <div class="gdoc-toc gdoc-toc__level--6"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#qokhttp中用到了哪些设计模式">Q:OkHttp中用到了哪些设计模式</a></li>
+  </ul>
+</nav><hr></div>
+
+
+<div class="gdoc-page__anchorwrap">
+    <h2 id="qokhttp中用到了哪些设计模式">
+        Q:OkHttp中用到了哪些设计模式
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/okhttp/#qokhttp中用到了哪些设计模式" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:OkHttp中用到了哪些设计模式" href="#qokhttp%e4%b8%ad%e7%94%a8%e5%88%b0%e4%ba%86%e5%93%aa%e4%ba%9b%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><blockquote>
+<p>外观模式。通过okHttpClient这个外观去实现内部各种功能。
+建造者模式。构建不同的Request对象。
+工厂模式。通过OkHttpClient生产出产品RealCall。
+享元模式。通过线程池、连接池共享对象。
+责任链模式。将不同功能的拦截器形成一个链。</p>
+</blockquote>
+
 
     </article>
 

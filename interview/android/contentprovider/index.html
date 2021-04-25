@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Java">
+<meta name="description" content="ContentProvider">
 
-<title>Java | 十万个为什么</title>
+<title>ContentProvider | 十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -31,7 +31,6 @@
 <link rel="preload" href="/custom.css" as="style">
 <link rel="stylesheet" href="/custom.css" media="all">
 
-<link rel="alternate" type="application/rss+xml" href="https://gyzboy.github.io/interview/java/index.xml" title="十万个为什么" />
 
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
@@ -318,7 +317,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/android/contentprovider/" class="gdoc-nav__entry ">
+                    <a href="/interview/android/contentprovider/" class="gdoc-nav__entry is-active">
                         ContentProvider
                     </a>
                 </span>
@@ -1352,7 +1351,15 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Java</span><meta itemprop='position' content='3' /></li>
+        
+        
+        
+        
+    
+    
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>ContentProvider</span><meta itemprop='position' content='4' /></li>
+    
+
     
 
     
@@ -1365,9 +1372,44 @@
     
 </div>
 
+
     <article class="gdoc-markdown">
-        <h1>Java</h1>
+        <h1>ContentProvider</h1>
         
+
+
+  <div class="gdoc-toc gdoc-toc__level--6"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#q介绍下fileprovider">Q:介绍下FileProvider？</a></li>
+  </ul>
+</nav><hr></div>
+
+
+<div class="gdoc-page__anchorwrap">
+    <h2 id="q介绍下fileprovider">
+        Q:介绍下FileProvider？
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/contentprovider/#q介绍下fileprovider" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:介绍下FileProvider？" href="#q%e4%bb%8b%e7%bb%8d%e4%b8%8bfileprovider">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="o">&lt;!--</span> <span class="n">配置FileProvider</span><span class="o">--&gt;</span>
+
+<span class="o">&lt;</span><span class="n">provider</span>
+    <span class="n">android</span><span class="o">:</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;androidx.core.content.FileProvider&#34;</span>
+    <span class="n">android</span><span class="o">:</span><span class="n">authorities</span><span class="o">=</span><span class="s">&#34;${applicationId}.provider&#34;</span>
+    <span class="n">android</span><span class="o">:</span><span class="n">exported</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="c1">//这里必须为false
+</span><span class="c1"></span>    <span class="n">android</span><span class="o">:</span><span class="n">grantUriPermissions</span><span class="o">=</span><span class="s">&#34;true&#34;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">meta</span><span class="o">-</span><span class="n">data</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;android.support.FILE_PROVIDER_PATHS&#34;</span>
+        <span class="n">android</span><span class="o">:</span><span class="n">resource</span><span class="o">=</span><span class="s">&#34;@xml/provider_paths&#34;</span><span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">provider</span><span class="o">&gt;</span>
+
+<span class="c1">//provider_paths.xml
+</span><span class="c1"></span><span class="o">&lt;?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s">&#34;1.0&#34;</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="o">?&gt;</span>
+<span class="o">&lt;</span><span class="n">paths</span> <span class="n">xmlns</span><span class="o">:</span><span class="n">android</span><span class="o">=</span><span class="s">&#34;http://schemas.android.com/apk/res/android&#34;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">external</span><span class="o">-</span><span class="n">path</span> <span class="n">name</span><span class="o">=</span><span class="s">&#34;external&#34;</span> <span class="n">path</span><span class="o">=</span><span class="s">&#34;.&#34;</span><span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">paths</span><span class="o">&gt;</span>
+</code></pre></div>
 
     </article>
 

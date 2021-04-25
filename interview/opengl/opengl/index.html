@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Java">
+<meta name="description" content="openGL">
 
-<title>Java | 十万个为什么</title>
+<title>openGL | 十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -31,7 +31,6 @@
 <link rel="preload" href="/custom.css" as="style">
 <link rel="stylesheet" href="/custom.css" media="all">
 
-<link rel="alternate" type="application/rss+xml" href="https://gyzboy.github.io/interview/java/index.xml" title="十万个为什么" />
 
 
 <!-- Made with Geekdoc theme https://github.com/thegeeklab/hugo-geekdoc -->
@@ -918,7 +917,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/opengl/opengl/" class="gdoc-nav__entry ">
+                    <a href="/interview/opengl/opengl/" class="gdoc-nav__entry is-active">
                         openGL
                     </a>
                 </span>
@@ -1352,7 +1351,15 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Java</span><meta itemprop='position' content='3' /></li>
+        
+        
+        
+        
+    
+    
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/opengl/' href='/interview/opengl/'><span itemprop='name'>openGL</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>openGL</span><meta itemprop='position' content='4' /></li>
+    
+
     
 
     
@@ -1365,9 +1372,277 @@
     
 </div>
 
+
     <article class="gdoc-markdown">
-        <h1>Java</h1>
+        <h1>openGL</h1>
         
+
+
+  <div class="gdoc-toc gdoc-toc__level--6"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#基本概念">基本概念</a>
+      <ul>
+        <li><a href="#着色器">着色器</a></li>
+        <li><a href="#顶点着色器">顶点着色器</a></li>
+        <li><a href="#片元着色器">片元着色器</a></li>
+        <li><a href="#坐标系">坐标系</a></li>
+        <li><a href="#图形的绘制">图形的绘制</a></li>
+        <li><a href="#投影">投影</a></li>
+        <li><a href="#光照">光照</a></li>
+        <li><a href="#纹理映射">纹理映射</a></li>
+        <li><a href="#渲染流程">渲染流程</a></li>
+      </ul>
+    </li>
+    <li><a href="#绘制一个图形的步骤">绘制一个图形的步骤</a>
+      <ul>
+        <li><a href="#1绑定glsurfaceview">1.绑定GLSurfaceView</a></li>
+        <li><a href="#2创建shape并加载">2.创建shape并加载</a></li>
+      </ul>
+    </li>
+    <li><a href="#变化矩阵">变化矩阵</a></li>
+  </ul>
+</nav><hr></div>
+
+
+<div class="gdoc-page__anchorwrap">
+    <h2 id="基本概念">
+        基本概念
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#基本概念" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 基本概念" href="#%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="着色器">
+        着色器
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#着色器" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 着色器" href="#%e7%9d%80%e8%89%b2%e5%99%a8">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>着色器（Shader）是在GPU上运行的小程序</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="顶点着色器">
+        顶点着色器
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#顶点着色器" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 顶点着色器" href="#%e9%a1%b6%e7%82%b9%e7%9d%80%e8%89%b2%e5%99%a8">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>把每个顶点在虚拟空间中的三维坐标变换为可以在屏幕上显示的二维坐标，并带有用于z-buffer的深度信息。顶点着色器可以操作的属性有：位置、颜色、纹理坐标，但是不能创建新的顶点</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="片元着色器">
+        片元着色器
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#片元着色器" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 片元着色器" href="#%e7%89%87%e5%85%83%e7%9d%80%e8%89%b2%e5%99%a8">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>片元着色器计算每个像素的颜色和其它属性。它通过应用光照值、凹凸贴图，阴影，镜面高光，半透明等处理来计算像素的颜色并输出。它也可改变像素的深度(z-buffering)或在多个渲染目标被激活的状态下输出多种颜色。一个片元着色器不能产生复杂的效果，因为它只在一个像素上进行操作，而不知道场景的几何形状</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="坐标系">
+        坐标系
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#坐标系" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 坐标系" href="#%e5%9d%90%e6%a0%87%e7%b3%bb">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>OpenGL ES采用的是右手坐标，选取屏幕中心为原点，从原点到屏幕边缘默认长度为1，也就是说默认情况下，从原点到（1,0,0）的距离和到（0,1,0）的距离在屏幕上展示的并不相同。即向右为X正轴方向，向左为X负轴方向，向上为Y轴正轴方向，向下为Y轴负轴方向，屏幕面垂直向上为Z轴正轴方向，垂直向下为Z轴负轴方向</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="图形的绘制">
+        图形的绘制
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#图形的绘制" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 图形的绘制" href="#%e5%9b%be%e5%bd%a2%e7%9a%84%e7%bb%98%e5%88%b6">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>OpenGL ES2.0的世界里面只有点、线、三角形，其它更为复杂的几何形状都是由三角形构成的</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="投影">
+        投影
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#投影" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 投影" href="#%e6%8a%95%e5%bd%b1">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>OpenGL ES中有两种投影方式：正交投影和透视投影。正交投影，物体不会随距离观测点的位置而大小发生变化。而透视投影，距离观测点越远，物体越小，距离观测点越近，物体越大</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="光照">
+        光照
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#光照" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 光照" href="#%e5%85%89%e7%85%a7">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>光照由三种元素组成（也可以说是三种通道组成），分别为环境光、镜面光及散射光</p>
+<ul>
+<li>环境光是指从四面八方照射到物体上，其具体公式为：
+<blockquote>
+<p>环境光照射结果=材质反射系数∗环境光强度</p>
+</blockquote>
+</li>
+<li>散射光是指现实世界中组草的物体表面被光照射时，反射光在各个方向基本均匀的情况，其具体公式为：
+<blockquote>
+<p>散射光照射结果=材质的反射系数∗散射光强度∗max(cos(入射角)，0)</p>
+</blockquote>
+</li>
+<li>镜面光是指现实世界中光滑的表面被照射时会有方向很集中的反射光，与散射光最终强度依赖于入射光与被照射点的法向量夹角不同，镜面光的强度还依赖于观察者的位置，具体公式如下：
+<blockquote>
+<p>镜面光照射结果=材质的反射系数∗镜面光强度∗max(0,cos(半向量与法向量的夹角)粗糙度)</p>
+</blockquote>
+</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="纹理映射">
+        纹理映射
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#纹理映射" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 纹理映射" href="#%e7%ba%b9%e7%90%86%e6%98%a0%e5%b0%84">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>纹理映射是将2D的纹理映射到3D场景中的立体物体上</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="渲染流程">
+        渲染流程
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#渲染流程" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 渲染流程" href="#%e6%b8%b2%e6%9f%93%e6%b5%81%e7%a8%8b">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>读取顶点数据——执行顶点着色器——组装图元——光栅化图元——执行片元着色器——写入帧缓冲区——显示到屏幕上</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="绘制一个图形的步骤">
+        绘制一个图形的步骤
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#绘制一个图形的步骤" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 绘制一个图形的步骤" href="#%e7%bb%98%e5%88%b6%e4%b8%80%e4%b8%aa%e5%9b%be%e5%bd%a2%e7%9a%84%e6%ad%a5%e9%aa%a4">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
+    <h3 id="1绑定glsurfaceview">
+        1.绑定GLSurfaceView
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#1绑定glsurfaceview" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 1.绑定GLSurfaceView" href="#1%e7%bb%91%e5%ae%9aglsurfaceview">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">setEGLContextClientVersion</span><span class="o">(</span><span class="n">2</span><span class="o">);</span>
+<span class="n">setRenderer</span><span class="o">(</span><span class="n">renderer</span><span class="o">);</span><span class="c1">//绑定Render
+</span><span class="c1"></span><span class="n">setRenderMode</span><span class="o">(</span><span class="n">GLSurfaceView</span><span class="o">.</span><span class="na">RENDERMODE_WHEN_DIRTY</span><span class="o">);</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h3 id="2创建shape并加载">
+        2.创建shape并加载
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#2创建shape并加载" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 2.创建shape并加载" href="#2%e5%88%9b%e5%bb%bashape%e5%b9%b6%e5%8a%a0%e8%bd%bd">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><div class="gdoc-page__anchorwrap">
+    <h4 id="21-准备顶点着色器片元着色器">
+        2.1 准备顶点着色器、片元着色器
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#21-准备顶点着色器片元着色器" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 2.1 准备顶点着色器、片元着色器" href="#21-%e5%87%86%e5%a4%87%e9%a1%b6%e7%82%b9%e7%9d%80%e8%89%b2%e5%99%a8%e7%89%87%e5%85%83%e7%9d%80%e8%89%b2%e5%99%a8">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">vertexShaderCode</span> <span class="o">=</span>
+            <span class="s">&#34;attribute vec4 vPosition;&#34;</span> <span class="o">+</span>
+                    <span class="s">&#34;void main() {&#34;</span> <span class="o">+</span>
+                    <span class="s">&#34;  gl_Position = vPosition;&#34;</span> <span class="o">+</span>
+                    <span class="s">&#34;}&#34;</span><span class="o">;</span>
+
+<span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">fragmentShaderCode</span> <span class="o">=</span>
+            <span class="s">&#34;precision mediump float;&#34;</span> <span class="o">+</span>
+                    <span class="s">&#34;uniform vec4 vColor;&#34;</span> <span class="o">+</span>
+                    <span class="s">&#34;void main() {&#34;</span> <span class="o">+</span>
+                    <span class="s">&#34;  gl_FragColor = vColor;&#34;</span> <span class="o">+</span>
+                    <span class="s">&#34;}&#34;</span><span class="o">;</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h4 id="22-创建opengl程序并加载着色器">
+        2.2 创建OpenGL程序并加载着色器
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#22-创建opengl程序并加载着色器" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 2.2 创建OpenGL程序并加载着色器" href="#22-%e5%88%9b%e5%bb%baopengl%e7%a8%8b%e5%ba%8f%e5%b9%b6%e5%8a%a0%e8%bd%bd%e7%9d%80%e8%89%b2%e5%99%a8">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">mProgram</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">vertexShader</span> <span class="o">=</span> <span class="n">loadShader</span><span class="o">(</span><span class="n">GLES20</span><span class="o">.</span><span class="na">GL_VERTEX_SHADER</span><span class="o">,</span>
+                <span class="n">vertexShaderCode</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">fragmentShader</span> <span class="o">=</span> <span class="n">loadShader</span><span class="o">(</span><span class="n">GLES20</span><span class="o">.</span><span class="na">GL_FRAGMENT_SHADER</span><span class="o">,</span>
+                <span class="n">fragmentShaderCode</span><span class="o">);</span>
+
+    <span class="c1">//创建一个空的OpenGLES程序
+</span><span class="c1"></span>    <span class="n">mProgram</span> <span class="o">=</span> <span class="n">GLES20</span><span class="o">.</span><span class="na">glCreateProgram</span><span class="o">();</span>
+    <span class="c1">//将顶点着色器加入到程序
+</span><span class="c1"></span>    <span class="n">GLES20</span><span class="o">.</span><span class="na">glAttachShader</span><span class="o">(</span><span class="n">mProgram</span><span class="o">,</span> <span class="n">vertexShader</span><span class="o">);</span>
+    <span class="c1">//将片元着色器加入到程序中
+</span><span class="c1"></span>    <span class="n">GLES20</span><span class="o">.</span><span class="na">glAttachShader</span><span class="o">(</span><span class="n">mProgram</span><span class="o">,</span> <span class="n">fragmentShader</span><span class="o">);</span>
+    <span class="c1">//连接到着色器程序
+</span><span class="c1"></span>    <span class="n">GLES20</span><span class="o">.</span><span class="na">glLinkProgram</span><span class="o">(</span><span class="n">mProgram</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">loadShader</span><span class="o">(</span><span class="kt">int</span> <span class="n">type</span><span class="o">,</span> <span class="n">String</span> <span class="n">shaderCode</span><span class="o">){</span>
+        <span class="c1">//根据type创建顶点着色器或者片元着色器
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">shader</span> <span class="o">=</span> <span class="n">GLES20</span><span class="o">.</span><span class="na">glCreateShader</span><span class="o">(</span><span class="n">type</span><span class="o">);</span>
+        <span class="c1">//将资源加入到着色器中，并编译
+</span><span class="c1"></span>        <span class="n">GLES20</span><span class="o">.</span><span class="na">glShaderSource</span><span class="o">(</span><span class="n">shader</span><span class="o">,</span> <span class="n">shaderCode</span><span class="o">);</span>
+        <span class="n">GLES20</span><span class="o">.</span><span class="na">glCompileShader</span><span class="o">(</span><span class="n">shader</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">shader</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h4 id="23-确定需要绘制图形的坐标和颜色数据">
+        2.3 确定需要绘制图形的坐标和颜色数据
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#23-确定需要绘制图形的坐标和颜色数据" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 2.3 确定需要绘制图形的坐标和颜色数据" href="#23-%e7%a1%ae%e5%ae%9a%e9%9c%80%e8%a6%81%e7%bb%98%e5%88%b6%e5%9b%be%e5%bd%a2%e7%9a%84%e5%9d%90%e6%a0%87%e5%92%8c%e9%a2%9c%e8%89%b2%e6%95%b0%e6%8d%ae">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">private</span> <span class="n">FloatBuffer</span> <span class="n">vertexBuffer</span><span class="o">;</span>
+    <span class="kd">static</span> <span class="kt">float</span> <span class="n">triangleCoords</span><span class="o">[]</span> <span class="o">=</span> <span class="o">{</span>
+            <span class="n">0</span><span class="o">.</span><span class="na">5f</span><span class="o">,</span>  <span class="n">0</span><span class="o">.</span><span class="na">5f</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="c1">// top
+</span><span class="c1"></span>            <span class="o">-</span><span class="n">0</span><span class="o">.</span><span class="na">5f</span><span class="o">,</span> <span class="o">-</span><span class="n">0</span><span class="o">.</span><span class="na">5f</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">0f</span><span class="o">,</span> <span class="c1">// bottom left
+</span><span class="c1"></span>            <span class="n">0</span><span class="o">.</span><span class="na">5f</span><span class="o">,</span> <span class="o">-</span><span class="n">0</span><span class="o">.</span><span class="na">5f</span><span class="o">,</span> <span class="n">0</span><span class="o">.</span><span class="na">0f</span>  <span class="c1">// bottom right
+</span><span class="c1"></span>    <span class="o">};</span>
+    <span class="n">ByteBuffer</span> <span class="n">bb</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocateDirect</span><span class="o">(</span>
+                <span class="n">triangleCoords</span><span class="o">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">4</span><span class="o">);</span>
+    <span class="n">bb</span><span class="o">.</span><span class="na">order</span><span class="o">(</span><span class="n">ByteOrder</span><span class="o">.</span><span class="na">nativeOrder</span><span class="o">());</span>
+    <span class="n">vertexBuffer</span> <span class="o">=</span> <span class="n">bb</span><span class="o">.</span><span class="na">asFloatBuffer</span><span class="o">();</span>
+    <span class="n">vertexBuffer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">triangleCoords</span><span class="o">);</span>
+    <span class="n">vertexBuffer</span><span class="o">.</span><span class="na">position</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h4 id="24-设置视图窗口viewport">
+        2.4 设置视图窗口(viewport)。
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#24-设置视图窗口viewport" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 2.4 设置视图窗口(viewport)。" href="#24-%e8%ae%be%e7%bd%ae%e8%a7%86%e5%9b%be%e7%aa%97%e5%8f%a3viewport">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSurfaceChanged</span><span class="o">(</span><span class="n">GL10</span> <span class="n">gl</span><span class="o">,</span> <span class="kt">int</span> <span class="n">width</span><span class="o">,</span> <span class="kt">int</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">GLES20</span><span class="o">.</span><span class="na">glViewport</span><span class="o">(</span><span class="n">0</span><span class="o">,</span><span class="n">0</span><span class="o">,</span><span class="n">width</span><span class="o">,</span><span class="n">height</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h4 id="25-将坐标数据颜色数据传入opengl-es程序中并绘制缓冲区内容">
+        2.5 将坐标数据颜色数据传入OpenGL ES程序中,并绘制缓冲区内容
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#25-将坐标数据颜色数据传入opengl-es程序中并绘制缓冲区内容" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 2.5 将坐标数据颜色数据传入OpenGL ES程序中,并绘制缓冲区内容" href="#25-%e5%b0%86%e5%9d%90%e6%a0%87%e6%95%b0%e6%8d%ae%e9%a2%9c%e8%89%b2%e6%95%b0%e6%8d%ae%e4%bc%a0%e5%85%a5opengl-es%e7%a8%8b%e5%ba%8f%e4%b8%ad%e5%b9%b6%e7%bb%98%e5%88%b6%e7%bc%93%e5%86%b2%e5%8c%ba%e5%86%85%e5%ae%b9">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h4>
+</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDrawFrame</span><span class="o">(</span><span class="n">GL10</span> <span class="n">gl</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">GLES20</span><span class="o">.</span><span class="na">glClear</span><span class="o">(</span><span class="n">GLES20</span><span class="o">.</span><span class="na">GL_COLOR_BUFFER_BIT</span><span class="o">|</span><span class="n">GLES20</span><span class="o">.</span><span class="na">GL_DEPTH_BUFFER_BIT</span><span class="o">);</span>
+        <span class="c1">//将程序加入到OpenGLES2.0环境
+</span><span class="c1"></span>        <span class="n">GLES20</span><span class="o">.</span><span class="na">glUseProgram</span><span class="o">(</span><span class="n">mProgram</span><span class="o">);</span>
+
+        <span class="c1">//获取顶点着色器的vPosition成员句柄
+</span><span class="c1"></span>        <span class="n">mPositionHandle</span> <span class="o">=</span> <span class="n">GLES20</span><span class="o">.</span><span class="na">glGetAttribLocation</span><span class="o">(</span><span class="n">mProgram</span><span class="o">,</span> <span class="s">&#34;vPosition&#34;</span><span class="o">);</span>
+        <span class="c1">//启用三角形顶点的句柄
+</span><span class="c1"></span>        <span class="n">GLES20</span><span class="o">.</span><span class="na">glEnableVertexAttribArray</span><span class="o">(</span><span class="n">mPositionHandle</span><span class="o">);</span>
+        <span class="c1">//准备三角形的坐标数据
+</span><span class="c1"></span>        <span class="n">GLES20</span><span class="o">.</span><span class="na">glVertexAttribPointer</span><span class="o">(</span><span class="n">mPositionHandle</span><span class="o">,</span> <span class="n">COORDS_PER_VERTEX</span><span class="o">,</span>
+                <span class="n">GLES20</span><span class="o">.</span><span class="na">GL_FLOAT</span><span class="o">,</span> <span class="kc">false</span><span class="o">,</span>
+                <span class="n">vertexStride</span><span class="o">,</span> <span class="n">vertexBuffer</span><span class="o">);</span>
+        <span class="c1">//获取片元着色器的vColor成员的句柄
+</span><span class="c1"></span>        <span class="n">mColorHandle</span> <span class="o">=</span> <span class="n">GLES20</span><span class="o">.</span><span class="na">glGetUniformLocation</span><span class="o">(</span><span class="n">mProgram</span><span class="o">,</span> <span class="s">&#34;vColor&#34;</span><span class="o">);</span>
+        <span class="c1">//设置绘制三角形的颜色
+</span><span class="c1"></span>        <span class="n">GLES20</span><span class="o">.</span><span class="na">glUniform4fv</span><span class="o">(</span><span class="n">mColorHandle</span><span class="o">,</span> <span class="n">1</span><span class="o">,</span> <span class="n">color</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
+        <span class="c1">//绘制三角形
+</span><span class="c1"></span>        <span class="n">GLES20</span><span class="o">.</span><span class="na">glDrawArrays</span><span class="o">(</span><span class="n">GLES20</span><span class="o">.</span><span class="na">GL_TRIANGLES</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">vertexCount</span><span class="o">);</span>
+        <span class="c1">//禁止顶点数组的句柄
+</span><span class="c1"></span>        <span class="n">GLES20</span><span class="o">.</span><span class="na">glDisableVertexAttribArray</span><span class="o">(</span><span class="n">mPositionHandle</span><span class="o">);</span>
+    <span class="o">}</span>   
+</code></pre></div><div class="gdoc-page__anchorwrap">
+    <h2 id="变化矩阵">
+        变化矩阵
+        <a data-clipboard-text="https://gyzboy.github.io/interview/opengl/opengl/#变化矩阵" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 变化矩阵" href="#%e5%8f%98%e5%8c%96%e7%9f%a9%e9%98%b5">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p><img src="/matrix_rule1.png" alt="image"  />
+<img src="/matrix_rule2.png" alt="image"  /></p>
+
 
     </article>
 

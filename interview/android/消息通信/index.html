@@ -317,6 +317,30 @@
             
             
                 <span class="flex">
+                    <a href="/interview/android/contentprovider/" class="gdoc-nav__entry ">
+                        ContentProvider
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/interview/android/glide/" class="gdoc-nav__entry ">
                         Glide
                     </a>
@@ -343,6 +367,30 @@
                 <span class="flex">
                     <a href="/interview/android/leakcanary/" class="gdoc-nav__entry ">
                         LeakCanary
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/interview/android/okhttp/" class="gdoc-nav__entry ">
+                        OkHttp
                     </a>
                 </span>
             
@@ -791,7 +839,7 @@
             <li>
             
             
-                <span class="flex">JavaScript</span>
+                <span class="flex">openGL</span>
             
             
 
@@ -817,6 +865,60 @@
                 <span class="flex">
                     <a href="/interview/js/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="gdoc-nav__entry ">
                         JS基础知识
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+        
+    </ul>
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">openGL</span>
+            
+            
+
+            
+                
+    
+
+    <ul class="gdoc-nav__list">
+        
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/interview/opengl/opengl/" class="gdoc-nav__entry ">
+                        openGL
                     </a>
                 </span>
             
@@ -871,6 +973,30 @@
                 <span class="flex">
                     <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="gdoc-nav__entry ">
                         二叉树
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%94%E5%A4%A7%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3/" class="gdoc-nav__entry ">
+                        五大算法思想
                     </a>
                 </span>
             
@@ -1256,6 +1382,7 @@
   <ul>
     <li><a href="#qlinux都有哪些进程间通信方式ipcandroid呢">Q:Linux都有哪些进程间通信方式（IPC）？Android呢?</a></li>
     <li><a href="#q什么是binder为什么使用binder作为android-ipc">Q:什么是Binder?为什么使用Binder作为Android IPC？</a></li>
+    <li><a href="#qintent是如何进行进程间通信的">Q:Intent是如何进行进程间通信的?</a></li>
     <li><a href="#q什么是mmap">Q:什么是mmap?</a></li>
     <li><a href="#q为什么有共享内存了还需要设计binder">Q:为什么有共享内存了还需要设计Binder?</a></li>
     <li><a href="#qservicemanager启动流程">Q:ServiceManager启动流程?</a></li>
@@ -1270,6 +1397,7 @@
     <li><a href="#qhandler机制主要包含什么各自用途是什么">Q:Handler机制主要包含什么?各自用途是什么?</a></li>
     <li><a href="#qlooperprepare可以多次调用吗为什么">Q:Looper.prepare可以多次调用吗?为什么?</a></li>
     <li><a href="#qhandler中消息分发顺序">Q:Handler中消息分发顺序?</a></li>
+    <li><a href="#qhandle中有几种消息类型">Q:Handle中有几种消息类型?</a></li>
     <li><a href="#q用过message的setasynchronous吗有什么用">Q:用过Message的setAsynchronous吗?有什么用?</a></li>
     <li><a href="#qlooper-死循环为什么不会导致应用卡死会消耗大量资源吗">Q:Looper 死循环为什么不会导致应用卡死，会消耗大量资源吗？</a></li>
     <li><a href="#q主线程的handler是在activitythread中启动的那么他是一个线程吗不是的话那么主线程所依附的线程是什么">Q:主线程的Handler是在ActivityThread中启动的,那么他是一个线程吗?不是的话,那么主线程所依附的线程是什么?</a></li>
@@ -1314,6 +1442,13 @@ Android:</li>
 虚拟进程地址空间(vm_area_struct)和虚拟内核地址空间(vm_struct)都映射到同一块物理内存空间。当Client端与Server端发送数据时，Client（作为数据发送端）先从自己的进程空间把IPC通信数据copy_from_user拷贝到内核空间，而Server端（作为数据接收端）与内核共享数据，不再需要拷贝数据，而是通过内存地址空间的偏移量，即可获悉内存地址，整个过程只发生一次内存拷贝</li>
 </ol>
 <div class="gdoc-page__anchorwrap">
+    <h2 id="qintent是如何进行进程间通信的">
+        Q:Intent是如何进行进程间通信的?
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B6%88%E6%81%AF%E9%80%9A%E4%BF%A1/#qintent是如何进行进程间通信的" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:Intent是如何进行进程间通信的?" href="#qintent%e6%98%af%e5%a6%82%e4%bd%95%e8%bf%9b%e8%a1%8c%e8%bf%9b%e7%a8%8b%e9%97%b4%e9%80%9a%e4%bf%a1%e7%9a%84">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="gdoc-page__anchorwrap">
     <h2 id="q什么是mmap">
         Q:什么是mmap?
         <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B6%88%E6%81%AF%E9%80%9A%E4%BF%A1/#q什么是mmap" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:什么是mmap?" href="#q%e4%bb%80%e4%b9%88%e6%98%afmmap">
@@ -1537,8 +1672,8 @@ Android:</li>
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">   <span class="k">if</span> <span class="o">(</span><span class="n">msg</span><span class="o">.</span><span class="na">callback</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">handleCallback</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
+</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">   <span class="k">if</span> <span class="o">(</span><span class="n">msg</span><span class="o">.</span><span class="na">callback</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span><span class="c1">//post消息是会自动绑定msg.callback=runnable
+</span><span class="c1"></span>            <span class="n">handleCallback</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="k">if</span> <span class="o">(</span><span class="n">mCallback</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
                 <span class="k">if</span> <span class="o">(</span><span class="n">mCallback</span><span class="o">.</span><span class="na">handleMessage</span><span class="o">(</span><span class="n">msg</span><span class="o">))</span> <span class="o">{</span>
@@ -1548,6 +1683,21 @@ Android:</li>
             <span class="n">handleMessage</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
         <span class="o">}</span>
 </code></pre></div><p>Message.callback.run &gt; handler.callback.handleMessage &gt; handleMessage</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="qhandle中有几种消息类型">
+        Q:Handle中有几种消息类型?
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B6%88%E6%81%AF%E9%80%9A%E4%BF%A1/#qhandle中有几种消息类型" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:Handle中有几种消息类型?" href="#qhandle%e4%b8%ad%e6%9c%89%e5%87%a0%e7%a7%8d%e6%b6%88%e6%81%af%e7%b1%bb%e5%9e%8b">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>同步消息。也就是普通的消息。</li>
+<li>异步消息。通过setAsynchronous(true)设置的消息。</li>
+<li>同步屏障消息。通过postSyncBarrier方法添加的消息，特点是target为空，也就是没有对应的handler。</li>
+</ul>
+<blockquote>
+<p>正常情况下，同步消息和异步消息都是正常被处理，也就是根据时间when来取消息，处理消息。当遇到同步屏障消息的时候，就开始从消息队列里面去找异步消息，找到了再根据时间决定阻塞还是返回消息</p>
+</blockquote>
 <div class="gdoc-page__anchorwrap">
     <h2 id="q用过message的setasynchronous吗有什么用">
         Q:用过Message的setAsynchronous吗?有什么用?
