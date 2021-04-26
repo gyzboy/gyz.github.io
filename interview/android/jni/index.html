@@ -839,7 +839,7 @@
             <li>
             
             
-                <span class="flex">openGL</span>
+                <span class="flex">JS</span>
             
             
 
@@ -1424,6 +1424,9 @@
         </a>
     </h2>
 </div><ul>
+<li>#配置加载头文件
+include_directories(./src/main/cpp/include)
+file(GLOB main_src &ldquo;src/main/cpp/*.cpp&rdquo;) //定义main_src变量</li>
 <li>add_library(native-lib SHARED native-lib.cpp) 可以定义多个库，CMake会构建他们，Gradle将自动把共享库打入APK中
 <blockquote>
 <ul>
@@ -1449,6 +1452,7 @@
 </ul>
 </blockquote>
 </li>
+<li>set_target_properties(库名称 PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI}/xxx.so)</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="jni作用">

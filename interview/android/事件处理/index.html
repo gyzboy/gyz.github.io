@@ -839,7 +839,7 @@
             <li>
             
             
-                <span class="flex">openGL</span>
+                <span class="flex">JS</span>
             
             
 
@@ -1394,6 +1394,7 @@
     <li><a href="#q滑动冲突如何解决">Q:滑动冲突如何解决?</a></li>
     <li><a href="#qactivity的分发方法中调用了onuserinteraction方法你能说说这个方法有什么作用吗">Q:Activity的分发方法中调用了onUserInteraction()方法，你能说说这个方法有什么作用吗？</a></li>
     <li><a href="#qviewgroup是如何将多个手指产生的事件准确分发给不同的子view的">Q:ViewGroup是如何将多个手指产生的事件准确分发给不同的子view的？</a></li>
+    <li><a href="#qdispatchtoucheventonintercepttoucheventontouchevent中各返回值处理">Q:dispatchTouchEvent\onInterceptTouchEvent\onTouchEvent中各返回值处理</a></li>
   </ul>
 </nav><hr></div>
 
@@ -1541,6 +1542,14 @@ UP/DOWN类型的事件包含了触控点索引，可以根据该索引做出对�
 <li>当一个子view消费了down事件之后，ViewGroup会为该view创建一个TouchTarget，这个TouchTarget就包含了该view的实例与触控id。这里的触控id可以是多个，也就是一个view可接受多个触控点的事件序列。</li>
 <li>当一个MotionEvent到来之时，ViewGroup会将其中的触控点信息拆开，再分别发送给感兴趣的子view。从而达到精准发送触控点信息的目的。</li>
 </ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="qdispatchtoucheventonintercepttoucheventontouchevent中各返回值处理">
+        Q:dispatchTouchEvent\onInterceptTouchEvent\onTouchEvent中各返回值处理
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/#qdispatchtoucheventonintercepttoucheventontouchevent中各返回值处理" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:dispatchTouchEvent\onInterceptTouchEvent\onTouchEvent中各返回值处理" href="#qdispatchtoucheventonintercepttoucheventontouchevent%e4%b8%ad%e5%90%84%e8%bf%94%e5%9b%9e%e5%80%bc%e5%a4%84%e7%90%86">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p><img src="/touch_return.jpeg" alt="image"  /></p>
 
 
     </article>

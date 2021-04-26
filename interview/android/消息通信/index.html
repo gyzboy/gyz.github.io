@@ -839,7 +839,7 @@
             <li>
             
             
-                <span class="flex">openGL</span>
+                <span class="flex">JS</span>
             
             
 
@@ -1386,7 +1386,7 @@
     <li><a href="#q什么是mmap">Q:什么是mmap?</a></li>
     <li><a href="#q为什么有共享内存了还需要设计binder">Q:为什么有共享内存了还需要设计Binder?</a></li>
     <li><a href="#qservicemanager启动流程">Q:ServiceManager启动流程?</a></li>
-    <li><a href="#qbinder线程池大小">Q:Binder线程池大小?</a></li>
+    <li><a href="#qbinder线程池">Q:Binder线程池?</a></li>
     <li><a href="#qbinder创建的内核内存大小">Q:Binder创建的内核内存大小?</a></li>
     <li><a href="#qbinder进程与线程">Q:Binder进程与线程?</a></li>
     <li><a href="#q如果有多个进程向用一个server服务发出binder请求处理会发生什么">Q:如果有多个进程向用一个Server服务发出Binder请求处理?会发生什么?</a></li>
@@ -1480,13 +1480,14 @@ Android:</li>
 <li>死亡通知: 当binder所在进程死亡后,会调用binder_release方法,然后调用binder_node_release.这个过程便会发出死亡通知的回调.</li>
 </ol>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="qbinder线程池大小">
-        Q:Binder线程池大小?
-        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B6%88%E6%81%AF%E9%80%9A%E4%BF%A1/#qbinder线程池大小" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:Binder线程池大小?" href="#qbinder%e7%ba%bf%e7%a8%8b%e6%b1%a0%e5%a4%a7%e5%b0%8f">
+    <h2 id="qbinder线程池">
+        Q:Binder线程池?
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B6%88%E6%81%AF%E9%80%9A%E4%BF%A1/#qbinder线程池" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:Binder线程池?" href="#qbinder%e7%ba%bf%e7%a8%8b%e6%b1%a0">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>Binder线程创建与其所在进程的创建中产生,默认地，每个进程的binder线程池的线程个数上限为15,创建的binder线程个数上限为8</p>
+</div><p>Binder线程池是通过ProcessState中的startThreadPool进行创建的,通过mThreadPoolStarted变量控制每个进程有且只有一个Binder线程池,在创建时会新建一个用于与主线程通信的binder线程
+Binder线程创建与其所在进程的创建中产生,默认地，每个进程的binder线程池的线程个数上限为15,创建的binder线程个数上限为8</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="qbinder创建的内核内存大小">
         Q:Binder创建的内核内存大小?

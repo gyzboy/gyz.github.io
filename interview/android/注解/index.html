@@ -839,7 +839,7 @@
             <li>
             
             
-                <span class="flex">openGL</span>
+                <span class="flex">JS</span>
             
             
 
@@ -1383,6 +1383,19 @@
     <li><a href="#qandroid中提供了哪些与线程相关的注解">Q:Android中提供了哪些与线程相关的注解?</a></li>
     <li><a href="#q抽象处理器中四个方法有何作用annotationprocessor和apt区别">Q:抽象处理器中四个方法有何作用？annotationProcessor和apt区别？</a></li>
   </ul>
+
+  <ul>
+    <li><a href="#q介绍下asm">Q:介绍下ASM?</a>
+      <ul>
+        <li><a href="#classvisitor">ClassVisitor</a></li>
+        <li><a href="#classreader">ClassReader</a></li>
+        <li><a href="#classwriter">ClassWriter</a></li>
+        <li><a href="#methodvisitor--adviceadapter">MethodVisitor &amp; AdviceAdapter</a></li>
+        <li><a href="#fieldvisitor">FieldVisitor</a></li>
+      </ul>
+    </li>
+    <li><a href="#qasm的开发流程">Q:ASM的开发流程?</a></li>
+  </ul>
 </nav><hr></div>
 
 
@@ -1494,7 +1507,190 @@
 </ul>
 </li>
 </ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="q介绍下asm">
+        Q:介绍下ASM?
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B3%A8%E8%A7%A3/#q介绍下asm" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:介绍下ASM?" href="#q%e4%bb%8b%e7%bb%8d%e4%b8%8basm">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p><img src="/ASM.webp" alt="image"  /></p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="classvisitor">
+        ClassVisitor
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B3%A8%E8%A7%A3/#classvisitor" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ClassVisitor" href="#classvisitor">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><blockquote>
+<ul>
+<li>void visit(int version, int access, String name, String signature, String superName, String[] interfaces)
+该方法是当扫描类时第一个调用的方法，主要用于类声明使用。下面是对方法中各个参数的示意：visit( 类版本 , 修饰符 , 类名 , 泛型信息 , 继承的父类 , 实现的接口)</li>
+<li>AnnotationVisitor visitAnnotation(String desc, boolean visible)
+该方法是当扫描器扫描到类注解声明时进行调用。下面是对方法中各个参数的示意：visitAnnotation(注解类型 , 注解是否可以在 JVM 中可见)。</li>
+<li>FieldVisitor visitField(int access, String name, String desc, String signature, Object value)
+该方法是当扫描器扫描到类中字段时进行调用。下面是对方法中各个参数的示意：visitField(修饰符 , 字段名 , 字段类型 , 泛型描述 , 默认值)</li>
+<li>MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions)
+该方法是当扫描器扫描到类的方法时进行调用。下面是对方法中各个参数的示意：visitMethod(修饰符 , 方法名 , 方法签名 , 泛型信息 , 抛出的异常)</li>
+<li>void visitEnd()
+该方法是当扫描器完成类扫描时才会调用，如果想在类中追加某些方法</li>
+</ul>
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="classreader">
+        ClassReader
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B3%A8%E8%A7%A3/#classreader" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ClassReader" href="#classreader">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>这个类会将 .class 文件读入到 ClassReader 中的字节数组中，它的 accept 方法接受一个 ClassVisitor 实现类，并按照顺序调用 ClassVisitor 中的方法</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="classwriter">
+        ClassWriter
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B3%A8%E8%A7%A3/#classwriter" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor ClassWriter" href="#classwriter">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>ClassWriter 是一个 ClassVisitor 的子类，是和 ClassReader 对应的类，ClassReader 是将 .class 文件读入到一个字节数组中，ClassWriter 是将修改后的类的字节码内容以字节数组的形式输出。</p>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="methodvisitor--adviceadapter">
+        MethodVisitor &amp; AdviceAdapter
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B3%A8%E8%A7%A3/#methodvisitor--adviceadapter" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor MethodVisitor &amp; AdviceAdapter" href="#methodvisitor--adviceadapter">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>MethodVisitor 是一个抽象类，当 ASM 的 ClassReader 读取到 Method 时就转入 MethodVisitor 接口处理。
+AdviceAdapter 是 MethodVisitor 的子类，使用 AdviceAdapter 可以更方便的修改方法的字节码。</p>
+<blockquote>
+<ul>
+<li>void visitCode()：表示 ASM 开始扫描这个方法</li>
+<li>void onMethodEnter()：进入这个方法</li>
+<li>void onMethodExit()：即将从这个方法出去</li>
+<li>void onVisitEnd()：表示方法扫码完毕</li>
+</ul>
+</blockquote>
+<div class="gdoc-page__anchorwrap">
+    <h3 id="fieldvisitor">
+        FieldVisitor
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B3%A8%E8%A7%A3/#fieldvisitor" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor FieldVisitor" href="#fieldvisitor">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h3>
+</div><p>FieldVisitor 是一个抽象类，当 ASM 的 ClassReader 读取到 Field 时就转入 FieldVisitor 接口处理</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="qasm的开发流程">
+        Q:ASM的开发流程?
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B3%A8%E8%A7%A3/#qasm的开发流程" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:ASM的开发流程?" href="#qasm%e7%9a%84%e5%bc%80%e5%8f%91%e6%b5%81%e7%a8%8b">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ol>
+<li>需要创建一个 ClassReader 对象，将 .class 文件的内容读入到一个字节数组中</li>
+<li>然后需要一个 ClassWriter 的对象将操作之后的字节码的字节数组回写</li>
+<li>需要事件过滤器 ClassVisitor。在调用 ClassVisitor 的某些方法时会产生一个新的 XXXVisitor 对象，当我们需要修改对应的内容时只要实现自己的 XXXVisitor 并返回就可以了</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//HelloWorld.class
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sayHello</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">2</span> <span class="o">*</span> <span class="n">1000</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 
+<span class="c1">//执行方法
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CostTime</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">redefinePersonClass</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">redefinePersonClass</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">className</span> <span class="o">=</span> <span class="s">&#34;com.lijiankun24.asmpractice.demo.HelloWorld&#34;</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="s">&#34;/Users/lijiankun/Desktop/HelloWorld.class&#34;</span><span class="o">);</span>
+            <span class="n">ClassReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassReader</span><span class="o">(</span><span class="n">inputStream</span><span class="o">);</span>                               <span class="c1">// 1. 创建 ClassReader 读入 .class 文件到内存中
+</span><span class="c1"></span>            <span class="n">ClassWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassWriter</span><span class="o">(</span><span class="n">reader</span><span class="o">,</span> <span class="n">ClassWriter</span><span class="o">.</span><span class="na">COMPUTE_MAXS</span><span class="o">);</span>                 <span class="c1">// 2. 创建 ClassWriter 对象，将操作之后的字节码的字节数组回写
+</span><span class="c1"></span>            <span class="n">ClassVisitor</span> <span class="n">change</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ChangeVisitor</span><span class="o">(</span><span class="n">writer</span><span class="o">);</span>                                        <span class="c1">// 3. 创建自定义的 ClassVisitor 对象
+</span><span class="c1"></span>            <span class="n">reader</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">change</span><span class="o">,</span> <span class="n">ClassReader</span><span class="o">.</span><span class="na">EXPAND_FRAMES</span><span class="o">);</span>                                       <span class="c1">// 4. 将 ClassVisitor 对象传入 ClassReader 中
+</span><span class="c1"></span>
+            <span class="n">Class</span> <span class="n">clazz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyClassLoader</span><span class="o">().</span><span class="na">defineClass</span><span class="o">(</span><span class="n">className</span><span class="o">,</span> <span class="n">writer</span><span class="o">.</span><span class="na">toByteArray</span><span class="o">());</span>
+            <span class="n">Object</span> <span class="n">personObj</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+            <span class="n">Method</span> <span class="n">nameMethod</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">&#34;sayHello&#34;</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+            <span class="n">nameMethod</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">personObj</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Success!&#34;</span><span class="o">);</span>
+            <span class="kt">byte</span><span class="o">[]</span> <span class="n">code</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="na">toByteArray</span><span class="o">();</span>                                                               <span class="c1">// 获取修改后的 class 文件对应的字节数组
+</span><span class="c1"></span>            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="s">&#34;/Users/lijiankun/Desktop/HelloWorld2.class&#34;</span><span class="o">);</span>    <span class="c1">// 将二进制流写到本地磁盘上
+</span><span class="c1"></span>                <span class="n">fos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">code</span><span class="o">);</span>
+                <span class="n">fos</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Failure!&#34;</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">ChangeVisitor</span> <span class="kd">extends</span> <span class="n">ClassVisitor</span> <span class="o">{</span>
+
+        <span class="n">ChangeVisitor</span><span class="o">(</span><span class="n">ClassVisitor</span> <span class="n">classVisitor</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kd">super</span><span class="o">(</span><span class="n">Opcodes</span><span class="o">.</span><span class="na">ASM5</span><span class="o">,</span> <span class="n">classVisitor</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="n">MethodVisitor</span> <span class="nf">visitMethod</span><span class="o">(</span><span class="kt">int</span> <span class="n">access</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">desc</span><span class="o">,</span> <span class="n">String</span> <span class="n">signature</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">exceptions</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">MethodVisitor</span> <span class="n">methodVisitor</span> <span class="o">=</span> <span class="kd">super</span><span class="o">.</span><span class="na">visitMethod</span><span class="o">(</span><span class="n">access</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">desc</span><span class="o">,</span> <span class="n">signature</span><span class="o">,</span> <span class="n">exceptions</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;&lt;init&gt;&#34;</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">methodVisitor</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">ChangeAdapter</span><span class="o">(</span><span class="n">Opcodes</span><span class="o">.</span><span class="na">ASM4</span><span class="o">,</span> <span class="n">methodVisitor</span><span class="o">,</span> <span class="n">access</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">desc</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">ChangeAdapter</span> <span class="kd">extends</span> <span class="n">AdviceAdapter</span> <span class="o">{</span>
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">startTimeId</span> <span class="o">=</span> <span class="o">-</span><span class="n">1</span><span class="o">;</span>
+
+        <span class="kd">private</span> <span class="n">String</span> <span class="n">methodName</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+        <span class="n">ChangeAdapter</span><span class="o">(</span><span class="kt">int</span> <span class="n">api</span><span class="o">,</span> <span class="n">MethodVisitor</span> <span class="n">mv</span><span class="o">,</span> <span class="kt">int</span> <span class="n">access</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">desc</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kd">super</span><span class="o">(</span><span class="n">api</span><span class="o">,</span> <span class="n">mv</span><span class="o">,</span> <span class="n">access</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">desc</span><span class="o">);</span>
+            <span class="n">methodName</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onMethodEnter</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kd">super</span><span class="o">.</span><span class="na">onMethodEnter</span><span class="o">();</span>
+            <span class="n">startTimeId</span> <span class="o">=</span> <span class="n">newLocal</span><span class="o">(</span><span class="n">Type</span><span class="o">.</span><span class="na">LONG_TYPE</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKESTATIC</span><span class="o">,</span> <span class="s">&#34;java/lang/System&#34;</span><span class="o">,</span> <span class="s">&#34;currentTimeMillis&#34;</span><span class="o">,</span> <span class="s">&#34;()J&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitIntInsn</span><span class="o">(</span><span class="n">LSTORE</span><span class="o">,</span> <span class="n">startTimeId</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="nd">@Override</span>
+        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onMethodExit</span><span class="o">(</span><span class="kt">int</span> <span class="n">opcode</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kd">super</span><span class="o">.</span><span class="na">onMethodExit</span><span class="o">(</span><span class="n">opcode</span><span class="o">);</span>
+            <span class="kt">int</span> <span class="n">durationId</span> <span class="o">=</span> <span class="n">newLocal</span><span class="o">(</span><span class="n">Type</span><span class="o">.</span><span class="na">LONG_TYPE</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKESTATIC</span><span class="o">,</span> <span class="s">&#34;java/lang/System&#34;</span><span class="o">,</span> <span class="s">&#34;currentTimeMillis&#34;</span><span class="o">,</span> <span class="s">&#34;()J&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitVarInsn</span><span class="o">(</span><span class="n">LLOAD</span><span class="o">,</span> <span class="n">startTimeId</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitInsn</span><span class="o">(</span><span class="n">LSUB</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitVarInsn</span><span class="o">(</span><span class="n">LSTORE</span><span class="o">,</span> <span class="n">durationId</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitFieldInsn</span><span class="o">(</span><span class="n">GETSTATIC</span><span class="o">,</span> <span class="s">&#34;java/lang/System&#34;</span><span class="o">,</span> <span class="s">&#34;out&#34;</span><span class="o">,</span> <span class="s">&#34;Ljava/io/PrintStream;&#34;</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitTypeInsn</span><span class="o">(</span><span class="n">NEW</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitInsn</span><span class="o">(</span><span class="n">DUP</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKESPECIAL</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">,</span> <span class="s">&#34;&lt;init&gt;&#34;</span><span class="o">,</span> <span class="s">&#34;()V&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitLdcInsn</span><span class="o">(</span><span class="s">&#34;The cost time of &#34;</span> <span class="o">+</span> <span class="n">methodName</span> <span class="o">+</span> <span class="s">&#34; is &#34;</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKEVIRTUAL</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">,</span> <span class="s">&#34;append&#34;</span><span class="o">,</span> <span class="s">&#34;(Ljava/lang/String;)Ljava/lang/StringBuilder;&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitVarInsn</span><span class="o">(</span><span class="n">LLOAD</span><span class="o">,</span> <span class="n">durationId</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKEVIRTUAL</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">,</span> <span class="s">&#34;append&#34;</span><span class="o">,</span> <span class="s">&#34;(J)Ljava/lang/StringBuilder;&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKEVIRTUAL</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">,</span> <span class="s">&#34;toString&#34;</span><span class="o">,</span> <span class="s">&#34;()Ljava/lang/String;&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKEVIRTUAL</span><span class="o">,</span> <span class="s">&#34;java/io/PrintStream&#34;</span><span class="o">,</span> <span class="s">&#34;println&#34;</span><span class="o">,</span> <span class="s">&#34;(Ljava/lang/String;)V&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
 
     </article>
 

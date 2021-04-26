@@ -839,7 +839,7 @@
             <li>
             
             
-                <span class="flex">openGL</span>
+                <span class="flex">JS</span>
             
             
 
@@ -1393,6 +1393,7 @@
     <li><a href="#qvsync信号是什么">Q:Vsync信号是什么?</a></li>
     <li><a href="#q客户端是如何请求vsync信号的是合适触发的">Q:客户端是如何请求Vsync信号的?是合适触发的?</a></li>
     <li><a href="#q说说android的多重缓冲">Q:说说Android的多重缓冲?</a></li>
+    <li><a href="#q如何设计一个双缓冲的view显示">Q:如何设计一个双缓冲的view显示?</a></li>
     <li><a href="#qsurfacetexturetextureview-surfaceview和glsurfaceview">Q:SurfaceTexture，TextureView, SurfaceView和GLSurfaceView？</a>
       <ul>
         <li><a href="#surfaceview">SurfaceView:</a></li>
@@ -1544,6 +1545,31 @@ SurfaceFlinger负责合成所有的Layer并送显到Display,在Android系统中,
     </h2>
 </div><p>双缓存的交换 是在Vsyn到来时进行，交换后屏幕会取Frame buffer内的新数据，而实际 此时的Back buffer 就可以供GPU准备下一帧数据了。 如果 Vsyn到来时  CPU/GPU就开始操作的话，是有完整的16.6ms的，这样应该会基本避免jank的出现了,Google在Android 4.1系统中对Android Display系统进行了重构，实现了Project Butter（黄油工程）：系统在收到VSync pulse后，将马上开始下一帧的渲染。即一旦收到VSync通知（16ms触发一次），CPU和GPU 才立刻开始计算然后把数据写入buffer</p>
 <div class="gdoc-page__anchorwrap">
+    <h2 id="q如何设计一个双缓冲的view显示">
+        Q:如何设计一个双缓冲的view显示?
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E5%9B%BE%E5%BD%A2%E7%B3%BB%E7%BB%9F/#q如何设计一个双缓冲的view显示" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:如何设计一个双缓冲的view显示?" href="#q%e5%a6%82%e4%bd%95%e8%ae%be%e8%ae%a1%e4%b8%80%e4%b8%aa%e5%8f%8c%e7%bc%93%e5%86%b2%e7%9a%84view%e6%98%be%e7%a4%ba">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">        <span class="cm">/* 装载资源 */</span>
+        <span class="n">mBitQQ</span> <span class="o">=</span> <span class="o">((</span><span class="n">BitmapDrawable</span><span class="o">)</span> <span class="n">getResources</span><span class="o">().</span><span class="na">getDrawable</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">qq</span><span class="o">)).</span><span class="na">getBitmap</span><span class="o">();</span>
+        <span class="cm">/* 创建屏幕大小的缓冲区 */</span>
+        <span class="n">mSCBitmap</span> <span class="o">=</span> <span class="n">Bitmap</span><span class="o">.</span><span class="na">createBitmap</span><span class="o">(</span><span class="n">320</span><span class="o">,</span> <span class="n">480</span><span class="o">,</span> <span class="n">Config</span><span class="o">.</span><span class="na">ARGB_8888</span><span class="o">);</span>
+        <span class="cm">/* 创建Canvas */</span>
+        <span class="n">backCanvas</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Canvas</span><span class="o">();</span>
+        <span class="cm">/* 设置将内容绘制在mSCBitmap上 */</span>
+        <span class="n">backCanvas</span><span class="o">.</span><span class="na">setBitmap</span><span class="o">(</span><span class="n">mSCBitmap</span><span class="o">);</span>
+        <span class="n">mPaint</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Paint</span><span class="o">();</span>
+        <span class="cm">/* 将mBitQQ绘制到mSCBitmap上 */</span>
+        <span class="n">backCanvas</span><span class="o">.</span><span class="na">drawBitmap</span><span class="o">(</span><span class="n">mBitQQ</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">mPaint</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDraw</span><span class="o">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onDraw</span><span class="o">(</span><span class="n">canvas</span><span class="o">);</span>
+
+        <span class="cm">/* 将mSCBitmap显示到屏幕上 */</span>
+        <span class="n">canvas</span><span class="o">.</span><span class="na">drawBitmap</span><span class="o">(</span><span class="n">mSCBitmap</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">mPaint</span><span class="o">);</span>
+    <span class="o">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="qsurfacetexturetextureview-surfaceview和glsurfaceview">
         Q:SurfaceTexture，TextureView, SurfaceView和GLSurfaceView？
         <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E5%9B%BE%E5%BD%A2%E7%B3%BB%E7%BB%9F/#qsurfacetexturetextureview-surfaceview和glsurfaceview" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:SurfaceTexture，TextureView, SurfaceView和GLSurfaceView？" href="#qsurfacetexturetextureview-surfaceview%e5%92%8cglsurfaceview">

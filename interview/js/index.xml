@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>openGL on 十万个为什么</title>
+    <title>JS on 十万个为什么</title>
     <link>https://gyzboy.github.io/interview/js/</link>
-    <description>Recent content in openGL on 十万个为什么</description>
+    <description>Recent content in JS on 十万个为什么</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 13 Apr 2021 16:12:16 +0800</lastBuildDate><atom:link href="https://gyzboy.github.io/interview/js/index.xml" rel="self" type="application/rss+xml" />
@@ -13,7 +13,7 @@
       <pubDate>Tue, 13 Apr 2021 16:12:16 +0800</pubDate>
       
       <guid>https://gyzboy.github.io/interview/js/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
-      <description>Q:JS引擎线程的执行过程的三个阶段?  语法分析 预编译阶段 执行阶段   Q:变量提升的原因? Q:什么是闭包？ Q:什么是解构赋值? Q:yield关键字? Q:Promise函数? Q:Call&amp;amp;Apply方法 Q:箭头函数   Q:JS引擎线程的执行过程的三个阶段?    语法分析    预编译阶段     js的运行环境
+      <description>Q:JS引擎线程的执行过程的三个阶段?  语法分析 预编译阶段 执行阶段   Q:变量提升的原因? Q:什么是闭包？ Q:什么是解构赋值? Q:yield关键字? Q:Promise函数? Q:Call&amp;amp;Apply方法 Q:await和async调用? Q:箭头函数   Q:JS引擎线程的执行过程的三个阶段?    语法分析    预编译阶段     js的运行环境
 1.全局环境（JS代码加载完毕后，进入代码预编译即进入全局环境）
 2.函数环境（函数调用执行时，进入该函数环境，不同的函数则函数环境不同)
 3.eval（不建议使用，会有安全，性能等问题）
