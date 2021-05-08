@@ -1384,9 +1384,7 @@
     <li><a href="#kmp">KMP</a></li>
     <li><a href="#二叉树">二叉树</a>
       <ul>
-        <li><a href="#深度优先遍历递归">深度优先遍历（递归）</a></li>
-        <li><a href="#深度优先遍历迭代法">深度优先遍历（迭代法）</a></li>
-        <li><a href="#广度优先遍历队列">广度优先遍历（队列）</a></li>
+        <li><a href="#树的遍历">树的遍历</a></li>
         <li><a href="#二叉树深度">二叉树深度</a></li>
         <li><a href="#二叉树节点数量">二叉树节点数量</a></li>
       </ul>
@@ -1459,157 +1457,128 @@ public:
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 </code></pre><div class="gdoc-page__anchorwrap">
-    <h3 id="深度优先遍历递归">
-        深度优先遍历（递归）
-        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#深度优先遍历递归" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 深度优先遍历（递归）" href="#%e6%b7%b1%e5%ba%a6%e4%bc%98%e5%85%88%e9%81%8d%e5%8e%86%e9%80%92%e5%bd%92">
+    <h3 id="树的遍历">
+        树的遍历
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#树的遍历" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 树的遍历" href="#%e6%a0%91%e7%9a%84%e9%81%8d%e5%8e%86">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><p>前序遍历（中左右）</p>
-<pre><code>void traversal(TreeNode* cur, vector&lt;int&gt;&amp; vec) {
-    if (cur == NULL) return;
-    vec.push_back(cur-&gt;val);    // 中 ，同时也是处理节点逻辑的地方
-    traversal(cur-&gt;left, vec);  // 左
-    traversal(cur-&gt;right, vec); // 右
+</div><p>树:</p>
+<p>class TreeNode {
+int val;
+TreeNode left;
+TreeNode right;
+};</p>
+<p>Q:给定一个二叉树, 找到该树中两个指定节点的最近公共祖先
+private boolean dfs(TreeNode root, TreeNode p, TreeNode q) {
+if (root == null) return false;//定义出口
+boolean lson = dfs(root.left, p, q);
+boolean rson = dfs(root.right, p, q);
+if ((lson &amp;&amp; rson) || ((root.val == p.val || root.val == q.val) &amp;&amp; (lson || rson))) {
+ans = root;
 }
-</code></pre><p>中序遍历（左中右）</p>
-<pre><code>void traversal(TreeNode* cur, vector&lt;int&gt;&amp; vec) {
-    if (cur == NULL) return;
-    traversal(cur-&gt;left, vec);  // 左
-    vec.push_back(cur-&gt;val);    // 中 ，同时也是处理节点逻辑的地方
-    traversal(cur-&gt;right, vec); // 右
+return lson || rson || (root.val == p.val || root.val == q.val);
 }
-</code></pre><p>前序遍历（中左右）</p>
-<pre><code>void traversal(TreeNode* cur, vector&lt;int&gt;&amp; vec) {
-    if (cur == NULL) return;
-    vec.push_back(cur-&gt;val);    // 中 ，同时也是处理节点逻辑的地方
-    traversal(cur-&gt;left, vec);  // 左
-    traversal(cur-&gt;right, vec); // 右
+public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+this.dfs(root, p, q);
+return this.ans;
+}</p>
+<p>Q:给定一个二叉树，找出其最小深度
+public int minDepth(TreeNode root) {
+if (root == null) {
+return 0;
 }
-</code></pre><div class="gdoc-page__anchorwrap">
-    <h3 id="深度优先遍历迭代法">
-        深度优先遍历（迭代法）
-        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#深度优先遍历迭代法" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 深度优先遍历（迭代法）" href="#%e6%b7%b1%e5%ba%a6%e4%bc%98%e5%85%88%e9%81%8d%e5%8e%86%e8%bf%ad%e4%bb%a3%e6%b3%95">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>相关题解：<a class="gdoc-markdown__link" href="https://github.com/youngyangyang04/leetcode/blob/master/problems/0094.%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e4%b8%ad%e5%ba%8f%e9%81%8d%e5%8e%86.md">0094.二叉树的中序遍历</a></p>
-<p>前序遍历（中左右）</p>
-<pre><code>vector&lt;int&gt; preorderTraversal(TreeNode* root) {
-    vector&lt;int&gt; result;
-    stack&lt;TreeNode*&gt; st;
-    if (root != NULL) st.push(root);
-    while (!st.empty()) {
-        TreeNode* node = st.top();
-        if (node != NULL) {
-            st.pop();
-            if (node-&gt;right) st.push(node-&gt;right);  // 右
-            if (node-&gt;left) st.push(node-&gt;left);    // 左
-            st.push(node);                          // 中
-            st.push(NULL);                          
-        } else {
-            st.pop();
-            node = st.top();
-            st.pop();
-            result.push_back(node-&gt;val);            // 节点处理逻辑
-        }
-    }
-    return result;
+if (root.left == null &amp;&amp; root.right == null) {
+return 1;
 }
+int min_depth = Integer.MAX_VALUE;
+if (root.left != null) {
+min_depth = Math.min(minDepth(root.left), min_depth);
+}
+if (root.right != null) {
+min_depth = Math.min(minDepth(root.right), min_depth);
+}
+return min_depth + 1;
+}
+Q:前中序遍历
+public void preOrderTraverse1(TreeNode root) {
+if (root != null) {
+System.out.print(root.val+&quot;  &ldquo;);//前序
+preOrderTraverse1(root.left);
+System.out.print(root.val+&rdquo;  &ldquo;);//中序
+preOrderTraverse1(root.right);
+System.out.print(root.val+&rdquo;  &ldquo;);//后序
+}
+}
+public void OrderTraverse2(TreeNode root) {
+Stack<!-- raw HTML omitted --> stack = new Stack&lt;&gt;();
+TreeNode pNode = root;
+while (pNode != null || !stack.isEmpty()) {
+if (pNode != null) {
+System.out.print(pNode.val+&rdquo;  &ldquo;);//前序遍历
+stack.push(pNode);
+pNode = pNode.left;
+} else {
+TreeNode node = stack.pop();
+System.out.print(pNode.val+&rdquo;  &ldquo;);//中序遍历
+pNode = node.right;
+}
+}
+}
+Q:后序遍历
+public static void posOrder1(TreeNode node)
+{
+if(node==null)
+return;
+Stack<!-- raw HTML omitted --> s = new Stack<!-- raw HTML omitted -->();</p>
+<pre><code>    TreeNode curNode = node; //当前访问的结点
+    TreeNode lastVisitNode = null; //上次访问的结点
 
-</code></pre><p>中序遍历（左中右）</p>
-<pre><code>vector&lt;int&gt; inorderTraversal(TreeNode* root) {
-    vector&lt;int&gt; result; // 存放中序遍历的元素
-    stack&lt;TreeNode*&gt; st;
-    if (root != NULL) st.push(root);
-    while (!st.empty()) {
-        TreeNode* node = st.top();
-        if (node != NULL) {
-            st.pop(); 
-            if (node-&gt;right) st.push(node-&gt;right);  // 右
-            st.push(node);                          // 中
-            st.push(NULL); 
-            if (node-&gt;left) st.push(node-&gt;left);    // 左
-        } else {
-            st.pop(); 
-            node = st.top(); 
-            st.pop();
-            result.push_back(node-&gt;val);            // 节点处理逻辑
+    //把currentNode移到左子树的最下边
+    while(curNode!=null){
+        s.push(curNode);
+        curNode = curNode.left;
+    }
+    while(!s.empty()){
+        curNode = s.pop();  //弹出栈顶元素
+        //一个根节点被访问的前提是：无右子树或右子树已被访问过
+        if(curNode.right!=null&amp;&amp;curNode.right!=lastVisitNode){
+            //根节点再次入栈
+            s.push(curNode);
+            //进入右子树，且可肯定右子树一定不为空
+            curNode = curNode.right;
+            while(curNode!=null){
+                //再走到右子树的最左边
+                s.push(curNode);
+                curNode = curNode.left;
+            }
+        }else{
+            //访问
+            System.out.println(curNode.val);
+            //修改最近被访问的节点
+            lastVisitNode = curNode;
         }
     }
-    return result;
+</code></pre>
+<p>}
+Q:层序遍历
+public void levelTraverse(TreeNode root) {
+if (root == null) {
+return;
 }
-</code></pre><p>后序遍历（左右中）</p>
-<pre><code>vector&lt;int&gt; postorderTraversal(TreeNode* root) {
-    vector&lt;int&gt; result;
-    stack&lt;TreeNode*&gt; st;
-    if (root != NULL) st.push(root);
-    while (!st.empty()) {
-        TreeNode* node = st.top();
-        if (node != NULL) {
-            st.pop();
-            st.push(node);                          // 中
-            st.push(NULL);
-            if (node-&gt;right) st.push(node-&gt;right);  // 右
-            if (node-&gt;left) st.push(node-&gt;left);    // 左
-
-        } else {
-            st.pop();
-            node = st.top();
-            st.pop();
-            result.push_back(node-&gt;val);            // 节点处理逻辑
-        }
-    }
-    return result;
+LinkedList<!-- raw HTML omitted --> queue = new LinkedList&lt;&gt;();
+queue.offer(root);
+while (!queue.isEmpty()) {
+TreeNode node = queue.poll();
+System.out.print(node.val+&rdquo;  &ldquo;);
+if (node.left != null) {
+queue.offer(node.left);
 }
-</code></pre><div class="gdoc-page__anchorwrap">
-    <h3 id="广度优先遍历队列">
-        广度优先遍历（队列）
-        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#广度优先遍历队列" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 广度优先遍历（队列）" href="#%e5%b9%bf%e5%ba%a6%e4%bc%98%e5%85%88%e9%81%8d%e5%8e%86%e9%98%9f%e5%88%97">
-            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
-        </a>
-    </h3>
-</div><p>相关题解：<a class="gdoc-markdown__link" href="https://github.com/youngyangyang04/leetcode/blob/master/problems/0102.%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%b1%82%e5%ba%8f%e9%81%8d%e5%8e%86.md">0102.二叉树的层序遍历</a></p>
-<pre><code>vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) {
-    queue&lt;TreeNode*&gt; que;
-    if (root != NULL) que.push(root);
-    vector&lt;vector&lt;int&gt;&gt; result;
-    while (!que.empty()) {
-        int size = que.size();
-        vector&lt;int&gt; vec;
-        for (int i = 0; i &lt; size; i++) {// 这里一定要使用固定大小size，不要使用que.size()
-            TreeNode* node = que.front();
-            que.pop();
-            vec.push_back(node-&gt;val);   // 节点处理的逻辑
-            if (node-&gt;left) que.push(node-&gt;left);
-            if (node-&gt;right) que.push(node-&gt;right);
-        }
-        result.push_back(vec);
-    }
-    return result;
+if (node.right != null) {
+queue.offer(node.right);
 }
-
-</code></pre><p>可以直接解决如下题目：</p>
-<ul>
-<li>
-<p><a class="gdoc-markdown__link" href="https://github.com/youngyangyang04/leetcode/blob/master/problems/0102.%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%b1%82%e5%ba%8f%e9%81%8d%e5%8e%86.md">0102.二叉树的层序遍历</a></p>
-</li>
-<li>
-<p><a class="gdoc-markdown__link" href="https://github.com/youngyangyang04/leetcode/blob/master/problems/0199.%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%8f%b3%e8%a7%86%e5%9b%be.md">0199.二叉树的右视图</a></p>
-</li>
-<li>
-<p><a class="gdoc-markdown__link" href="https://github.com/youngyangyang04/leetcode/blob/master/problems/0637.%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%b1%82%e5%b9%b3%e5%9d%87%e5%80%bc.md">0637.二叉树的层平均值</a></p>
-</li>
-<li>
-<p><a class="gdoc-markdown__link" href="https://github.com/youngyangyang04/leetcode/blob/master/problems/0104.%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%9c%80%e5%a4%a7%e6%b7%b1%e5%ba%a6.md">0104.二叉树的最大深度 （迭代法）</a></p>
-</li>
-<li>
-<p><a class="gdoc-markdown__link" href="%28https://github.com/youngyangyang04/leetcode/blob/master/problems/0111.%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%9c%80%e5%b0%8f%e6%b7%b1%e5%ba%a6.md%29">0111.二叉树的最小深度（迭代法）</a></p>
-</li>
-<li>
-<p><a class="gdoc-markdown__link" href="https://github.com/youngyangyang04/leetcode/blob/master/problems/0222.%e5%ae%8c%e5%85%a8%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e8%8a%82%e7%82%b9%e4%b8%aa%e6%95%b0.md">0222.完全二叉树的节点个数（迭代法）</a></p>
-</li>
-</ul>
+}
+}</p>
 <div class="gdoc-page__anchorwrap">
     <h3 id="二叉树深度">
         二叉树深度

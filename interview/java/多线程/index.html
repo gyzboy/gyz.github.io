@@ -1400,10 +1400,11 @@
     <li><a href="#q线程池原理有几种运行状态">Q:线程池原理?有几种运行状态?</a></li>
     <li><a href="#qworker-的实现类为什么不使用-reentrantlock-来实现呢而是自己继承aqs">Q:Worker 的实现类，为什么不使用 ReentrantLock 来实现呢，而是自己继承AQS?</a></li>
     <li><a href="#qaqs锁有哪些各有什么特点">Q:AQS锁有哪些?各有什么特点?</a></li>
-    <li><a href="#q公平锁是如何实现的">Q:公平锁是如何实现的?</a></li>
+    <li><a href="#qaqs如何实现的">Q:AQS如何实现的?</a></li>
     <li><a href="#qcountdownlactch与cyclicbarrier区别">Q:CountDownLactch与CyclicBarrier区别?</a></li>
     <li><a href="#qjava中锁的类型">Q:Java中锁的类型?</a></li>
     <li><a href="#q锁优化都有哪些">Q:锁优化都有哪些?</a></li>
+    <li><a href="#qsynchronized的优化">Q:Synchronized的优化</a></li>
   </ul>
 </nav><hr></div>
 
@@ -1636,21 +1637,39 @@ CAS指令执行时，当且仅当内存地址V的值与预期值A相等时，将
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><p>AQS:AbstractQueuedSynchronizer,队列同步器</p>
+</div><p>锁的处理分为了两部分，一部分为如何加解锁，另一部分为把锁分配给谁,AQS就是为了解决把锁分配给谁的问题
+AQS:AbstractQueuedSynchronizer,队列同步器</p>
 <ul>
 <li>ReentrantReadWriteLock 读写锁,读锁是共享锁、写锁是独占锁</li>
-<li>ReentrantLock 可重入锁</li>
+<li>ReentrantLock 可重入锁,其内部类Sync继承AQS</li>
+</ul>
+<blockquote>
+<ul>
+<li>当锁被线程持有，AQS询问是否加锁成功时，Sync如果发现申请的线程与持有锁的线程是同一个，它将通过CAS更新state状态再次分配锁，并回复加锁成功。也就实现了重入。</li>
+<li>是否公平体现在，在向AQS申请分配锁时，有一次询问是否加锁成功的机会，在此时是否忽略CLH队列中等待的线程，就代表了是否给予插队的机会</li>
+</ul>
+</blockquote>
+<ul>
 <li>CountDownLatch 闭锁</li>
 <li>Semaphore 信号量锁,主要用于控制流量 ,new Semaphore(2, false);</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
-    <h2 id="q公平锁是如何实现的">
-        Q:公平锁是如何实现的?
-        <a data-clipboard-text="https://gyzboy.github.io/interview/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/#q公平锁是如何实现的" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:公平锁是如何实现的?" href="#q%e5%85%ac%e5%b9%b3%e9%94%81%e6%98%af%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e7%9a%84">
+    <h2 id="qaqs如何实现的">
+        Q:AQS如何实现的?
+        <a data-clipboard-text="https://gyzboy.github.io/interview/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/#qaqs如何实现的" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:AQS如何实现的?" href="#qaqs%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e7%9a%84">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><div class="gdoc-page__anchorwrap">
+</div><ol>
+<li>当申请锁，即调用了与acquire()类似语义的方法时,AQS将询问子类是否上锁成功，成功则继续运行。否则，AQS将以Node为粒度，记录这个申请锁的请求，将其插入自身维护的CLH队里中并挂起这个线程。</li>
+<li>在CLH队列中，只有最靠近头节点的未取消申请锁的节点，才有资格申请锁。</li>
+<li>当线程被唤醒时，会尝试获取锁，如果获取不到继续挂起；获取得到则继续运行。</li>
+<li>当一个线程释放锁，即调用release()类似语义的方法时，AQS将询问子类是否解锁成功，有锁可以分配，如果有，AQS从CLH队列中主动唤起合适的线程</li>
+<li>如果需要等待条件满足再去申请锁，即调用了wait()类似语义的方法时，在AQS中表现为，以Node为粒度，维护一个单向等待条件队列，把Node所代表的线程挂起。</li>
+<li>当条件满足时，即调用了signal()类似语义的方法时，唤醒等待条件队列最前面的未取消等待的Node</li>
+<li>子类可以维护AQS的state属性来记录加解锁状态，AQS也提供了CAS的方法compareAndSetState()抢占更新state。</li>
+</ol>
+<div class="gdoc-page__anchorwrap">
     <h2 id="qcountdownlactch与cyclicbarrier区别">
         Q:CountDownLactch与CyclicBarrier区别?
         <a data-clipboard-text="https://gyzboy.github.io/interview/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/#qcountdownlactch与cyclicbarrier区别" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:CountDownLactch与CyclicBarrier区别?" href="#qcountdownlactch%e4%b8%8ecyclicbarrier%e5%8c%ba%e5%88%ab">
@@ -1681,6 +1700,18 @@ CAS指令执行时，当且仅当内存地址V的值与预期值A相等时，将
 <li>锁消除:是指对于被检测出不可能存在竞争的共享数据的锁进行消除。</li>
 <li>锁粗化:如果虚拟机探测到由这样的一串零碎的操作都对同一个对象加锁，将会把加锁的范围扩展（粗化）到整个操作序列的外部</li>
 <li>轻量级锁:轻量级锁是相对于传统的重量级锁而言，它使用 CAS 操作来避免重量级锁使用互斥量的开销</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="qsynchronized的优化">
+        Q:Synchronized的优化
+        <a data-clipboard-text="https://gyzboy.github.io/interview/java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/#qsynchronized的优化" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:Synchronized的优化" href="#qsynchronized%e7%9a%84%e4%bc%98%e5%8c%96">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>偏向锁</li>
+<li>轻量级锁</li>
+<li>重量级锁</li>
 </ul>
 
 

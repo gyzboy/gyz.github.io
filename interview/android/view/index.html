@@ -1390,6 +1390,7 @@
     <li><a href="#q都有什么获取view区域的方法怎么用">Q:都有什么获取view区域的方法?怎么用?</a></li>
     <li><a href="#qview的绘制流程分几步从哪开始哪个过程结束以后能看到view">Q:View的绘制流程分几步，从哪开始？哪个过程结束以后能看到view？</a></li>
     <li><a href="#qview什么时候发生绘制">Q:View什么时候发生绘制?</a></li>
+    <li><a href="#q遍历viewgroup中的view">Q:遍历ViewGroup中的View</a></li>
     <li><a href="#qviewgroup有onmeasure方法吗为什么">Q:ViewGroup有onMeasure方法吗？为什么?</a></li>
     <li><a href="#qsetcontentview之后发生了什么">Q:setContentView之后发生了什么？</a></li>
     <li><a href="#qsetcontentview可以在其他生命周期内执行吗为什么">Q:setContentView可以在其他生命周期内执行吗?为什么?</a></li>
@@ -1538,6 +1539,63 @@ mBottom = 400;</p>
 <li>总的来说，就是setContentView生成了DecorView及其视图，在onResume之后才把这个视图添加进了Window和WMS中，具备了交互能力</li>
 </ul>
 <div class="gdoc-page__anchorwrap">
+    <h2 id="q遍历viewgroup中的view">
+        Q:遍历ViewGroup中的View
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/view/#q遍历viewgroup中的view" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:遍历ViewGroup中的View" href="#q%e9%81%8d%e5%8e%86viewgroup%e4%b8%ad%e7%9a%84view">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">//递归方式
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">traverseViewGroup</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">viewCount</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">==</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">0</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">view</span> <span class="k">instanceof</span> <span class="n">ViewGroup</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">//遍历ViewGroup,是子view加1，是ViewGroup递归调用
+</span><span class="c1"></span>            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="o">((</span><span class="n">ViewGroup</span><span class="o">)</span> <span class="n">view</span><span class="o">).</span><span class="na">getChildCount</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="n">View</span> <span class="n">child</span> <span class="o">=</span> <span class="o">((</span><span class="n">ViewGroup</span><span class="o">)</span> <span class="n">view</span><span class="o">).</span><span class="na">getChildAt</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">child</span> <span class="k">instanceof</span> <span class="n">ViewGroup</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">viewCount</span> <span class="o">+=</span> <span class="n">traverseViewGroup</span><span class="o">(((</span><span class="n">ViewGroup</span><span class="o">)</span> <span class="n">view</span><span class="o">).</span><span class="na">getChildAt</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                    <span class="n">viewCount</span><span class="o">++;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">viewCount</span><span class="o">++;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">viewCount</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">//非递归方式
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">traverseViewGroup</span><span class="o">(</span><span class="n">View</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">viewCount</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">==</span> <span class="n">view</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">0</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">view</span> <span class="k">instanceof</span> <span class="n">ViewGroup</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">ViewGroup</span> <span class="n">viewGroup</span> <span class="o">=</span> <span class="o">(</span><span class="n">ViewGroup</span><span class="o">)</span> <span class="n">view</span><span class="o">;</span>
+            <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">ViewGroup</span><span class="o">&gt;</span> <span class="n">linkedList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+            <span class="n">linkedList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">viewGroup</span><span class="o">);</span>
+            <span class="k">while</span> <span class="o">(!</span><span class="n">linkedList</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+                <span class="c1">//removeFirst()删除第一个元素，并返回该元素
+</span><span class="c1"></span>                <span class="n">ViewGroup</span> <span class="n">current</span> <span class="o">=</span> <span class="n">linkedList</span><span class="o">.</span><span class="na">removeFirst</span><span class="o">();</span>
+                <span class="n">viewCount</span><span class="o">++;</span>
+                <span class="c1">//遍历linkedList中第一个viewGroup中的子view
+</span><span class="c1"></span>                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">current</span><span class="o">.</span><span class="na">getChildCount</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">current</span><span class="o">.</span><span class="na">getChildAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="k">instanceof</span> <span class="n">ViewGroup</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">linkedList</span><span class="o">.</span><span class="na">addLast</span><span class="o">((</span><span class="n">ViewGroup</span><span class="o">)</span> <span class="n">current</span><span class="o">.</span><span class="na">getChildAt</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+                    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                        <span class="n">viewCount</span><span class="o">++;</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">viewCount</span><span class="o">++;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">viewCount</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="qviewgroup有onmeasure方法吗为什么">
         Q:ViewGroup有onMeasure方法吗？为什么?
         <a data-clipboard-text="https://gyzboy.github.io/interview/android/view/#qviewgroup有onmeasure方法吗为什么" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:ViewGroup有onMeasure方法吗？为什么?" href="#qviewgroup%e6%9c%89onmeasure%e6%96%b9%e6%b3%95%e5%90%97%e4%b8%ba%e4%bb%80%e4%b9%88">

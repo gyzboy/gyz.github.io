@@ -1408,6 +1408,7 @@
 
   <ul>
     <li><a href="#qjava中方法参数的几种使用情况">Q:java中方法参数的几种使用情况?</a></li>
+    <li><a href="#qjava中对象存储">Q:Java中对象存储</a></li>
   </ul>
 </nav><hr></div>
 
@@ -2198,6 +2199,26 @@ public class Demo {
 <li>一个方法不能修改一个基本数据类型的参数（即数值型或布尔型）；</li>
 <li>一个方法可以改变一个对象参数的状态；</li>
 <li>一个方法不能让对象参数引用一个新的对象</li>
+</ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="qjava中对象存储">
+        Q:Java中对象存储
+        <a data-clipboard-text="https://gyzboy.github.io/interview/java/jvm/#qjava中对象存储" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:Java中对象存储" href="#qjava%e4%b8%ad%e5%af%b9%e8%b1%a1%e5%ad%98%e5%82%a8">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ul>
+<li>对象头:存储了与业务无关的信息</li>
+</ul>
+<blockquote>
+<ul>
+<li>Mark Word,包含哈希码(HashCode)、GC分代年龄、锁状态标识、持有锁的线程、偏向线程ID、偏向时间戳等等</li>
+<li>Class MetaData Address(类型指针)，如果对象是数组类型，还会有Array length表示数组长度。</li>
+</ul>
+</blockquote>
+<ul>
+<li>实例数据</li>
+<li>对齐补充</li>
 </ul>
 
 

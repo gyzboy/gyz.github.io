@@ -1384,6 +1384,7 @@
     <li><a href="#qandroid中classloader加载过程">Q:Android中ClassLoader加载过程?</a></li>
     <li><a href="#q热修复方案">Q:热修复方案?</a></li>
     <li><a href="#q插件化需要的技术">Q:插件化需要的技术</a></li>
+    <li><a href="#qandroid打包流程">Q:Android打包流程</a></li>
   </ul>
 </nav><hr></div>
 
@@ -1462,6 +1463,7 @@
 <li>类加载方案
 <ul>
 <li>在element.findClass时加载bugfix的包 <img src="/classloader_bugfix.png" alt="image"  /></li>
+<li>给每个类中的方法插入一个public static的ChangeQuickRedirect对象对所有方法使用Javassist插入代码：当该方法的changeQuickRedirect不为空时，直接将参数直接传入PatchProxy的accessDispatchVoid/accessDispatch方法并返回， 这样做跳过了原方法后面的代码</li>
 </ul>
 </li>
 <li>Instant Run方案
@@ -1513,6 +1515,43 @@
 </ul>
 </li>
 </ul>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="qandroid打包流程">
+        Q:Android打包流程
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%8F%92%E4%BB%B6%E5%8C%96%E7%83%AD%E4%BF%AE%E5%A4%8D/#qandroid打包流程" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:Android打包流程" href="#qandroid%e6%89%93%e5%8c%85%e6%b5%81%e7%a8%8b">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ol>
+<li>打包资源文件
+资源文件（res文件夹下的文件）通过 AAPT（Android Asset Packaging Tool）打包生成R.java类（资源索引表）以及.arsc资源文件。
+经过aapt生成的R文件占4个字节</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">design_appbar_state_list_animator</span><span class="o">=</span><span class="n">0x7f020000</span><span class="o">;</span>
+</code></pre></div><blockquote>
+<ul>
+<li>第一位字节0x7f表示packageID,用来限定资源的来源。系统资源包是ox01，SharedLibrary类型资源包是0x00，普通App包则是0x7f；</li>
+<li>次一位字节02表示typeID，用来表示资源类型，如drawable、layouts、anims、color、menu等；</li>
+<li>后2字节0000表示EvtryID，指的是每一个资源在对应的TypID中出现的顺序。</li>
+<li>aapt生成的.arsc资源文件对应我们将apk解压（apk本质是一个zip压缩包）得到的Resources.arsc，它实际上就是App的资源索引表。简单来说，通过R.java文件与Resources.arsc就可以定位到资源的内存地址</li>
+</ul>
+</blockquote>
+<ol start="2">
+<li>处理 aidl files
+如果有aidl文件，会通过aidl工具（源碼位于system/tools/aidl）打包成java接口类</li>
+<li>编译（Compilers）
+R.java+工程源码+aidl.java通过javac生成.class文件</li>
+<li>dex（生成dex文件）
+源码.class文件和第三方jar或者library通过dx工具打包成dex文件。AndroidStudio有提供 proguard、D8、R8等工具来处理这一流程。Android 还会针对 Dalvik 虚拟机和 Art 虚拟机对dex进行优化</li>
+<li>apkbuilder（生成未签名apk）
+apkbuilder工具会将所有没有编译的资源、.arsc资源、.dex文件打包到一个完成apk文件中</li>
+<li>Jarsigner（签名）
+jarsigner工具会对未签名的apk验证签名。得到一个签名后的apk（signed.apk）</li>
+<li>zipalign（对齐）
+zipAlign工具对6中的signed.apk进行对齐处理,所谓对齐，主要过程是将APK包中所有的资源文件距离文件起始偏移为4字节整数倍，这样通过内存映射访问apk文件时的速度会更快。对齐的作用主要是为了减少运行时内存的使用
+<img src="/apk_build_path.png" alt="image"  />
+<img src="/apk_build.png" alt="image"  /></li>
+</ol>
 
 
     </article>

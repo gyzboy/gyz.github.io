@@ -1453,7 +1453,11 @@
 在创建虚引用实例时，可以传入一个引用队列（ReferenceQueue）将该软引用与引用队列关联，这样当软引用所引用的对象被垃圾回收器回收前，Jvm虚拟机就会把这个软引用加入到与之关联的引用队列中</li>
 </ul>
 </blockquote>
-<div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">&#34;abc&#34;</span><span class="o">);</span>
+<span class="n">ReferenceQueue</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReferenceQueue</span><span class="o">();</span>
+<span class="c1">// 创建虚引用，要求必须与一个引用队列关联
+</span><span class="c1"></span><span class="n">PhantomReference</span> <span class="n">pr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PhantomReference</span><span class="o">(</span><span class="n">str</span><span class="o">,</span> <span class="n">queue</span><span class="o">);</span>
+</code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="如何通过引用队列判断是否发生内存泄漏">
         如何通过引用队列判断是否发生内存泄漏?
         <a data-clipboard-text="https://gyzboy.github.io/interview/android/leakcanary/#如何通过引用队列判断是否发生内存泄漏" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 如何通过引用队列判断是否发生内存泄漏?" href="#%e5%a6%82%e4%bd%95%e9%80%9a%e8%bf%87%e5%bc%95%e7%94%a8%e9%98%9f%e5%88%97%e5%88%a4%e6%96%ad%e6%98%af%e5%90%a6%e5%8f%91%e7%94%9f%e5%86%85%e5%ad%98%e6%b3%84%e6%bc%8f">

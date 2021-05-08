@@ -1388,6 +1388,7 @@
     </li>
     <li><a href="#qj2v8引擎">Q:J2V8引擎</a></li>
     <li><a href="#q一个jsruntime如何区分多个js环境">Q:一个JSRuntime如何区分多个js环境?</a></li>
+    <li><a href="#q设计一个动态化框架需要考虑什么">Q:设计一个动态化框架需要考虑什么</a></li>
   </ul>
 </nav><hr></div>
 
@@ -1464,7 +1465,47 @@
         </a>
     </h2>
 </div><p>在js的全局环境中设置唯一标识defaultObject+index</p>
-
+<div class="gdoc-page__anchorwrap">
+    <h2 id="q设计一个动态化框架需要考虑什么">
+        Q:设计一个动态化框架需要考虑什么
+        <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E5%8A%A8%E6%80%81%E5%8C%96/#q设计一个动态化框架需要考虑什么" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:设计一个动态化框架需要考虑什么" href="#q%e8%ae%be%e8%ae%a1%e4%b8%80%e4%b8%aa%e5%8a%a8%e6%80%81%e5%8c%96%e6%a1%86%e6%9e%b6%e9%9c%80%e8%a6%81%e8%80%83%e8%99%91%e4%bb%80%e4%b9%88">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><ol>
+<li>通信方式
+js调native  桥,通过JNI获取java中的方法,然后调用V8或者其它引擎的相关方法进行绑定
+native调js  调用V8或者其他引擎的相关方法进行调用</li>
+<li>性能</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="n">bundle加载</span>
+        <span class="n">MRN</span><span class="o">:</span>
+            <span class="n">1</span><span class="o">.</span><span class="na">拆包</span><span class="o">,</span><span class="n">meta</span><span class="o">.</span><span class="na">json中定义dependency</span><span class="o">,</span><span class="n">开始时只加载主包</span><span class="o">,</span><span class="n">然后加载业务包</span>
+            <span class="n">2</span><span class="o">.</span><span class="na">包体积缩小</span><span class="o">,</span><span class="n">一是打包时引入Tree</span> <span class="n">Shaking技术</span><span class="o">,</span><span class="n">裁剪无用代码</span><span class="o">,</span><span class="n">二是抽出公用模块</span>
+            <span class="n">3</span><span class="o">.</span><span class="na">懒加载</span>
+    <span class="n">首屏加载</span>
+    <span class="n">渲染性能</span>
+        <span class="n">MRN</span><span class="o">:</span>
+            <span class="n">1</span><span class="o">.</span><span class="na">提前加载业务bundle</span><span class="o">,</span><span class="n">执行到业务时只需要进行短时间的渲染操作</span><span class="o">,</span><span class="n">V8在完成代码编译后</span><span class="err">，</span><span class="n">会以字节码的形式产出CodeCache</span><span class="err">，</span><span class="n">并可将其序列化到磁盘上</span><span class="err">。</span><span class="n">在下次编译时</span><span class="err">，</span><span class="n">可以提供CodeCache</span><span class="err">，</span><span class="n">会大大缩短代码的解析和编译时间</span>
+            <span class="n">2</span><span class="o">.</span><span class="na">分步渲染</span><span class="o">,</span><span class="n">在渲染界面上打上标记</span><span class="o">,</span><span class="n">加载优先级高的界面</span>
+            <span class="n">3</span><span class="o">.</span><span class="na">白屏优化</span><span class="o">:</span><span class="n">通过MTFlexbox提前生成native界面</span><span class="o">,</span><span class="n">作为loadingView</span><span class="o">,</span><span class="n">然后RN渲染完成后进行替换</span>
+    <span class="n">长列表</span>
+        <span class="n">MRN</span><span class="o">:</span>
+            <span class="n">1</span><span class="o">.</span><span class="na">js层接收native即将消失事件通知</span><span class="o">,</span><span class="n">重新构建shandowtree</span>
+            <span class="n">2</span><span class="o">.</span><span class="na">native层在快速滑动时不渲染数据</span><span class="o">,</span><span class="n">使用空白container渲染数据</span><span class="o">,</span><span class="n">待js数据返回后再渲染到item上</span>
+    <span class="n">模块级or页面级</span>
+        <span class="n">MRN</span><span class="o">:</span>
+            <span class="n">1</span><span class="o">.</span><span class="na">使用Redux进行数据传递</span>
+    <span class="n">js复用</span>
+    <span class="n">线程管理</span>
+    <span class="n">引擎管理</span>
+        <span class="n">MRN</span><span class="o">:</span>
+            <span class="n">PriorityQueue维护了一个大小为4的引擎队列</span><span class="o">,</span><span class="n">根据最后使用时间排序</span><span class="o">,</span><span class="n">当有对应bundle引擎存在时</span><span class="o">,</span><span class="n">直接使用</span><span class="o">,</span><span class="n">默认回收时间2分钟</span>
+        <span class="n">Mach</span><span class="o">:</span>
+            
+    <span class="n">跳转管理</span>
+       <span class="n">调用Native方法</span><span class="o">,</span><span class="n">通过Router进行跳转</span>
+</code></pre></div>
 
     </article>
 
