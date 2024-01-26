@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="事件处理">
 
-<title>事件处理 | 十万个为什么</title>
+<title>事件处理 | gyz的十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -57,7 +57,7 @@
         <a class="gdoc-header__link" href="https://gyzboy.github.io/">
             <span class="gdoc-brand flex align-center">
                 <img class="gdoc-brand__img" src="/brand.svg" alt="">
-                十万个为什么
+                gyz的十万个为什么
             </span>
         </a>
     </div>
@@ -971,6 +971,30 @@
             
             
                 <span class="flex">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/temp/" class="gdoc-nav__entry ">
+                        Temp
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="gdoc-nav__entry ">
                         二叉树
                     </a>
@@ -1357,7 +1381,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>事件处理</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>gyz的十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>事件处理</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1502,16 +1526,16 @@ UP/DOWN类型的事件包含了触控点索引，可以根据该索引做出对�
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="k">if</span> <span class="o">(</span><span class="n">mOnTouchListener</span><span class="o">!=</span><span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">mTouchListener</span><span class="o">.</span><span class="na">onTouch</span><span class="o">(</span><span class="n">event</span><span class="o">)){</span>
-    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-<span class="o">}</span><span class="k">else</span><span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">单击事件</span><span class="o">){</span>
-        <span class="n">mOnClickListener</span><span class="o">.</span><span class="na">onClick</span><span class="o">(</span><span class="n">view</span><span class="o">);</span>
-    <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">长按事件</span><span class="o">){</span>
-        <span class="n">mOnLongClickListener</span><span class="o">.</span><span class="na">onLongClick</span><span class="o">(</span><span class="n">view</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="n">mOnTouchListener</span><span class="o">!=</span><span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">mTouchListener</span><span class="o">.</span><span class="na">onTouch</span><span class="o">(</span><span class="n">event</span><span class="o">)){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span><span class="k">else</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">单击事件</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mOnClickListener</span><span class="o">.</span><span class="na">onClick</span><span class="o">(</span><span class="n">view</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">长按事件</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mOnLongClickListener</span><span class="o">.</span><span class="na">onLongClick</span><span class="o">(</span><span class="n">view</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="q滑动冲突如何解决">
         Q:滑动冲突如何解决?
         <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86/#q滑动冲突如何解决" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:滑动冲突如何解决?" href="#q%e6%bb%91%e5%8a%a8%e5%86%b2%e7%aa%81%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3">
@@ -1598,7 +1622,7 @@ UP/DOWN类型的事件包含了触控点索引，可以根据该索引做出对�
 
 
 
-<script defer src="/js/en.search.min.d1300fa43c8b3ddb741038e2a85fdfbce3723906b87fd971f6a365b26465b1af.js"></script>
+<script defer src="/js/en.search.min.58ab25ba3337c795b6546571208f19ff74f6f8b69cd0e291e7de44c5c62dda35.js"></script>
 
 
 

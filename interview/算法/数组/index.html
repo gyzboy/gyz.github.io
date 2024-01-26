@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="数组">
 
-<title>数组 | 十万个为什么</title>
+<title>数组 | gyz的十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -57,7 +57,7 @@
         <a class="gdoc-header__link" href="https://gyzboy.github.io/">
             <span class="gdoc-brand flex align-center">
                 <img class="gdoc-brand__img" src="/brand.svg" alt="">
-                十万个为什么
+                gyz的十万个为什么
             </span>
         </a>
     </div>
@@ -971,6 +971,30 @@
             
             
                 <span class="flex">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/temp/" class="gdoc-nav__entry ">
+                        Temp
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="gdoc-nav__entry ">
                         二叉树
                     </a>
@@ -1357,7 +1381,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/%E7%AE%97%E6%B3%95/' href='/interview/%E7%AE%97%E6%B3%95/'><span itemprop='name'>算法</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>数组</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>gyz的十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/%E7%AE%97%E6%B3%95/' href='/interview/%E7%AE%97%E6%B3%95/'><span itemprop='name'>算法</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>数组</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1464,49 +1488,49 @@
 <li>边界处理</li>
 </ul>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="nf">searchInsert1</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
-    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span> <span class="c1">// 定义target在左闭右闭的区间里，[left, right] 
-</span><span class="c1"></span>    <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 当left==right，区间[left, right]依然有效
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">middle</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="o">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="o">)</span> <span class="o">/</span> <span class="n">2</span><span class="o">);</span><span class="c1">// 防止溢出 等同于(left + right)/2
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">middle</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">right</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span> <span class="c1">// target 在左区间，所以[left, middle - 1]
-</span><span class="c1"></span>        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">middle</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">left</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span> <span class="c1">// target 在右区间，所以[middle + 1, right]
-</span><span class="c1"></span>        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">// nums[middle] == target
-</span><span class="c1"></span>            <span class="k">return</span> <span class="n">middle</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="c1">// 分别处理如下四种情况
-</span><span class="c1"></span>    <span class="c1">// 目标值在数组所有元素之前  [0, -1]
-</span><span class="c1"></span>    <span class="c1">// 目标值等于数组中某一个元素  return middle;
-</span><span class="c1"></span>    <span class="c1">// 目标值插入数组中的位置 [left, right]，return  right + 1
-</span><span class="c1"></span>    <span class="c1">// 目标值在数组所有元素之后的情况 [left, right]， return right + 1
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">right</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
-
-<span class="kt">int</span> <span class="nf">searchInsert2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
-    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span> <span class="c1">// 定义target在左闭右开的区间里，[left, right)  target
-</span><span class="c1"></span>    <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 因为left == right的时候，在[left, right)是无效的空间
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">middle</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="o">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="o">)</span> <span class="o">&gt;&gt;</span> <span class="n">1</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">middle</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-             <span class="n">right</span> <span class="o">=</span> <span class="n">middle</span><span class="o">;</span> <span class="c1">// target 在左区间，在[left, middle)中
-</span><span class="c1"></span>        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">middle</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">left</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span> <span class="c1">// target 在右区间，在 [middle+1, right)中
-</span><span class="c1"></span>        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">// nums[middle] == target
-</span><span class="c1"></span>            <span class="k">return</span> <span class="n">middle</span><span class="o">;</span> <span class="c1">// 数组中找到目标值的情况，直接返回下标
-</span><span class="c1"></span>        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="c1">// 分别处理如下四种情况
-</span><span class="c1"></span>    <span class="c1">// 目标值在数组所有元素之前 [0,0)
-</span><span class="c1"></span>    <span class="c1">// 目标值等于数组中某一个元素 return middle
-</span><span class="c1"></span>    <span class="c1">// 目标值插入数组中的位置 [left, right) ，return right 即可
-</span><span class="c1"></span>    <span class="c1">// 目标值在数组所有元素之后的情况 [left, right)，return right 即可
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">right</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">searchInsert1</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span> <span class="c1">// 定义target在左闭右闭的区间里，[left, right] 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 当left==right，区间[left, right]依然有效
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">middle</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="o">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="o">)</span> <span class="o">/</span> <span class="n">2</span><span class="o">);</span><span class="c1">// 防止溢出 等同于(left + right)/2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">middle</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">right</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span> <span class="c1">// target 在左区间，所以[left, middle - 1]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">middle</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span> <span class="c1">// target 在右区间，所以[middle + 1, right]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">// nums[middle] == target
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="n">middle</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 分别处理如下四种情况
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 目标值在数组所有元素之前  [0, -1]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 目标值等于数组中某一个元素  return middle;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 目标值插入数组中的位置 [left, right]，return  right + 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 目标值在数组所有元素之后的情况 [left, right]， return right + 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">right</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">searchInsert2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span> <span class="c1">// 定义target在左闭右开的区间里，[left, right)  target
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 因为left == right的时候，在[left, right)是无效的空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">middle</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="o">((</span><span class="n">right</span> <span class="o">-</span> <span class="n">left</span><span class="o">)</span> <span class="o">&gt;&gt;</span> <span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">middle</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">             <span class="n">right</span> <span class="o">=</span> <span class="n">middle</span><span class="o">;</span> <span class="c1">// target 在左区间，在[left, middle)中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">middle</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">left</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span> <span class="c1">// target 在右区间，在 [middle+1, right)中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> <span class="c1">// nums[middle] == target
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="n">middle</span><span class="o">;</span> <span class="c1">// 数组中找到目标值的情况，直接返回下标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 分别处理如下四种情况
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 目标值在数组所有元素之前 [0,0)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 目标值等于数组中某一个元素 return middle
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 目标值插入数组中的位置 [left, right) ，return right 即可
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 目标值在数组所有元素之后的情况 [left, right)，return right 即可
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">right</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="原地删除元素">
         原地删除元素
         <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E6%95%B0%E7%BB%84/#原地删除元素" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 原地删除元素" href="#%e5%8e%9f%e5%9c%b0%e5%88%a0%e9%99%a4%e5%85%83%e7%b4%a0">
@@ -1529,16 +1553,16 @@
 <li>快慢指针</li>
 </ul>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="nf">removeElement</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">slowIndex</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> 
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">fastIndex</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">fastIndex</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">fastIndex</span><span class="o">++)</span> <span class="o">{</span>  
-        <span class="k">if</span> <span class="o">(</span><span class="n">val</span> <span class="o">!=</span> <span class="n">nums</span><span class="o">[</span><span class="n">fastIndex</span><span class="o">])</span> <span class="o">{</span> 
-            <span class="n">nums</span><span class="o">[</span><span class="n">slowIndex</span><span class="o">++]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">fastIndex</span><span class="o">];</span> 
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">slowIndex</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">removeElement</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">slowIndex</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">fastIndex</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">fastIndex</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">fastIndex</span><span class="o">++)</span> <span class="o">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">val</span> <span class="o">!=</span> <span class="n">nums</span><span class="o">[</span><span class="n">fastIndex</span><span class="o">])</span> <span class="o">{</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">nums</span><span class="o">[</span><span class="n">slowIndex</span><span class="o">++]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">fastIndex</span><span class="o">];</span> 
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">slowIndex</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="最小子串">
         最小子串
         <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E6%95%B0%E7%BB%84/#最小子串" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 最小子串" href="#%e6%9c%80%e5%b0%8f%e5%ad%90%e4%b8%b2">
@@ -1562,24 +1586,24 @@
 <li>滑动窗口:所谓滑动窗口，「就是不断的调节子序列的起始位置和终止位置，从而得出我们要想的结果」</li>
 </ul>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="nf">minSubArrayLen</span><span class="o">(</span><span class="kt">int</span> <span class="n">s</span><span class="o">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">INT32_MAX</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="c1">// 滑动窗口数值之和
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="c1">// 滑动窗口起始位置
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">subLength</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="c1">// 滑动窗口的长度
-</span><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="n">sum</span> <span class="o">+=</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
-        <span class="c1">// 注意这里使用while，每次更新 i（起始位置），并不断比较子序列是否符合条件
-</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">sum</span> <span class="o">&gt;=</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">subLength</span> <span class="o">=</span> <span class="o">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span> <span class="c1">// 取子序列的长度
-</span><span class="c1"></span>            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">&lt;</span> <span class="n">subLength</span> <span class="o">?</span> <span class="n">result</span> <span class="o">:</span> <span class="n">subLength</span><span class="o">;</span>
-            <span class="n">sum</span> <span class="o">-=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">++];</span> <span class="c1">// 这里体现出滑动窗口的精髓之处，不断变更i（子序列的起始位置）
-</span><span class="c1"></span>        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="c1">// 如果result没有被赋值的话，就返回0，说明没有符合条件的子序列
-</span><span class="c1"></span>    <span class="k">return</span> <span class="n">result</span> <span class="o">==</span> <span class="n">INT32_MAX</span> <span class="o">?</span> <span class="n">0</span> <span class="o">:</span> <span class="n">result</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">minSubArrayLen</span><span class="o">(</span><span class="kt">int</span> <span class="n">s</span><span class="o">,</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">INT32_MAX</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="c1">// 滑动窗口数值之和
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="c1">// 滑动窗口起始位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">subLength</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="c1">// 滑动窗口的长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum</span> <span class="o">+=</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 注意这里使用while，每次更新 i（起始位置），并不断比较子序列是否符合条件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">sum</span> <span class="o">&gt;=</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">subLength</span> <span class="o">=</span> <span class="o">(</span><span class="n">j</span> <span class="o">-</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span> <span class="c1">// 取子序列的长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">&lt;</span> <span class="n">subLength</span> <span class="o">?</span> <span class="n">result</span> <span class="o">:</span> <span class="n">subLength</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sum</span> <span class="o">-=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">++];</span> <span class="c1">// 这里体现出滑动窗口的精髓之处，不断变更i（子序列的起始位置）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 如果result没有被赋值的话，就返回0，说明没有符合条件的子序列
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">result</span> <span class="o">==</span> <span class="n">INT32_MAX</span> <span class="o">?</span> <span class="n">0</span> <span class="o">:</span> <span class="n">result</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="俄罗斯套娃真题">
         俄罗斯套娃(真题)
         <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E6%95%B0%E7%BB%84/#俄罗斯套娃真题" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 俄罗斯套娃(真题)" href="#%e4%bf%84%e7%bd%97%e6%96%af%e5%a5%97%e5%a8%83%e7%9c%9f%e9%a2%98">
@@ -1603,35 +1627,35 @@
 <li>分治法</li>
 </ul>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxEnvelopes</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">envelopes</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">envelopes</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">0</span><span class="o">;</span>
-    <span class="o">}</span>    
-    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">envelopes</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
-    <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">envelopes</span><span class="o">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;()</span> <span class="o">{</span>
-        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">e1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">e2</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">e1</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">!=</span> <span class="n">e2</span><span class="o">[</span><span class="n">0</span><span class="o">])</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="n">e1</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">-</span> <span class="n">e2</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="n">e2</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">e1</span><span class="o">[</span><span class="n">1</span><span class="o">];</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">});</span>
-    <span class="c1">//[[2,3],[5,4],[6,7],[6,4]]
-</span><span class="c1"></span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
-    <span class="n">Arrays</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">f</span><span class="o">,</span> <span class="n">1</span><span class="o">);</span>
-    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">envelopes</span><span class="o">[</span><span class="n">j</span><span class="o">][</span><span class="n">1</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">envelopes</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">1</span><span class="o">])</span> <span class="o">{</span>
-                <span class="n">f</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">f</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">f</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">f</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxEnvelopes</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">envelopes</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">envelopes</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>    
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">envelopes</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">envelopes</span><span class="o">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">e1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">e2</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">e1</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">!=</span> <span class="n">e2</span><span class="o">[</span><span class="n">0</span><span class="o">])</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">e1</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">-</span> <span class="n">e2</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">e2</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">e1</span><span class="o">[</span><span class="n">1</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">});</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//[[2,3],[5,4],[6,7],[6,4]]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Arrays</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">f</span><span class="o">,</span> <span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">envelopes</span><span class="o">[</span><span class="n">j</span><span class="o">][</span><span class="n">1</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">envelopes</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">1</span><span class="o">])</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">f</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">f</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">f</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">f</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="最长连续递增序列">
         最长连续递增序列
         <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E6%95%B0%E7%BB%84/#最长连续递增序列" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 最长连续递增序列" href="#%e6%9c%80%e9%95%bf%e8%bf%9e%e7%bb%ad%e9%80%92%e5%a2%9e%e5%ba%8f%e5%88%97">
@@ -1655,19 +1679,19 @@
 <li>贪心算法,找到最长的适合条件的组合</li>
 </ul>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">findLengthOfLCIS</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">1</span><span class="o">])</span> <span class="o">{</span>
-            <span class="n">start</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">findLengthOfLCIS</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">1</span><span class="o">])</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">start</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="盛最多水的容器真题">
         盛最多水的容器(真题)
         <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E6%95%B0%E7%BB%84/#盛最多水的容器真题" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 盛最多水的容器(真题)" href="#%e7%9b%9b%e6%9c%80%e5%a4%9a%e6%b0%b4%e7%9a%84%e5%ae%b9%e5%99%a8%e7%9c%9f%e9%a2%98">
@@ -1690,22 +1714,22 @@
 <li>双指针,分别指向头尾两端,不断替换值小的数</li>
 </ul>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxArea</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">height</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="k">while</span> <span class="o">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">area</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">height</span><span class="o">[</span><span class="n">l</span><span class="o">],</span> <span class="n">height</span><span class="o">[</span><span class="n">r</span><span class="o">])</span> <span class="o">*</span> <span class="o">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">l</span><span class="o">);</span>
-        <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">area</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">height</span><span class="o">[</span><span class="n">l</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">height</span><span class="o">[</span><span class="n">r</span><span class="o">])</span> <span class="o">{</span>
-            <span class="o">++</span><span class="n">l</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">else</span> <span class="o">{</span>
-            <span class="o">--</span><span class="n">r</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxArea</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">height</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="o">(</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">area</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">height</span><span class="o">[</span><span class="n">l</span><span class="o">],</span> <span class="n">height</span><span class="o">[</span><span class="n">r</span><span class="o">])</span> <span class="o">*</span> <span class="o">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">l</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ans</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">ans</span><span class="o">,</span> <span class="n">area</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">height</span><span class="o">[</span><span class="n">l</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">height</span><span class="o">[</span><span class="n">r</span><span class="o">])</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="o">++</span><span class="n">l</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="o">--</span><span class="n">r</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="接雨水问题真题">
         接雨水问题(真题)
         <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E6%95%B0%E7%BB%84/#接雨水问题真题" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 接雨水问题(真题)" href="#%e6%8e%a5%e9%9b%a8%e6%b0%b4%e9%97%ae%e9%a2%98%e7%9c%9f%e9%a2%98">
@@ -1728,30 +1752,30 @@
 <li>双指针,分别指向头尾两端,不断替换值小的数</li>
 </ul>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">trap</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">height</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">left_max</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">right_max</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">height</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">height</span><span class="o">[</span><span class="n">right</span><span class="o">])</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">height</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">left_max</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">left_max</span> <span class="o">=</span> <span class="n">height</span><span class="o">[</span><span class="n">left</span><span class="o">];</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="n">ans</span> <span class="o">+=</span> <span class="o">(</span><span class="n">left_max</span> <span class="o">-</span> <span class="n">height</span><span class="o">[</span><span class="n">left</span><span class="o">]);</span>
-            <span class="o">}</span>
-            <span class="o">++</span><span class="n">left</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">height</span><span class="o">[</span><span class="n">right</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">right_max</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">right_max</span> <span class="o">=</span> <span class="n">height</span><span class="o">[</span><span class="n">right</span><span class="o">];</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="n">ans</span> <span class="o">+=</span> <span class="o">(</span><span class="n">right_max</span> <span class="o">-</span> <span class="n">height</span><span class="o">[</span><span class="n">right</span><span class="o">]);</span>
-            <span class="o">}</span>
-            <span class="o">--</span><span class="n">right</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">trap</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">height</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">left_max</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">right_max</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">height</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">height</span><span class="o">[</span><span class="n">right</span><span class="o">])</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">height</span><span class="o">[</span><span class="n">left</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">left_max</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">left_max</span> <span class="o">=</span> <span class="n">height</span><span class="o">[</span><span class="n">left</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ans</span> <span class="o">+=</span> <span class="o">(</span><span class="n">left_max</span> <span class="o">-</span> <span class="n">height</span><span class="o">[</span><span class="n">left</span><span class="o">]);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">++</span><span class="n">left</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">height</span><span class="o">[</span><span class="n">right</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">right_max</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">right_max</span> <span class="o">=</span> <span class="n">height</span><span class="o">[</span><span class="n">right</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ans</span> <span class="o">+=</span> <span class="o">(</span><span class="n">right_max</span> <span class="o">-</span> <span class="n">height</span><span class="o">[</span><span class="n">right</span><span class="o">]);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">--</span><span class="n">right</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="和为k的子数组">
         和为K的子数组
         <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E6%95%B0%E7%BB%84/#和为k的子数组" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 和为K的子数组" href="#%e5%92%8c%e4%b8%bak%e7%9a%84%e5%ad%90%e6%95%b0%e7%bb%84">
@@ -1774,20 +1798,20 @@
 <li>哈希表</li>
 </ul>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">subarraySum</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">pre</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="n">HashMap</span> <span class="o">&lt;</span> <span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span> <span class="o">&gt;</span> <span class="n">mp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span> <span class="o">&lt;</span> <span class="o">&gt;</span> <span class="o">();</span>
-    <span class="n">mp</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">1</span><span class="o">);</span>
-    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="n">pre</span> <span class="o">+=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">mp</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">pre</span> <span class="o">-</span> <span class="n">k</span><span class="o">))</span> <span class="o">{</span>
-            <span class="n">count</span> <span class="o">+=</span> <span class="n">mp</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">pre</span> <span class="o">-</span> <span class="n">k</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="n">mp</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">pre</span><span class="o">,</span> <span class="n">mp</span><span class="o">.</span><span class="na">getOrDefault</span><span class="o">(</span><span class="n">pre</span><span class="o">,</span> <span class="n">0</span><span class="o">)</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">count</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">subarraySum</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">pre</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HashMap</span> <span class="o">&lt;</span> <span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span> <span class="o">&gt;</span> <span class="n">mp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span> <span class="o">&lt;</span> <span class="o">&gt;</span> <span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mp</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pre</span> <span class="o">+=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">mp</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">pre</span> <span class="o">-</span> <span class="n">k</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">count</span> <span class="o">+=</span> <span class="n">mp</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">pre</span> <span class="o">-</span> <span class="n">k</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mp</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">pre</span><span class="o">,</span> <span class="n">mp</span><span class="o">.</span><span class="na">getOrDefault</span><span class="o">(</span><span class="n">pre</span><span class="o">,</span> <span class="n">0</span><span class="o">)</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">count</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div>
 
     </article>
 
@@ -1835,7 +1859,7 @@
 
 
 
-<script defer src="/js/en.search.min.d1300fa43c8b3ddb741038e2a85fdfbce3723906b87fd971f6a365b26465b1af.js"></script>
+<script defer src="/js/en.search.min.58ab25ba3337c795b6546571208f19ff74f6f8b69cd0e291e7de44c5c62dda35.js"></script>
 
 
 

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="多线程">
 
-<title>多线程 | 十万个为什么</title>
+<title>多线程 | gyz的十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -57,7 +57,7 @@
         <a class="gdoc-header__link" href="https://gyzboy.github.io/">
             <span class="gdoc-brand flex align-center">
                 <img class="gdoc-brand__img" src="/brand.svg" alt="">
-                十万个为什么
+                gyz的十万个为什么
             </span>
         </a>
     </div>
@@ -971,6 +971,30 @@
             
             
                 <span class="flex">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/temp/" class="gdoc-nav__entry ">
+                        Temp
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="gdoc-nav__entry ">
                         二叉树
                     </a>
@@ -1357,7 +1381,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/java/' href='/interview/java/'><span itemprop='name'>Java</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>多线程</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>gyz的十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/java/' href='/interview/java/'><span itemprop='name'>Java</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>多线程</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1418,17 +1442,17 @@
     </h2>
 </div><p>线程本地存储区（Thread Local Storage，简称为TLS），每个线程都有自己的私有的本地存储区域，不同线程之间彼此不能访问对方的TLS区域
 ThreadLocal的数据结构</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//threadLocalHashCode的值是HASH_INCREMENT = 0x61c88647每次+1,取0x61c88647是因为这个值是黄金分割点
-</span><span class="c1">//每个线程有唯一的一个ThreadLocalMap,每个ThreadLocalMap中可以存放多个ThreadLocal对象
-</span><span class="c1"></span><span class="n">ThreadLocalMap</span><span class="o">(</span><span class="n">ThreadLocal</span> <span class="n">firstKey</span><span class="o">,</span> <span class="n">Object</span> <span class="n">firstValue</span><span class="o">)</span> <span class="o">{</span>
-<span class="n">table</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Entry</span><span class="o">[</span><span class="n">INITIAL_CAPACITY</span><span class="o">];</span> <span class="c1">//table是一个弱引用对象数组
-</span><span class="c1"></span>    <span class="c1">//INITIAL_CAPACITY=16
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">firstKey</span><span class="o">.</span><span class="na">threadLocalHashCode</span> <span class="o">&amp;</span> <span class="o">(</span><span class="n">INITIAL_CAPACITY</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span><span class="c1">//有hash证明这是个采用哈希散列方式进行存储
-</span><span class="c1"></span>    <span class="n">table</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Entry</span><span class="o">(</span><span class="n">firstKey</span><span class="o">,</span> <span class="n">firstValue</span><span class="o">);</span>
-    <span class="n">size</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
-    <span class="n">setThreshold</span><span class="o">(</span><span class="n">INITIAL_CAPACITY</span><span class="o">);</span><span class="c1">//设置扩容因子为len * 2 / 3
-</span><span class="c1"></span><span class="o">}</span>
-</code></pre></div><p>cleanSomeSlots:启发式清理,试探的扫描一些单元格，寻找过期元素，也就是被垃圾回收的元素
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//threadLocalHashCode的值是HASH_INCREMENT = 0x61c88647每次+1,取0x61c88647是因为这个值是黄金分割点
+</span></span></span><span class="line"><span class="cl"><span class="c1">//每个线程有唯一的一个ThreadLocalMap,每个ThreadLocalMap中可以存放多个ThreadLocal对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ThreadLocalMap</span><span class="o">(</span><span class="n">ThreadLocal</span> <span class="n">firstKey</span><span class="o">,</span> <span class="n">Object</span> <span class="n">firstValue</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="n">table</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Entry</span><span class="o">[</span><span class="n">INITIAL_CAPACITY</span><span class="o">];</span> <span class="c1">//table是一个弱引用对象数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//INITIAL_CAPACITY=16
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">firstKey</span><span class="o">.</span><span class="na">threadLocalHashCode</span> <span class="o">&amp;</span> <span class="o">(</span><span class="n">INITIAL_CAPACITY</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span><span class="c1">//有hash证明这是个采用哈希散列方式进行存储
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">table</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Entry</span><span class="o">(</span><span class="n">firstKey</span><span class="o">,</span> <span class="n">firstValue</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">size</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">setThreshold</span><span class="o">(</span><span class="n">INITIAL_CAPACITY</span><span class="o">);</span><span class="c1">//设置扩容因子为len * 2 / 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></div><p>cleanSomeSlots:启发式清理,试探的扫描一些单元格，寻找过期元素，也就是被垃圾回收的元素
 expungeStaleEntry:探测式清理,是以当前遇到的 GC 元素开始，向后不断的清理。直到遇到 null 为止，才停止 rehash 计算</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="qthreadlocal是如何做到跟thread绑定的">
@@ -1761,7 +1785,7 @@ AQS:AbstractQueuedSynchronizer,队列同步器</p>
 
 
 
-<script defer src="/js/en.search.min.d1300fa43c8b3ddb741038e2a85fdfbce3723906b87fd971f6a365b26465b1af.js"></script>
+<script defer src="/js/en.search.min.58ab25ba3337c795b6546571208f19ff74f6f8b69cd0e291e7de44c5c62dda35.js"></script>
 
 
 

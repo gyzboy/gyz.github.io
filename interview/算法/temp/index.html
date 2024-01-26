@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ContentProvider">
+<meta name="description" content="Temp">
 
-<title>ContentProvider | gyz的十万个为什么</title>
+<title>Temp | gyz的十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -317,7 +317,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/android/contentprovider/" class="gdoc-nav__entry is-active">
+                    <a href="/interview/android/contentprovider/" class="gdoc-nav__entry ">
                         ContentProvider
                     </a>
                 </span>
@@ -971,7 +971,7 @@
             
             
                 <span class="flex">
-                    <a href="/interview/%E7%AE%97%E6%B3%95/temp/" class="gdoc-nav__entry ">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/temp/" class="gdoc-nav__entry is-active">
                         Temp
                     </a>
                 </span>
@@ -1381,7 +1381,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>gyz的十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>ContentProvider</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>gyz的十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/%E7%AE%97%E6%B3%95/' href='/interview/%E7%AE%97%E6%B3%95/'><span itemprop='name'>算法</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>Temp</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1398,42 +1398,279 @@
 
 
     <article class="gdoc-markdown">
-        <h1>ContentProvider</h1>
-        
-
-
-  <div class="gdoc-toc gdoc-toc__level--6"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#q介绍下fileprovider">Q:介绍下FileProvider？</a></li>
-  </ul>
-</nav><hr></div>
-
-
-<div class="gdoc-page__anchorwrap">
-    <h2 id="q介绍下fileprovider">
-        Q:介绍下FileProvider？
-        <a data-clipboard-text="https://gyzboy.github.io/interview/android/contentprovider/#q介绍下fileprovider" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:介绍下FileProvider？" href="#q%e4%bb%8b%e7%bb%8d%e4%b8%8bfileprovider">
+        <h1>Temp</h1>
+        <div class="gdoc-page__anchorwrap">
+    <h2 id="反转链表">
+        反转链表
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/temp/#反转链表" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 反转链表" href="#%e5%8f%8d%e8%bd%ac%e9%93%be%e8%a1%a8">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">&lt;!--</span> <span class="n">配置FileProvider</span><span class="o">--&gt;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">provider</span>
-</span></span><span class="line"><span class="cl">    <span class="n">android</span><span class="o">:</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;androidx.core.content.FileProvider&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">android</span><span class="o">:</span><span class="n">authorities</span><span class="o">=</span><span class="s">&#34;${applicationId}.provider&#34;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">android</span><span class="o">:</span><span class="n">exported</span><span class="o">=</span><span class="s">&#34;false&#34;</span><span class="c1">//这里必须为false
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">android</span><span class="o">:</span><span class="n">grantUriPermissions</span><span class="o">=</span><span class="s">&#34;true&#34;</span><span class="o">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">meta</span><span class="o">-</span><span class="n">data</span>
-</span></span><span class="line"><span class="cl">        <span class="n">android</span><span class="o">:</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;android.support.FILE_PROVIDER_PATHS&#34;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">android</span><span class="o">:</span><span class="n">resource</span><span class="o">=</span><span class="s">&#34;@xml/provider_paths&#34;</span><span class="o">/&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">provider</span><span class="o">&gt;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">//provider_paths.xml
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s">&#34;1.0&#34;</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="o">?&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">paths</span> <span class="n">xmlns</span><span class="o">:</span><span class="n">android</span><span class="o">=</span><span class="s">&#34;http://schemas.android.com/apk/res/android&#34;</span><span class="o">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">external</span><span class="o">-</span><span class="n">path</span> <span class="n">name</span><span class="o">=</span><span class="s">&#34;external&#34;</span> <span class="n">path</span><span class="o">=</span><span class="s">&#34;.&#34;</span><span class="o">/&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="o">&lt;/</span><span class="n">paths</span><span class="o">&gt;</span>
-</span></span></code></pre></div>
+</div><p>public ListNode ReverseList(ListNode head) {
+ListNode pre = null;
+ListNode cur = head;
+ListNode nex = null; // 这里可以指向nullptr，循环里面要重新指向
+while (cur != null) {
+nex = cur.next;
+cur.next = pre;
+pre = cur;
+cur = nex;
+}
+return pre;
+}</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="快排">
+        快排
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/temp/#快排" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 快排" href="#%e5%bf%ab%e6%8e%92">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>public int[] MySort(int[] arr) {
+quickSort(arr, 0, arr.length - 1);
+return arr;
+}</p>
+<p>private void quickSort(int[] array, int start, int end) {
+if (start &lt; end) {
+int key = array[start];//用待排数组的第一个作为中枢
+int i = start;
+for (int j = start + 1; j &lt;= end; j++) {
+if (key &gt; array[j]) {
+swap(array, j, ++i);
+}
+}
+array[start] = array[i];//先挪，然后再把中枢放到指定位置
+array[i] = key;
+quickSort(array, start, i - 1);
+quickSort(array, i + 1, end);
+}
+}</p>
+<p>//交换两个数的值
+public void swap(int[] A, int i, int j) {
+if (i != j) {
+A[i] ^= A[j];
+A[j] ^= A[i];
+A[i] ^= A[j];
+}
+}</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="树遍历">
+        树遍历
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/temp/#树遍历" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 树遍历" href="#%e6%a0%91%e9%81%8d%e5%8e%86">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>public void preorder(TreeNode root, List<!-- raw HTML omitted --> list) {
+if (root != null) {
+list.add(root.val);
+preorder(root.left, list);
+preorder(root.right, list);
+}
+}
+public void inorder(TreeNode root, List<!-- raw HTML omitted --> list) {
+if (root != null) {
+inorder(root.left, list);
+list.add(root.val);
+inorder(root.right, list);
+}
+}
+public void postorder(TreeNode root, List<!-- raw HTML omitted --> list) {
+if (root != null) {
+postorder(root.left, list);
+postorder(root.right, list);
+list.add(root.val);
+}
+}</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="层序遍历">
+        层序遍历
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/temp/#层序遍历" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 层序遍历" href="#%e5%b1%82%e5%ba%8f%e9%81%8d%e5%8e%86">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>ArrayList&lt;ArrayList<!-- raw HTML omitted -->&gt; res = new ArrayList&lt;ArrayList<!-- raw HTML omitted -->&gt;();
+public ArrayList&lt;ArrayList<!-- raw HTML omitted -->&gt; levelOrder (TreeNode root) {
+// write code here
+if(root == null){
+return res;
+}
+count(root,0);
+return res;
+}</p>
+<pre><code>public void count(TreeNode node, int level){
+    if(level == res.size()){
+        res.add(new ArrayList&lt;Integer&gt;());
+    }
+
+   ArrayList&lt;Integer&gt; list = res.get(level);
+   list.add(node.val);
+
+   if(node.left != null){
+       count(node.left, level+1);
+   }
+
+   if(node.right != null){
+       count(node.right, level+1);
+   }
+
+}
+</code></pre>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="两数之和">
+        两数之和
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/temp/#两数之和" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 两数之和" href="#%e4%b8%a4%e6%95%b0%e4%b9%8b%e5%92%8c">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>public int[] twoSum (int[] numbers, int target) {
+int[] result = new int[2];
+Map&lt;Integer, Integer&gt; map = new HashMap();
+for(int i = 0; i &lt; numbers.length; i++) {
+if(map.get(target - numbers[i]) != null) {
+result[0] = map.get(target - numbers[i]) + 1;
+result[1] = i + 1;
+return result;
+}
+map.put(numbers[i], i);
+}
+return result;
+}</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="栈实现队列">
+        栈实现队列
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/temp/#栈实现队列" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 栈实现队列" href="#%e6%a0%88%e5%ae%9e%e7%8e%b0%e9%98%9f%e5%88%97">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>public void push(int node) {
+stack1.push(node);
+}</p>
+<pre><code>public int pop() {
+    if (stack2.size() &lt;= 0) {
+        while (stack1.size() != 0) {
+            stack2.push(stack1.pop());
+        }
+    }
+    return stack2.pop();
+}
+</code></pre>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="跳台阶">
+        跳台阶
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/temp/#跳台阶" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 跳台阶" href="#%e8%b7%b3%e5%8f%b0%e9%98%b6">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>public int JumpFloor(int target) {
+if (target &lt;= 1) {
+return 1;
+}
+// a 表示第 f[i-2] 项，b 表示第 f[i-1] 项
+int a = 1, b = 1, c = 0;
+for (int i = 2; i &lt;= target; i++) {
+c = a + b; // f[i] = f[i - 1] + f[i - 2];
+// 为下一次循环求 f[i + 1] 做准备
+a = b; // f[i - 2] = f[i - 1]
+b = c; // f[i - 1] = f[i]
+}
+return c;
+}</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="反转k个节点">
+        反转K个节点
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/temp/#反转k个节点" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 反转K个节点" href="#%e5%8f%8d%e8%bd%ack%e4%b8%aa%e8%8a%82%e7%82%b9">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>public ListNode reverseKGroup (ListNode head, int k) {
+if(head==null||head.next==null||k==1) return head;
+ListNode res = new ListNode(0);
+res.next = head;
+int length = 0;
+ListNode pre = res,
+cur = head,
+temp = null;
+while(head!=null){
+length++;
+head = head.next;
+}
+//分段使用头插法将链表反序
+for(int i=0; i&lt;length/k; i++){
+//pre作为每一小段链表的头节点，负责衔接
+for(int j=1; j&lt;k; j++){
+temp = cur.next;
+cur.next = temp.next;
+//相当于头插法，注意：
+//temp.next = cur是错误的，temp需要连接的不是前一节点，而是子序列的头节点
+temp.next = pre.next;
+pre.next = temp;
+}
+//每个子序列反序完成后，pre，cur需要更新至下一子序列的头部
+pre = cur;
+cur = cur.next;
+}
+return res.next;
+}</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="最长回文">
+        最长回文
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/temp/#最长回文" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 最长回文" href="#%e6%9c%80%e9%95%bf%e5%9b%9e%e6%96%87">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>public static int getLongestPalindrome(String A, int n) {
+// write code here
+char[] aa =A.toCharArray();
+int max=1;
+boolean[][] dp = new boolean[n][n];
+for(int i=0;i&lt;n;i++){
+dp[i][i] = true;
+}
+for(int i=1;i&lt;n;i++)//i指向的是字符的最后一位
+for(int j=i-1;j&gt;=0;j&ndash;){//j指向的是字符的前部。
+if(i-j==1){//当两个指针靠近时，直接判断
+dp[j][i]=(aa[i]==aa[j]);
+if(max&lt;i-j+1)
+max = i-j+1;
+}</p>
+<pre><code>           else{
+               if(dp[j+1][i-1]&amp;&amp;aa[i]==aa[j]){
+                   dp[j][i]=true;
+                   if(max&lt;i-j+1)
+                       max = i-j+1;
+               }
+               else
+                   dp[j][i]=false;
+           }
+       }
+   return max;
+</code></pre>
+<p>}</p>
+<div class="gdoc-page__anchorwrap">
+    <h2 id="最长公共字串">
+        最长公共字串
+        <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/temp/#最长公共字串" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 最长公共字串" href="#%e6%9c%80%e9%95%bf%e5%85%ac%e5%85%b1%e5%ad%97%e4%b8%b2">
+            <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
+        </a>
+    </h2>
+</div><p>public static String LCS1(String str1, String str2) {
+int maxLength = 0;
+int index = 0;
+for(int i = 0; i &lt; str2.length(); i++){
+for(int j = i+1; j &lt;= str2.length(); j++){
+if(str1.contains(str2.substring(i, j)) ){
+if(maxLength &lt; j-i){
+maxLength = j-i;
+index = i;
+}
+} else break;
+}
+}
+if( maxLength == 0 ){ //没有相同的字符串
+return &ldquo;-1&rdquo;;
+}
+return str2.substring(index,index + maxLength);
+}</p>
+
 
     </article>
 

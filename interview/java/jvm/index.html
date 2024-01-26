@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="JVM">
 
-<title>JVM | 十万个为什么</title>
+<title>JVM | gyz的十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -57,7 +57,7 @@
         <a class="gdoc-header__link" href="https://gyzboy.github.io/">
             <span class="gdoc-brand flex align-center">
                 <img class="gdoc-brand__img" src="/brand.svg" alt="">
-                十万个为什么
+                gyz的十万个为什么
             </span>
         </a>
     </div>
@@ -971,6 +971,30 @@
             
             
                 <span class="flex">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/temp/" class="gdoc-nav__entry ">
+                        Temp
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="gdoc-nav__entry ">
                         二叉树
                     </a>
@@ -1357,7 +1381,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/java/' href='/interview/java/'><span itemprop='name'>Java</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>JVM</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>gyz的十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/java/' href='/interview/java/'><span itemprop='name'>Java</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>JVM</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1522,30 +1546,30 @@
 <li>避免重复加载，如果已经加载，就不需要再次加载</li>
 <li>安全，如果你定义String类来代替系统的String类，这样会导致风险，但是在双亲委托模型中，String类在java虚拟机启动时就被加载了，你自定义的String类是不会被加载的</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">protected</span> <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">loadClass</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">resolve</span><span class="o">)</span>
-        <span class="kd">throws</span> <span class="n">ClassNotFoundException</span><span class="o">{</span>
-            <span class="c1">// 首先检查类是否被加载过
-</span><span class="c1"></span>            <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">findLoadedClass</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">try</span> <span class="o">{</span>
-                    <span class="k">if</span> <span class="o">(</span><span class="n">parent</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span><span class="c1">//先用父加载器加载
-</span><span class="c1"></span>                        <span class="n">c</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="na">loadClass</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-                    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span><span class="c1">//没有父加载器了用启动加载器加载
-</span><span class="c1"></span>                        <span class="n">c</span> <span class="o">=</span> <span class="n">findBootstrapClassOrNull</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-                    <span class="o">}</span>
-                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ClassNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="c1">//如果父类抛出ClassNotFoundException异常
-</span><span class="c1"></span>                    <span class="c1">//则说明父类不能加载该类
-</span><span class="c1"></span>                <span class="o">}</span>
-
-                <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="c1">//如果父类无法加载，则调用自身的findClass进行加
-</span><span class="c1"></span>                    <span class="n">c</span> <span class="o">=</span> <span class="n">findClass</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-            <span class="k">return</span> <span class="n">c</span><span class="o">;</span>
-    <span class="o">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">protected</span> <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">loadClass</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">resolve</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">throws</span> <span class="n">ClassNotFoundException</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 首先检查类是否被加载过
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">findLoadedClass</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="o">(</span><span class="n">parent</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span><span class="c1">//先用父加载器加载
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="n">c</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="na">loadClass</span><span class="o">(</span><span class="n">name</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span><span class="c1">//没有父加载器了用启动加载器加载
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="n">c</span> <span class="o">=</span> <span class="n">findBootstrapClassOrNull</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ClassNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">//如果父类抛出ClassNotFoundException异常
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="c1">//则说明父类不能加载该类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">//如果父类无法加载，则调用自身的findClass进行加
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                    <span class="n">c</span> <span class="o">=</span> <span class="n">findClass</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">c</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="q如何自定义一个类加载器">
         Q:如何自定义一个类加载器?
         <a data-clipboard-text="https://gyzboy.github.io/interview/java/jvm/#q如何自定义一个类加载器" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:如何自定义一个类加载器?" href="#q%e5%a6%82%e4%bd%95%e8%87%aa%e5%ae%9a%e4%b9%89%e4%b8%80%e4%b8%aa%e7%b1%bb%e5%8a%a0%e8%bd%bd%e5%99%a8">
@@ -1570,7 +1594,7 @@
     </h2>
 </div><ol>
 <li>CustomClassLoader customClassLoader = new CustomClassLoader(filePath);//传入class文件路径</li>
-<li>Class&lt;?&gt; aClass = customClassLoader.findClass(&ldquo;com.gyz.Hello&rdquo;);//生成指定包名class文件</li>
+<li>Class<!-- raw HTML omitted --> aClass = customClassLoader.findClass(&ldquo;com.gyz.Hello&rdquo;);//生成指定包名class文件</li>
 <li>通过反射调用方法</li>
 </ol>
 <div class="gdoc-page__anchorwrap">
@@ -1613,12 +1637,12 @@
     </h2>
 </div><p>泛型就是为了参数化类型，或者说可以将类型当作参数传递给一个类或者是方法,好处就是它不再需要对取出来的结果进行强制转换了
 出于规范的目的，Java 还是建议我们用单个大写字母来代表类型参数。常见的如：</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">T</span> <span class="n">代表一般的任何类</span><span class="err">。</span>
-<span class="n">E</span> <span class="n">代表</span> <span class="n">Element</span> <span class="n">的意思</span><span class="err">，</span><span class="n">或者</span> <span class="n">Exception</span> <span class="n">异常的意思</span><span class="err">。</span>
-<span class="n">K</span> <span class="n">代表</span> <span class="n">Key</span> <span class="n">的意思</span><span class="err">。</span>
-<span class="n">V</span> <span class="n">代表</span> <span class="n">Value</span> <span class="n">的意思</span><span class="err">，</span><span class="n">通常与</span> <span class="n">K</span> <span class="n">一起配合使用</span><span class="err">。</span>
-<span class="n">S</span> <span class="n">代表</span> <span class="n">Subtype</span> <span class="n">的意思</span><span class="err">，</span><span class="n">文章后面部分会讲解示意</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">T</span> <span class="n">代表一般的任何类</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl"><span class="n">E</span> <span class="n">代表</span> <span class="n">Element</span> <span class="n">的意思</span><span class="err">，</span><span class="n">或者</span> <span class="n">Exception</span> <span class="n">异常的意思</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl"><span class="n">K</span> <span class="n">代表</span> <span class="n">Key</span> <span class="n">的意思</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl"><span class="n">V</span> <span class="n">代表</span> <span class="n">Value</span> <span class="n">的意思</span><span class="err">，</span><span class="n">通常与</span> <span class="n">K</span> <span class="n">一起配合使用</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl"><span class="n">S</span> <span class="n">代表</span> <span class="n">Subtype</span> <span class="n">的意思</span><span class="err">，</span><span class="n">文章后面部分会讲解示意</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="q泛型通配符">
         Q:泛型通配符?
         <a data-clipboard-text="https://gyzboy.github.io/interview/java/jvm/#q泛型通配符" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:泛型通配符?" href="#q%e6%b3%9b%e5%9e%8b%e9%80%9a%e9%85%8d%e7%ac%a6">
@@ -1645,12 +1669,12 @@
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">l1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
-<span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">l2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
-		
-<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">l1</span><span class="o">.</span><span class="na">getClass</span><span class="o">()</span> <span class="o">==</span> <span class="n">l2</span><span class="o">.</span><span class="na">getClass</span><span class="o">());</span>
-<span class="c1">// true
-</span></code></pre></div><p>在泛型类被类型擦除的时候，之前泛型类中的类型参数部分如果没有指定上限，如 <!-- raw HTML omitted -->则会被转译成普通的 Object 类型，如果指定了上限如 <!-- raw HTML omitted -->则类型参数就被替换成类型上限
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">l1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">l2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">l1</span><span class="o">.</span><span class="na">getClass</span><span class="o">()</span> <span class="o">==</span> <span class="n">l2</span><span class="o">.</span><span class="na">getClass</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// true
+</span></span></span></code></pre></div><p>在泛型类被类型擦除的时候，之前泛型类中的类型参数部分如果没有指定上限，如 <!-- raw HTML omitted -->则会被转译成普通的 Object 类型，如果指定了上限如 <!-- raw HTML omitted -->则类型参数就被替换成类型上限
 类型擦除，是泛型能够与之前的 java 版本代码兼容共存的原因,用反射的手段就绕过了正常开发中编译器不允许的操作限制</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="q泛型和反射有何联系使用反射来获取泛型信息gettype和getgenerictype有何区别">
@@ -1665,7 +1689,7 @@
 </li>
 <li>
 <p>泛型的好处众多，最主要的一点就是避免类型转换，防止出现ClassCastException，即类型转换异常。</p>
-<pre><code>public class ObjectFactory {
+<pre tabindex="0"><code>public class ObjectFactory {
     public static &lt;T&gt; T getInstance(Class&lt;T&gt; cls) {
         try {
             // 返回使用该Class对象创建的实例
@@ -1675,12 +1699,12 @@
             return null;
         }
     }
-  
+
 }
 </code></pre><ul>
 <li>在上面程序的getInstance()方法中传入一个Class&lt;T&gt;参数，这是一个泛型化的Class对象，调用该Class对象的newInstance()方法将返回一个T对象。</li>
 </ul>
-<pre><code>String instance = ObjectFactory.getInstance(String.class);
+<pre tabindex="0"><code>String instance = ObjectFactory.getInstance(String.class);
 </code></pre><ul>
 <li>通过传入<code>String.class</code>便知道T代表String，所以返回的对象是String类型的，避免强制类型转换。当然Class类引入泛型的好处不止这一点，在以后的实际应用中会更加能体会到。</li>
 </ul>
@@ -1889,7 +1913,7 @@ private Map&lt;String , Integer&gt; score;</p>
 </ul>
 </li>
 <li>向上、向下转型?
-<pre><code> class Demo_SuperMan {
+<pre tabindex="0"><code> class Demo_SuperMan {
      public static void main(String[]args){
          Person p=new SuperMan();//父类引用指向子类对象。超人提升为了人
                                  //父类引用指向子类对象，就是向上转型
@@ -1901,23 +1925,23 @@ private Map&lt;String , Integer&gt; score;</p>
          sm.Fly();//飞出去救
      }
  }
-    
+
  class Person{
-     String name=&quot;John&quot;;
+     String name=&#34;John&#34;;
      public void Tsy(){
-         System.out.println(&quot;Tsy&quot;);
+         System.out.println(&#34;Tsy&#34;);
      }
  }
-    
+
  class SuperMan extends Person{
-     String name=&quot;SuperName&quot;;
+     String name=&#34;SuperName&#34;;
      @Override
      public void Tsy(){
-         System.out.println(&quot;子类Tsy&quot;);
+         System.out.println(&#34;子类Tsy&#34;);
      }
-    
+
      public void Fly(){
-         System.out.println(&quot;飞出去救人&quot;);
+         System.out.println(&#34;飞出去救人&#34;);
      }
  }
 </code></pre></li>
@@ -2011,22 +2035,22 @@ private Map&lt;String , Integer&gt; score;</p>
 <li>如何理解值传递和引用传递，以及它们有何区别？
 <ul>
 <li>看下面代码案例
-<pre><code>private void test1(){
+<pre tabindex="0"><code>private void test1(){
     Demo demo = new Demo();
     demo.change(demo.str, demo.ch);
-    Log.d(&quot;yc---&quot;,demo.str);
-    Log.d(&quot;yc---&quot;, Arrays.toString(demo.ch));
+    Log.d(&#34;yc---&#34;,demo.str);
+    Log.d(&#34;yc---&#34;, Arrays.toString(demo.ch));
     //打印值
     //yc---: hello
     //yc---: [c, b]
 }
-      
+
 public class Demo {
-    String str = new String(&quot;hello&quot;);
-    char[] ch = {'a', 'b'};
+    String str = new String(&#34;hello&#34;);
+    char[] ch = {&#39;a&#39;, &#39;b&#39;};
     public void change(String str, char[] ch) {
-        str = &quot;ok&quot;;
-        ch[0] = 'c';
+        str = &#34;ok&#34;;
+        ch[0] = &#39;c&#39;;
     }
 }
 </code></pre></li>
@@ -2080,115 +2104,115 @@ public class Demo {
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IUserDao</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">();</span>
-<span class="o">}</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDao</span> <span class="kd">implements</span> <span class="n">IUserDao</span><span class="o">{</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;保存数据&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDaoProxy</span> <span class="kd">implements</span> <span class="n">IUserDao</span><span class="o">{</span>
-
-    <span class="kd">private</span> <span class="n">IUserDao</span> <span class="n">target</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="nf">UserDaoProxy</span><span class="o">(</span><span class="n">IUserDao</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">;</span>
-    <span class="o">}</span>
-    
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;开启事务&#34;</span><span class="o">);</span><span class="c1">//扩展了额外功能
-</span><span class="c1"></span>        <span class="n">target</span><span class="o">.</span><span class="na">save</span><span class="o">();</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;提交事务&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">StaticUserProxy</span> <span class="o">{</span>
-    <span class="nd">@Test</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testStaticProxy</span><span class="o">(){</span>
-        <span class="c1">//目标对象
-</span><span class="c1"></span>        <span class="n">IUserDao</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserDao</span><span class="o">();</span>
-        <span class="c1">//代理对象
-</span><span class="c1"></span>        <span class="n">UserDaoProxy</span> <span class="n">proxy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserDaoProxy</span><span class="o">(</span><span class="n">target</span><span class="o">);</span>
-        <span class="n">proxy</span><span class="o">.</span><span class="na">save</span><span class="o">();</span><span class="c1">//开启事务、保存数据、提交事务
-</span><span class="c1"></span>    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IUserDao</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDao</span> <span class="kd">implements</span> <span class="n">IUserDao</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;保存数据&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDaoProxy</span> <span class="kd">implements</span> <span class="n">IUserDao</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">IUserDao</span> <span class="n">target</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">UserDaoProxy</span><span class="o">(</span><span class="n">IUserDao</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;开启事务&#34;</span><span class="o">);</span><span class="c1">//扩展了额外功能
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">target</span><span class="o">.</span><span class="na">save</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;提交事务&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StaticUserProxy</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testStaticProxy</span><span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//目标对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">IUserDao</span> <span class="n">target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserDao</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//代理对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">UserDaoProxy</span> <span class="n">proxy</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserDaoProxy</span><span class="o">(</span><span class="n">target</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">proxy</span><span class="o">.</span><span class="na">save</span><span class="o">();</span><span class="c1">//开启事务、保存数据、提交事务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><ul>
 <li>动态代理
 <ul>
 <li>动态代理是在运行时动态生成的，即编译完成后没有实际的class文件，而是在运行时动态生成类字节码，并加载到JVM中</li>
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">动态代理是在运行时动态生成的</span><span class="err">，</span><span class="n">即编译完成后没有实际的class文件</span><span class="err">，</span><span class="n">而是在运行时动态生成类字节码</span><span class="err">，</span><span class="n">并加载到JVM中</span>
-<span class="n">特点</span><span class="err">：</span>
-<span class="n">动态代理对象不需要实现接口</span><span class="err">，</span><span class="n">但是要求目标对象必须实现接口</span><span class="err">，</span><span class="n">否则不能使用动态代理</span><span class="err">。</span>
-
-<span class="n">JDK中生成代理对象主要涉及的类有</span>
-
-<span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">reflect</span> <span class="n">Proxy</span><span class="err">，</span><span class="n">主要方法为</span>
-<span class="kd">static</span> <span class="n">Object</span>    <span class="nf">newProxyInstance</span><span class="o">(</span><span class="n">ClassLoader</span> <span class="n">loader</span><span class="o">,</span>  <span class="c1">//指定当前目标对象使用类加载器
-</span><span class="c1"></span>
- <span class="n">Class</span><span class="o">&lt;?&gt;[]</span> <span class="n">interfaces</span><span class="o">,</span>    <span class="c1">//目标对象实现的接口的类型
-</span><span class="c1"></span> <span class="n">InvocationHandler</span> <span class="n">h</span>      <span class="c1">//事件处理器
-</span><span class="c1"></span><span class="o">)</span> 
-<span class="c1">//返回一个指定接口的代理类实例，该接口可以将方法调用指派到指定的调用处理程序。
-</span><span class="c1"></span><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">reflect</span> <span class="n">InvocationHandler</span><span class="err">，</span><span class="n">主要方法为</span>
- <span class="n">Object</span>    <span class="nf">invoke</span><span class="o">(</span><span class="n">Object</span> <span class="n">proxy</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> 
-<span class="c1">// 在代理实例上处理方法调用并返回结果。
-</span><span class="c1"></span><span class="n">举例</span><span class="err">：</span><span class="n">保存用户功能的动态代理实现</span>
-
-<span class="n">接口类</span><span class="err">：</span> <span class="n">IUserDao</span>
-<span class="kn">package</span> <span class="nn">com.proxy</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IUserDao</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">();</span>
-<span class="o">}</span>
-<span class="n">目标对象</span><span class="err">：</span><span class="n">UserDao</span>
-<span class="kn">package</span> <span class="nn">com.proxy</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDao</span> <span class="kd">implements</span> <span class="n">IUserDao</span><span class="o">{</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;保存数据&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-<span class="n">动态代理对象</span><span class="err">：</span><span class="n">UserProxyFactory</span>
-<span class="kn">package</span> <span class="nn">com.proxy</span><span class="o">;</span>
-
-<span class="kn">import</span> <span class="nn">java.lang.reflect.InvocationHandler</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.lang.reflect.Method</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.lang.reflect.Proxy</span><span class="o">;</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProxyFactory</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="n">Object</span> <span class="n">target</span><span class="o">;</span><span class="c1">// 维护一个目标对象
-</span><span class="c1"></span>
-    <span class="kd">public</span> <span class="nf">ProxyFactory</span><span class="o">(</span><span class="n">Object</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 为目标对象生成代理对象
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">getProxyInstance</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">Proxy</span><span class="o">.</span><span class="na">newProxyInstance</span><span class="o">(</span><span class="n">target</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getClassLoader</span><span class="o">(),</span> <span class="n">target</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getInterfaces</span><span class="o">(),</span>
-                <span class="k">new</span> <span class="n">InvocationHandler</span><span class="o">()</span> <span class="o">{</span>
-
-                    <span class="nd">@Override</span>
-                    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">invoke</span><span class="o">(</span><span class="n">Object</span> <span class="n">proxy</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
-                        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;开启事务&#34;</span><span class="o">);</span>
-
-                        <span class="c1">// 执行目标对象方法
-</span><span class="c1"></span>                        <span class="n">Object</span> <span class="n">returnValue</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
-
-                        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;提交事务&#34;</span><span class="o">);</span>
-                        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-                    <span class="o">}</span>
-                <span class="o">});</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">动态代理是在运行时动态生成的</span><span class="err">，</span><span class="n">即编译完成后没有实际的class文件</span><span class="err">，</span><span class="n">而是在运行时动态生成类字节码</span><span class="err">，</span><span class="n">并加载到JVM中</span>
+</span></span><span class="line"><span class="cl"><span class="n">特点</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl"><span class="n">动态代理对象不需要实现接口</span><span class="err">，</span><span class="n">但是要求目标对象必须实现接口</span><span class="err">，</span><span class="n">否则不能使用动态代理</span><span class="err">。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">JDK中生成代理对象主要涉及的类有</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">reflect</span> <span class="n">Proxy</span><span class="err">，</span><span class="n">主要方法为</span>
+</span></span><span class="line"><span class="cl"><span class="kd">static</span> <span class="n">Object</span>    <span class="nf">newProxyInstance</span><span class="o">(</span><span class="n">ClassLoader</span> <span class="n">loader</span><span class="o">,</span>  <span class="c1">//指定当前目标对象使用类加载器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"> <span class="n">Class</span><span class="o">&lt;?&gt;[]</span> <span class="n">interfaces</span><span class="o">,</span>    <span class="c1">//目标对象实现的接口的类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="n">InvocationHandler</span> <span class="n">h</span>      <span class="c1">//事件处理器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">)</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">//返回一个指定接口的代理类实例，该接口可以将方法调用指派到指定的调用处理程序。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">java</span><span class="o">.</span><span class="na">lang</span><span class="o">.</span><span class="na">reflect</span> <span class="n">InvocationHandler</span><span class="err">，</span><span class="n">主要方法为</span>
+</span></span><span class="line"><span class="cl"> <span class="n">Object</span>    <span class="nf">invoke</span><span class="o">(</span><span class="n">Object</span> <span class="n">proxy</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">// 在代理实例上处理方法调用并返回结果。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">举例</span><span class="err">：</span><span class="n">保存用户功能的动态代理实现</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">接口类</span><span class="err">：</span> <span class="n">IUserDao</span>
+</span></span><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.proxy</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IUserDao</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">目标对象</span><span class="err">：</span><span class="n">UserDao</span>
+</span></span><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.proxy</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserDao</span> <span class="kd">implements</span> <span class="n">IUserDao</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">save</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;保存数据&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">动态代理对象</span><span class="err">：</span><span class="n">UserProxyFactory</span>
+</span></span><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.proxy</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.lang.reflect.InvocationHandler</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.lang.reflect.Method</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.lang.reflect.Proxy</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ProxyFactory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Object</span> <span class="n">target</span><span class="o">;</span><span class="c1">// 维护一个目标对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">ProxyFactory</span><span class="o">(</span><span class="n">Object</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 为目标对象生成代理对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">getProxyInstance</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Proxy</span><span class="o">.</span><span class="na">newProxyInstance</span><span class="o">(</span><span class="n">target</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getClassLoader</span><span class="o">(),</span> <span class="n">target</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getInterfaces</span><span class="o">(),</span>
+</span></span><span class="line"><span class="cl">                <span class="k">new</span> <span class="n">InvocationHandler</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">                    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">invoke</span><span class="o">(</span><span class="n">Object</span> <span class="n">proxy</span><span class="o">,</span> <span class="n">Method</span> <span class="n">method</span><span class="o">,</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Throwable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;开启事务&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                        <span class="c1">// 执行目标对象方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                        <span class="n">Object</span> <span class="n">returnValue</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">target</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;提交事务&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="o">});</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="qjava中方法参数的几种使用情况">
         Q:java中方法参数的几种使用情况?
         <a data-clipboard-text="https://gyzboy.github.io/interview/java/jvm/#qjava中方法参数的几种使用情况" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:java中方法参数的几种使用情况?" href="#qjava%e4%b8%ad%e6%96%b9%e6%b3%95%e5%8f%82%e6%95%b0%e7%9a%84%e5%87%a0%e7%a7%8d%e4%bd%bf%e7%94%a8%e6%83%85%e5%86%b5">
@@ -2268,7 +2292,7 @@ public class Demo {
 
 
 
-<script defer src="/js/en.search.min.d1300fa43c8b3ddb741038e2a85fdfbce3723906b87fd971f6a365b26465b1af.js"></script>
+<script defer src="/js/en.search.min.58ab25ba3337c795b6546571208f19ff74f6f8b69cd0e291e7de44c5c62dda35.js"></script>
 
 
 

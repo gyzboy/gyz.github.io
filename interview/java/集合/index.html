@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="集合">
 
-<title>集合 | 十万个为什么</title>
+<title>集合 | gyz的十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -57,7 +57,7 @@
         <a class="gdoc-header__link" href="https://gyzboy.github.io/">
             <span class="gdoc-brand flex align-center">
                 <img class="gdoc-brand__img" src="/brand.svg" alt="">
-                十万个为什么
+                gyz的十万个为什么
             </span>
         </a>
     </div>
@@ -971,6 +971,30 @@
             
             
                 <span class="flex">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/temp/" class="gdoc-nav__entry ">
+                        Temp
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="gdoc-nav__entry ">
                         二叉树
                     </a>
@@ -1357,7 +1381,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/java/' href='/interview/java/'><span itemprop='name'>Java</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>集合</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>gyz的十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/java/' href='/interview/java/'><span itemprop='name'>Java</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>集合</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1579,80 +1603,80 @@
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h3>
-</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">ArrayList</span><span class="o">(</span><span class="kt">int</span> <span class="n">initialCapacity</span><span class="o">)</span> <span class="o">{</span>
-   <span class="k">if</span> <span class="o">(</span><span class="n">initialCapacity</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-       <span class="k">this</span><span class="o">.</span><span class="na">elementData</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">initialCapacity</span><span class="o">];</span><span class="c1">//transient
-</span><span class="c1"></span>   <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">initialCapacity</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-       <span class="k">this</span><span class="o">.</span><span class="na">elementData</span> <span class="o">=</span> <span class="n">EMPTY_ELEMENTDATA</span><span class="o">;</span>
-   <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-       <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;Illegal Capacity: &#34;</span><span class="o">+</span>
-                                          <span class="n">initialCapacity</span><span class="o">);</span>
-   <span class="o">}</span>
-  <span class="o">}</span>
-
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="n">E</span> <span class="n">element</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&gt;</span> <span class="n">size</span> <span class="o">||</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span>
-      <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="o">(</span><span class="n">outOfBoundsMsg</span><span class="o">(</span><span class="n">index</span><span class="o">));</span>
-
-  <span class="n">ensureCapacityInternal</span><span class="o">(</span><span class="n">size</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>  <span class="c1">// Increments modCount!!,执行扩容操作
-</span><span class="c1"></span>  <span class="n">System</span><span class="o">.</span><span class="na">arraycopy</span><span class="o">(</span><span class="n">elementData</span><span class="o">,</span> <span class="n">index</span><span class="o">,</span> <span class="n">elementData</span><span class="o">,</span> <span class="n">index</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span>
-                       <span class="n">size</span> <span class="o">-</span> <span class="n">index</span><span class="o">);</span>
-  <span class="n">elementData</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">;</span>
-  <span class="n">size</span><span class="o">++;</span>
-  <span class="o">}</span>
-
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">grow</span><span class="o">(</span><span class="kt">int</span> <span class="n">minCapacity</span><span class="o">)</span> <span class="o">{</span>
-  <span class="c1">// overflow-conscious code
-</span><span class="c1"></span>  <span class="kt">int</span> <span class="n">oldCapacity</span> <span class="o">=</span> <span class="n">elementData</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
-  <span class="kt">int</span> <span class="n">newCapacity</span> <span class="o">=</span> <span class="n">oldCapacity</span> <span class="o">+</span> <span class="o">(</span><span class="n">oldCapacity</span> <span class="o">&gt;&gt;</span> <span class="n">1</span><span class="o">);</span><span class="c1">//扩容为原来的1.5倍
-</span><span class="c1"></span>  <span class="k">if</span> <span class="o">(</span><span class="n">newCapacity</span> <span class="o">-</span> <span class="n">minCapacity</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span><span class="c1">//minCapacity = currSize+1
-</span><span class="c1"></span>      <span class="n">newCapacity</span> <span class="o">=</span> <span class="n">minCapacity</span><span class="o">;</span>
-  <span class="k">if</span> <span class="o">(</span><span class="n">newCapacity</span> <span class="o">-</span> <span class="n">MAX_ARRAY_SIZE</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span><span class="c1">//MAX_ARRAY_SIZE=Integer.MAX_VALUE - 8
-</span><span class="c1"></span>      <span class="n">newCapacity</span> <span class="o">=</span> <span class="n">hugeCapacity</span><span class="o">(</span><span class="n">minCapacity</span><span class="o">);</span><span class="c1">//minCapacity&lt;0 抛出oom
-</span><span class="c1"></span>  <span class="c1">// minCapacity is usually close to size, so this is a win:
-</span><span class="c1"></span>  <span class="n">elementData</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">elementData</span><span class="o">,</span> <span class="n">newCapacity</span><span class="o">);</span>
-  <span class="o">}</span>
-
-<span class="kd">public</span> <span class="n">E</span> <span class="nf">remove</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
-      <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">size</span><span class="o">)</span>
-          <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="o">(</span><span class="n">outOfBoundsMsg</span><span class="o">(</span><span class="n">index</span><span class="o">));</span>
-
-      <span class="n">modCount</span><span class="o">++;</span>
-      <span class="n">E</span> <span class="n">oldValue</span> <span class="o">=</span> <span class="o">(</span><span class="n">E</span><span class="o">)</span> <span class="n">elementData</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
-
-      <span class="kt">int</span> <span class="n">numMoved</span> <span class="o">=</span> <span class="n">size</span> <span class="o">-</span> <span class="n">index</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
-      <span class="k">if</span> <span class="o">(</span><span class="n">numMoved</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span>
-          <span class="n">System</span><span class="o">.</span><span class="na">arraycopy</span><span class="o">(</span><span class="n">elementData</span><span class="o">,</span> <span class="n">index</span><span class="o">+</span><span class="n">1</span><span class="o">,</span> <span class="n">elementData</span><span class="o">,</span> <span class="n">index</span><span class="o">,</span>
-                           <span class="n">numMoved</span><span class="o">);</span>
-      <span class="n">elementData</span><span class="o">[--</span><span class="n">size</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// clear to let GC do its work
-</span><span class="c1"></span>
-      <span class="k">return</span> <span class="n">oldValue</span><span class="o">;</span>
-  <span class="o">}</span>
-  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">remove</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
-      <span class="k">if</span> <span class="o">(</span><span class="n">o</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span>
-              <span class="k">if</span> <span class="o">(</span><span class="n">elementData</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                  <span class="n">fastRemove</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
-                  <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-              <span class="o">}</span>
-      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span>
-              <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">elementData</span><span class="o">[</span><span class="n">index</span><span class="o">]))</span> <span class="o">{</span>
-                  <span class="n">fastRemove</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
-                  <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-              <span class="o">}</span>
-      <span class="o">}</span>
-      <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-  <span class="o">}</span>
-
-<span class="c1">// 1.ArrayList 底层实现是基于数组的，因此对指定下标的查找和修改比较快，但是删除和插入操作比较慢。
-</span><span class="c1">// 2.构造 ArrayList 时尽量指定容量，减少扩容时带来的数组复制操作，如果不知道大小可以赋值为默认容量 10。
-</span><span class="c1">// 3.每次添加元素之前会检查是否需要扩容，每次扩容都是增加原有容量的一半。
-</span><span class="c1">// 4.每次对下标的操作都会进行安全性检查，如果出现数组越界就立即抛出异常。
-</span><span class="c1">// 5.ArrayList 的所有方法都没有进行同步，因此它不是线程安全的。
-</span><span class="c1">// 6.扩容机制,扩容到1.5-&gt;扩容到指定大小-&gt;扩容到最大Int
-</span><span class="c1">// 7.删除就是找到元素变更的索引,然后通过System.arraycopy进行数组移动
-</span></code></pre></div></li>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">ArrayList</span><span class="o">(</span><span class="kt">int</span> <span class="n">initialCapacity</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="o">(</span><span class="n">initialCapacity</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">       <span class="k">this</span><span class="o">.</span><span class="na">elementData</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">initialCapacity</span><span class="o">];</span><span class="c1">//transient
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">initialCapacity</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">       <span class="k">this</span><span class="o">.</span><span class="na">elementData</span> <span class="o">=</span> <span class="n">EMPTY_ELEMENTDATA</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">   <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">       <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="o">(</span><span class="s">&#34;Illegal Capacity: &#34;</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">                                          <span class="n">initialCapacity</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">   <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="n">E</span> <span class="n">element</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&gt;</span> <span class="n">size</span> <span class="o">||</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="o">(</span><span class="n">outOfBoundsMsg</span><span class="o">(</span><span class="n">index</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">ensureCapacityInternal</span><span class="o">(</span><span class="n">size</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>  <span class="c1">// Increments modCount!!,执行扩容操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">System</span><span class="o">.</span><span class="na">arraycopy</span><span class="o">(</span><span class="n">elementData</span><span class="o">,</span> <span class="n">index</span><span class="o">,</span> <span class="n">elementData</span><span class="o">,</span> <span class="n">index</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">size</span> <span class="o">-</span> <span class="n">index</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">elementData</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">element</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">size</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">grow</span><span class="o">(</span><span class="kt">int</span> <span class="n">minCapacity</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// overflow-conscious code
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int</span> <span class="n">oldCapacity</span> <span class="o">=</span> <span class="n">elementData</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">newCapacity</span> <span class="o">=</span> <span class="n">oldCapacity</span> <span class="o">+</span> <span class="o">(</span><span class="n">oldCapacity</span> <span class="o">&gt;&gt;</span> <span class="n">1</span><span class="o">);</span><span class="c1">//扩容为原来的1.5倍
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="o">(</span><span class="n">newCapacity</span> <span class="o">-</span> <span class="n">minCapacity</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span><span class="c1">//minCapacity = currSize+1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">newCapacity</span> <span class="o">=</span> <span class="n">minCapacity</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="o">(</span><span class="n">newCapacity</span> <span class="o">-</span> <span class="n">MAX_ARRAY_SIZE</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span><span class="c1">//MAX_ARRAY_SIZE=Integer.MAX_VALUE - 8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">newCapacity</span> <span class="o">=</span> <span class="n">hugeCapacity</span><span class="o">(</span><span class="n">minCapacity</span><span class="o">);</span><span class="c1">//minCapacity&lt;0 抛出oom
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// minCapacity is usually close to size, so this is a win:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">elementData</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">elementData</span><span class="o">,</span> <span class="n">newCapacity</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">E</span> <span class="nf">remove</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="n">size</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">          <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="o">(</span><span class="n">outOfBoundsMsg</span><span class="o">(</span><span class="n">index</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="n">modCount</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">E</span> <span class="n">oldValue</span> <span class="o">=</span> <span class="o">(</span><span class="n">E</span><span class="o">)</span> <span class="n">elementData</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="kt">int</span> <span class="n">numMoved</span> <span class="o">=</span> <span class="n">size</span> <span class="o">-</span> <span class="n">index</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="o">(</span><span class="n">numMoved</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">          <span class="n">System</span><span class="o">.</span><span class="na">arraycopy</span><span class="o">(</span><span class="n">elementData</span><span class="o">,</span> <span class="n">index</span><span class="o">+</span><span class="n">1</span><span class="o">,</span> <span class="n">elementData</span><span class="o">,</span> <span class="n">index</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">numMoved</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">elementData</span><span class="o">[--</span><span class="n">size</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// clear to let GC do its work
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">oldValue</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">remove</span><span class="o">(</span><span class="n">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="o">(</span><span class="n">o</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span>
+</span></span><span class="line"><span class="cl">              <span class="k">if</span> <span class="o">(</span><span class="n">elementData</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">fastRemove</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">              <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span>
+</span></span><span class="line"><span class="cl">              <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">elementData</span><span class="o">[</span><span class="n">index</span><span class="o">]))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">fastRemove</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">              <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 1.ArrayList 底层实现是基于数组的，因此对指定下标的查找和修改比较快，但是删除和插入操作比较慢。
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 2.构造 ArrayList 时尽量指定容量，减少扩容时带来的数组复制操作，如果不知道大小可以赋值为默认容量 10。
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 3.每次添加元素之前会检查是否需要扩容，每次扩容都是增加原有容量的一半。
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 4.每次对下标的操作都会进行安全性检查，如果出现数组越界就立即抛出异常。
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 5.ArrayList 的所有方法都没有进行同步，因此它不是线程安全的。
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 6.扩容机制,扩容到1.5-&gt;扩容到指定大小-&gt;扩容到最大Int
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 7.删除就是找到元素变更的索引,然后通过System.arraycopy进行数组移动
+</span></span></span></code></pre></div></li>
 </ul>
 <div class="gdoc-page__anchorwrap">
     <h2 id="copyonwritearraylist">
@@ -1675,33 +1699,32 @@
 <li>通过锁 + 数组拷贝 + volatile 关键字保证了线程安全；</li>
 <li>每次数组操作，都会把数组拷贝一份出来，在新数组上进行操作，操作成功之后再赋值回去</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">add</span><span class="o">(</span><span class="n">E</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-      <span class="kd">final</span> <span class="n">ReentrantLock</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">lock</span><span class="o">;</span>
-      <span class="c1">//加锁
-</span><span class="c1"></span>      <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
-      <span class="k">try</span> <span class="o">{</span>
-          <span class="c1">// 得到所有的原数组
-</span><span class="c1"></span>          <span class="n">Object</span><span class="o">[]</span> <span class="n">elements</span> <span class="o">=</span> <span class="n">getArray</span><span class="o">();</span>
-          <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">elements</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
-          <span class="c1">//拷贝到新数组里面，新数组的长度是 + 1 的
-</span><span class="c1"></span>          <span class="n">Object</span><span class="o">[]</span> <span class="n">newElements</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">elements</span><span class="o">,</span> <span class="n">len</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
-          <span class="c1">//在新数组中进行赋值，新元素直接放在数组的尾部
-</span><span class="c1"></span>          <span class="n">newElements</span><span class="o">[</span><span class="n">len</span><span class="o">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
-          <span class="c1">//替换原来的数组
-</span><span class="c1"></span>          <span class="n">setArray</span><span class="o">(</span><span class="n">newElements</span><span class="o">);</span>
-          <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-      <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-          <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
-      <span class="o">}</span>
-<span class="o">}</span>
-<span class="c1">// 1、通过可重入互斥锁 ReentrantLock对 add(E) 加锁
-</span><span class="c1">// 2、通过 getArray() 方法得到已经存在的数组
-</span><span class="c1">// 3、实例化一个长度为当前 size + 1 的数组，然后将 getArray 的数组放入新数组中
-</span><span class="c1">// 4、最后将添加的数据存入新数组的最后索引中
-</span><span class="c1">// 5、基于当前类中的 setArray(newElements); 来替换缓存中的数组数据，因为它在类中中被 volatile 修饰了，所以只要内存地址一变，那么就会立马通知，其它 CPU 的缓存让它得到更新。
-</span><span class="c1">// 6、释放可重入互斥锁
-</span><span class="c1"></span>
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">add</span><span class="o">(</span><span class="n">E</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">final</span> <span class="n">ReentrantLock</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">lock</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">//加锁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="n">lock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">// 得到所有的原数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="n">Object</span><span class="o">[]</span> <span class="n">elements</span> <span class="o">=</span> <span class="n">getArray</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">          <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="n">elements</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">//拷贝到新数组里面，新数组的长度是 + 1 的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="n">Object</span><span class="o">[]</span> <span class="n">newElements</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">elements</span><span class="o">,</span> <span class="n">len</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">//在新数组中进行赋值，新元素直接放在数组的尾部
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="n">newElements</span><span class="o">[</span><span class="n">len</span><span class="o">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">          <span class="c1">//替换原来的数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>          <span class="n">setArray</span><span class="o">(</span><span class="n">newElements</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">          <span class="n">lock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">      <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 1、通过可重入互斥锁 ReentrantLock对 add(E) 加锁
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 2、通过 getArray() 方法得到已经存在的数组
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 3、实例化一个长度为当前 size + 1 的数组，然后将 getArray 的数组放入新数组中
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 4、最后将添加的数据存入新数组的最后索引中
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 5、基于当前类中的 setArray(newElements); 来替换缓存中的数组数据，因为它在类中中被 volatile 修饰了，所以只要内存地址一变，那么就会立马通知，其它 CPU 的缓存让它得到更新。
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 6、释放可重入互斥锁
+</span></span></span></code></pre></div></li>
 <li>
 <div class="gdoc-page__anchorwrap">
     <h3 id="qcopyonwritearraylist中已经有互斥锁了为什么还需要copy数据">
@@ -1875,18 +1898,18 @@ ArrayMap 底层通过两个数组来建立映射关系，其中 int[] mHashes �
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//HashMap.HashMapEntry
-</span><span class="c1"></span><span class="kd">final</span> <span class="n">K</span> <span class="n">key</span><span class="o">;</span>
-<span class="n">V</span> <span class="n">value</span><span class="o">;</span>
-<span class="n">HashMapEntry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">next</span><span class="o">;</span>
-<span class="kt">int</span> <span class="n">hash</span><span class="o">;</span>
-
-<span class="c1">//ConcurrentHashMap.Node
-</span><span class="c1"></span><span class="kd">final</span> <span class="n">K</span> <span class="n">key</span><span class="o">;</span>
-<span class="kd">volatile</span> <span class="n">V</span> <span class="n">val</span><span class="o">;</span>
-<span class="kd">volatile</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">next</span><span class="o">;</span>
-<span class="kd">final</span> <span class="kt">int</span> <span class="n">hash</span><span class="o">;</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//HashMap.HashMapEntry
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">final</span> <span class="n">K</span> <span class="n">key</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">V</span> <span class="n">value</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">HashMapEntry</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">hash</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//ConcurrentHashMap.Node
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">final</span> <span class="n">K</span> <span class="n">key</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">volatile</span> <span class="n">V</span> <span class="n">val</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">volatile</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">final</span> <span class="kt">int</span> <span class="n">hash</span><span class="o">;</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="q什么是fail-fast机制">
         Q:什么是Fail-Fast机制?
         <a data-clipboard-text="https://gyzboy.github.io/interview/java/%E9%9B%86%E5%90%88/#q什么是fail-fast机制" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:什么是Fail-Fast机制?" href="#q%e4%bb%80%e4%b9%88%e6%98%affail-fast%e6%9c%ba%e5%88%b6">
@@ -1953,7 +1976,7 @@ Collections.rotate():旋转算法,将list中的元素形成一个环,顺时针�
 
 
 
-<script defer src="/js/en.search.min.d1300fa43c8b3ddb741038e2a85fdfbce3723906b87fd971f6a365b26465b1af.js"></script>
+<script defer src="/js/en.search.min.58ab25ba3337c795b6546571208f19ff74f6f8b69cd0e291e7de44c5c62dda35.js"></script>
 
 
 

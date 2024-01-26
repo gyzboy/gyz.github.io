@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="消息通信">
 
-<title>消息通信 | 十万个为什么</title>
+<title>消息通信 | gyz的十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -57,7 +57,7 @@
         <a class="gdoc-header__link" href="https://gyzboy.github.io/">
             <span class="gdoc-brand flex align-center">
                 <img class="gdoc-brand__img" src="/brand.svg" alt="">
-                十万个为什么
+                gyz的十万个为什么
             </span>
         </a>
     </div>
@@ -971,6 +971,30 @@
             
             
                 <span class="flex">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/temp/" class="gdoc-nav__entry ">
+                        Temp
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="gdoc-nav__entry ">
                         二叉树
                     </a>
@@ -1357,7 +1381,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>消息通信</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>gyz的十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>消息通信</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1585,11 +1609,11 @@ Binder线程创建与其所在进程的创建中产生,默认地，每个进程�
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//作用是清空远程调用端的uid和pid，用当前本地进程的uid和pid替代；返回值是远程调用端的uid和pid
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">native</span> <span class="kt">long</span> <span class="nf">clearCallingIdentity</span><span class="o">();</span>
-<span class="c1">//作用是恢复远程调用端的uid和pid信息，正好是`clearCallingIdentity`的反过程;
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">restoreCallingIdentity</span><span class="o">(</span><span class="kt">long</span> <span class="n">token</span><span class="o">);</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//作用是清空远程调用端的uid和pid，用当前本地进程的uid和pid替代；返回值是远程调用端的uid和pid
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">native</span> <span class="kt">long</span> <span class="nf">clearCallingIdentity</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//作用是恢复远程调用端的uid和pid信息，正好是`clearCallingIdentity`的反过程;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kd">native</span> <span class="kt">void</span> <span class="nf">restoreCallingIdentity</span><span class="o">(</span><span class="kt">long</span> <span class="n">token</span><span class="o">);</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="q什么情况下会触发binder的linktodeath如何触发">
         Q:什么情况下会触发Binder的linkToDeath?如何触发?
         <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B6%88%E6%81%AF%E9%80%9A%E4%BF%A1/#q什么情况下会触发binder的linktodeath如何触发" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:什么情况下会触发Binder的linkToDeath?如何触发?" href="#q%e4%bb%80%e4%b9%88%e6%83%85%e5%86%b5%e4%b8%8b%e4%bc%9a%e8%a7%a6%e5%8f%91binder%e7%9a%84linktodeath%e5%a6%82%e4%bd%95%e8%a7%a6%e5%8f%91">
@@ -1597,83 +1621,83 @@ Binder线程创建与其所在进程的创建中产生,默认地，每个进程�
         </a>
     </h2>
 </div><p>当服务端发生错误,比如进程终止时,就会抛出death异常</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//ITest.aidl
-</span><span class="c1"></span><span class="kd">interface</span> <span class="nc">ITest</span><span class="o">{</span>
-    <span class="kt">void</span> <span class="nf">test</span><span class="o">();</span>
-<span class="o">}</span>
-<span class="c1">//TestServers.java
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestService</span> <span class="kd">extends</span> <span class="n">Service</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">&#34;gyzboy&#34;</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">Binder</span> <span class="n">mBinder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ITest</span><span class="o">.</span><span class="na">Stub</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">RemoteException</span> <span class="o">{</span>
-            <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;server&#34;</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">};</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">IBinder</span> <span class="nf">onBind</span><span class="o">(</span><span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;onBind&#34;</span><span class="o">);</span>
-        <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
-            <span class="nd">@Override</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-                <span class="k">try</span> <span class="o">{</span>
-                    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">10000</span><span class="o">);</span>
-                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-                    <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span><span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-                <span class="o">}</span>
-                <span class="c1">//结束自己
-</span><span class="c1"></span>                <span class="n">android</span><span class="o">.</span><span class="na">os</span><span class="o">.</span><span class="na">Process</span><span class="o">.</span><span class="na">killProcess</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">os</span><span class="o">.</span><span class="na">Process</span><span class="o">.</span><span class="na">myPid</span><span class="o">());</span>
-            <span class="o">}</span>
-        <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
-        <span class="k">return</span> <span class="n">mBinder</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-<span class="c1">//客户端
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">Activity</span> <span class="o">{</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">&#34;frank&#34;</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="n">ServiceConnection</span> <span class="n">mCon</span><span class="o">;</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
-        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
-        <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">();</span>
-        <span class="n">intent</span><span class="o">.</span><span class="na">setComponent</span><span class="o">(</span><span class="k">new</span> <span class="n">ComponentName</span><span class="o">(</span><span class="s">&#34;com.gyzboy.deathrecipientdemo&#34;</span><span class="o">,</span><span class="s">&#34;com.gyzboy.deathrecipientdemo.TestService&#34;</span><span class="o">));</span>
-        <span class="n">intent</span><span class="o">.</span><span class="na">setAction</span><span class="o">(</span><span class="s">&#34;com.gyzboy.test&#34;</span><span class="o">);</span>
-        <span class="kd">final</span> <span class="n">DeathRecipient</span> <span class="n">deathHandle</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DeathRecipient</span><span class="o">()</span> <span class="o">{</span>
-            <span class="nd">@Override</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">binderDied</span><span class="o">()</span> <span class="o">{</span>
-                <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;binder is died&#34;</span><span class="o">);</span><span class="c1">//当服务端sleep后执行
-</span><span class="c1"></span>            <span class="o">}</span>
-        <span class="o">};</span>
-        <span class="n">mCon</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServiceConnection</span><span class="o">()</span> <span class="o">{</span>
-            <span class="nd">@Override</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onServiceDisconnected</span><span class="o">(</span><span class="n">ComponentName</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;onServiceDisconnected &#34;</span><span class="o">+</span><span class="n">name</span><span class="o">.</span><span class="na">toShortString</span><span class="o">());</span>
-            <span class="o">}</span>
-            <span class="nd">@Override</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onServiceConnected</span><span class="o">(</span><span class="n">ComponentName</span> <span class="n">name</span><span class="o">,</span> <span class="n">IBinder</span> <span class="n">service</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">try</span> <span class="o">{</span>
-                    <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;onServiceConnected &#34;</span><span class="o">+</span><span class="n">name</span><span class="o">.</span><span class="na">toShortString</span><span class="o">()+</span><span class="s">&#34;  &#34;</span><span class="o">+</span><span class="n">service</span><span class="o">.</span><span class="na">getInterfaceDescriptor</span><span class="o">());</span>
-                    <span class="n">service</span><span class="o">.</span><span class="na">linkToDeath</span><span class="o">(</span><span class="n">deathHandle</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span><span class="c1">//绑定deathHandle,当服务端停止时接收消息
-</span><span class="c1"></span>                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">RemoteException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">};</span>
-        <span class="n">bindService</span><span class="o">(</span><span class="n">intent</span><span class="o">,</span><span class="n">mCon</span><span class="o">,</span><span class="n">Context</span><span class="o">.</span><span class="na">BIND_AUTO_CREATE</span><span class="o">);</span>
-    <span class="o">}</span>
-
-
-    <span class="nd">@Override</span>
-    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onDestroy</span><span class="o">()</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">.</span><span class="na">onDestroy</span><span class="o">();</span>
-        <span class="n">unbindService</span><span class="o">(</span><span class="n">mCon</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//ITest.aidl
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">interface</span> <span class="nc">ITest</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">test</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//TestServers.java
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestService</span> <span class="kd">extends</span> <span class="n">Service</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">&#34;gyzboy&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Binder</span> <span class="n">mBinder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ITest</span><span class="o">.</span><span class="na">Stub</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">test</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">RemoteException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;server&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">};</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">IBinder</span> <span class="nf">onBind</span><span class="o">(</span><span class="n">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;onBind&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">10000</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span><span class="n">e</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">//结束自己
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">android</span><span class="o">.</span><span class="na">os</span><span class="o">.</span><span class="na">Process</span><span class="o">.</span><span class="na">killProcess</span><span class="o">(</span><span class="n">android</span><span class="o">.</span><span class="na">os</span><span class="o">.</span><span class="na">Process</span><span class="o">.</span><span class="na">myPid</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">mBinder</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//客户端
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="n">Activity</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TAG</span> <span class="o">=</span> <span class="s">&#34;frank&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">ServiceConnection</span> <span class="n">mCon</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="n">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">setContentView</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Intent</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">intent</span><span class="o">.</span><span class="na">setComponent</span><span class="o">(</span><span class="k">new</span> <span class="n">ComponentName</span><span class="o">(</span><span class="s">&#34;com.gyzboy.deathrecipientdemo&#34;</span><span class="o">,</span><span class="s">&#34;com.gyzboy.deathrecipientdemo.TestService&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">intent</span><span class="o">.</span><span class="na">setAction</span><span class="o">(</span><span class="s">&#34;com.gyzboy.test&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">final</span> <span class="n">DeathRecipient</span> <span class="n">deathHandle</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DeathRecipient</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">binderDied</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;binder is died&#34;</span><span class="o">);</span><span class="c1">//当服务端sleep后执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mCon</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServiceConnection</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onServiceDisconnected</span><span class="o">(</span><span class="n">ComponentName</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;onServiceDisconnected &#34;</span><span class="o">+</span><span class="n">name</span><span class="o">.</span><span class="na">toShortString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onServiceConnected</span><span class="o">(</span><span class="n">ComponentName</span> <span class="n">name</span><span class="o">,</span> <span class="n">IBinder</span> <span class="n">service</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">&#34;onServiceConnected &#34;</span><span class="o">+</span><span class="n">name</span><span class="o">.</span><span class="na">toShortString</span><span class="o">()+</span><span class="s">&#34;  &#34;</span><span class="o">+</span><span class="n">service</span><span class="o">.</span><span class="na">getInterfaceDescriptor</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">service</span><span class="o">.</span><span class="na">linkToDeath</span><span class="o">(</span><span class="n">deathHandle</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span><span class="c1">//绑定deathHandle,当服务端停止时接收消息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">RemoteException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bindService</span><span class="o">(</span><span class="n">intent</span><span class="o">,</span><span class="n">mCon</span><span class="o">,</span><span class="n">Context</span><span class="o">.</span><span class="na">BIND_AUTO_CREATE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onDestroy</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">.</span><span class="na">onDestroy</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">unbindService</span><span class="o">(</span><span class="n">mCon</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="qandroid中哪些ipc用到了socket为什么">
         Q:Android中哪些IPC用到了Socket,为什么?
         <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B6%88%E6%81%AF%E9%80%9A%E4%BF%A1/#qandroid中哪些ipc用到了socket为什么" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:Android中哪些IPC用到了Socket,为什么?" href="#qandroid%e4%b8%ad%e5%93%aa%e4%ba%9bipc%e7%94%a8%e5%88%b0%e4%ba%86socket%e4%b8%ba%e4%bb%80%e4%b9%88">
@@ -1717,35 +1741,35 @@ Binder线程创建与其所在进程的创建中产生,默认地，每个进程�
         </a>
     </h2>
 </div><p>不可以,在Looper.prepare中会创建MessageQueue对象,一个线程只能有一个MessageQueue队列</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">prepare</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">quitAllowed</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">sThreadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;Only one Looper may be created per thread&#34;</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="n">sThreadLocal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="k">new</span> <span class="n">Looper</span><span class="o">(</span><span class="n">quitAllowed</span><span class="o">));</span>
-    <span class="o">}</span>
-
-<span class="kd">private</span> <span class="nf">Looper</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">quitAllowed</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mQueue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MessageQueue</span><span class="o">(</span><span class="n">quitAllowed</span><span class="o">);</span>
-        <span class="n">mThread</span> <span class="o">=</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">();</span>
-    <span class="o">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">prepare</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">quitAllowed</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">sThreadLocal</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;Only one Looper may be created per thread&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sThreadLocal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="k">new</span> <span class="n">Looper</span><span class="o">(</span><span class="n">quitAllowed</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="nf">Looper</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">quitAllowed</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mQueue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MessageQueue</span><span class="o">(</span><span class="n">quitAllowed</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mThread</span> <span class="o">=</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="qhandler中消息分发顺序">
         Q:Handler中消息分发顺序?
         <a data-clipboard-text="https://gyzboy.github.io/interview/android/%E6%B6%88%E6%81%AF%E9%80%9A%E4%BF%A1/#qhandler中消息分发顺序" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:Handler中消息分发顺序?" href="#qhandler%e4%b8%ad%e6%b6%88%e6%81%af%e5%88%86%e5%8f%91%e9%a1%ba%e5%ba%8f">
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">   <span class="k">if</span> <span class="o">(</span><span class="n">msg</span><span class="o">.</span><span class="na">callback</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span><span class="c1">//post消息是会自动绑定msg.callback=runnable
-</span><span class="c1"></span>            <span class="n">handleCallback</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">mCallback</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">mCallback</span><span class="o">.</span><span class="na">handleMessage</span><span class="o">(</span><span class="n">msg</span><span class="o">))</span> <span class="o">{</span>
-                    <span class="k">return</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-            <span class="n">handleMessage</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
-        <span class="o">}</span>
-</code></pre></div><p>Message.callback.run &gt; handler.callback.handleMessage &gt; handleMessage</p>
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">   <span class="k">if</span> <span class="o">(</span><span class="n">msg</span><span class="o">.</span><span class="na">callback</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span><span class="c1">//post消息是会自动绑定msg.callback=runnable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">handleCallback</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">mCallback</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="o">(</span><span class="n">mCallback</span><span class="o">.</span><span class="na">handleMessage</span><span class="o">(</span><span class="n">msg</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">handleMessage</span><span class="o">(</span><span class="n">msg</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span></code></pre></div><p>Message.callback.run &gt; handler.callback.handleMessage &gt; handleMessage</p>
 <div class="gdoc-page__anchorwrap">
     <h2 id="qhandle中有几种消息类型">
         Q:Handle中有几种消息类型?
@@ -1852,7 +1876,7 @@ Binder线程创建与其所在进程的创建中产生,默认地，每个进程�
 
 
 
-<script defer src="/js/en.search.min.d1300fa43c8b3ddb741038e2a85fdfbce3723906b87fd971f6a365b26465b1af.js"></script>
+<script defer src="/js/en.search.min.58ab25ba3337c795b6546571208f19ff74f6f8b69cd0e291e7de44c5c62dda35.js"></script>
 
 
 

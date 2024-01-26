@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="RecyclerView">
 
-<title>RecyclerView | 十万个为什么</title>
+<title>RecyclerView | gyz的十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -57,7 +57,7 @@
         <a class="gdoc-header__link" href="https://gyzboy.github.io/">
             <span class="gdoc-brand flex align-center">
                 <img class="gdoc-brand__img" src="/brand.svg" alt="">
-                十万个为什么
+                gyz的十万个为什么
             </span>
         </a>
     </div>
@@ -971,6 +971,30 @@
             
             
                 <span class="flex">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/temp/" class="gdoc-nav__entry ">
+                        Temp
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="gdoc-nav__entry ">
                         二叉树
                     </a>
@@ -1357,7 +1381,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>RecyclerView</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>gyz的十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>RecyclerView</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1409,29 +1433,29 @@
             <svg class="icon gdoc_link"><use xlink:href="#gdoc_link"></use></svg>
         </a>
     </h2>
-</div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">RecyclerView</span><span class="o">.</span><span class="na">onLayout</span><span class="o">(...)</span>
-<span class="c1">//布局放置
-</span><span class="c1"></span><span class="o">-&gt;</span><span class="n">RecyclerView</span><span class="o">.</span><span class="na">dispatchLayout</span><span class="o">()</span>
-  <span class="c1">//dispatchLayoutStep1方法等同于pre layout,预布局阶段,记录ViewHolder位置信息；;
-</span><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">RecyclerView</span><span class="o">.</span><span class="na">dispatchLayoutStep1</span><span class="o">()</span>
-  <span class="c1">///dispatchLayoutStep2方法处理真正布局的地方
-</span><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">RecyclerView</span><span class="o">.</span><span class="na">dispatchLayoutStep2</span><span class="o">()</span>
-  <span class="c1">//开启动画阶段
-</span><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">RecyclerView</span><span class="o">.</span><span class="na">dispatchLayoutStep3</span><span class="o">()</span>
-
-<span class="o">-&gt;</span><span class="n">RecyclerView</span><span class="o">.</span><span class="na">dispatchLayoutStepX</span><span class="o">()</span>
-  <span class="c1">//mLayout是LayoutManager的实例\
-</span><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">mLayout</span><span class="o">.</span><span class="na">onLayoutChildren</span><span class="o">(</span><span class="n">mRecycler</span><span class="o">,</span> <span class="n">mState</span><span class="o">);</span><span class="err">\</span>
-  <span class="c1">//此处查看LinearLayoutManager.fill() 注释：填充给定Layout\
-</span><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">LinearLayoutManager</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">recycler</span><span class="o">,</span> <span class="n">mLayoutState</span><span class="o">,</span> <span class="n">state</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span><span class="err">\</span>
-  <span class="c1">//循环调用，每次返回一个\
-</span><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">LinearLayoutManager</span><span class="o">.</span><span class="na">layoutChunk</span><span class="o">(</span><span class="n">recycler</span><span class="o">,</span> <span class="n">layoutState</span><span class="o">)</span> <span class="err">\</span>
-  <span class="o">-&gt;</span><span class="n">LinearLayoutManager</span><span class="o">.</span><span class="na">LayoutState</span><span class="o">.</span><span class="na">next</span><span class="o">()</span><span class="err">\</span>
-  <span class="c1">//通过 Recycler 获取指定位置的 ItemView\
-</span><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">RecyclerView</span><span class="o">.</span><span class="na">recycler</span><span class="o">.</span><span class="na">getViewForPosition</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">)</span><span class="err">\</span>
-  <span class="c1">//获取ViewHolder 返回ViewHolder中的ItemView,在这里决定是onCreateView还是bindView\
-</span><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">RecyclerView</span><span class="o">.</span><span class="na">tryGetViewHolderForPositionByDeadline</span><span class="o">(***)</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+</div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">RecyclerView</span><span class="o">.</span><span class="na">onLayout</span><span class="o">(...)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//布局放置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">-&gt;</span><span class="n">RecyclerView</span><span class="o">.</span><span class="na">dispatchLayout</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//dispatchLayoutStep1方法等同于pre layout,预布局阶段,记录ViewHolder位置信息；;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">RecyclerView</span><span class="o">.</span><span class="na">dispatchLayoutStep1</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">///dispatchLayoutStep2方法处理真正布局的地方
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">RecyclerView</span><span class="o">.</span><span class="na">dispatchLayoutStep2</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//开启动画阶段
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">RecyclerView</span><span class="o">.</span><span class="na">dispatchLayoutStep3</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">-&gt;</span><span class="n">RecyclerView</span><span class="o">.</span><span class="na">dispatchLayoutStepX</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//mLayout是LayoutManager的实例\
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">mLayout</span><span class="o">.</span><span class="na">onLayoutChildren</span><span class="o">(</span><span class="n">mRecycler</span><span class="o">,</span> <span class="n">mState</span><span class="o">);</span><span class="err">\</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//此处查看LinearLayoutManager.fill() 注释：填充给定Layout\
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">LinearLayoutManager</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">recycler</span><span class="o">,</span> <span class="n">mLayoutState</span><span class="o">,</span> <span class="n">state</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span><span class="err">\</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//循环调用，每次返回一个\
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">LinearLayoutManager</span><span class="o">.</span><span class="na">layoutChunk</span><span class="o">(</span><span class="n">recycler</span><span class="o">,</span> <span class="n">layoutState</span><span class="o">)</span> <span class="err">\</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-&gt;</span><span class="n">LinearLayoutManager</span><span class="o">.</span><span class="na">LayoutState</span><span class="o">.</span><span class="na">next</span><span class="o">()</span><span class="err">\</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//通过 Recycler 获取指定位置的 ItemView\
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">RecyclerView</span><span class="o">.</span><span class="na">recycler</span><span class="o">.</span><span class="na">getViewForPosition</span><span class="o">(</span><span class="kt">int</span> <span class="n">position</span><span class="o">)</span><span class="err">\</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//获取ViewHolder 返回ViewHolder中的ItemView,在这里决定是onCreateView还是bindView\
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="o">-&gt;</span><span class="n">RecyclerView</span><span class="o">.</span><span class="na">tryGetViewHolderForPositionByDeadline</span><span class="o">(***)</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="qrecyclerview中是如何获取viewholder的有哪些步骤流程">
         Q:RecyclerView中是如何获取ViewHolder的？有哪些步骤流程?
         <a data-clipboard-text="https://gyzboy.github.io/interview/android/recyclerview/#qrecyclerview中是如何获取viewholder的有哪些步骤流程" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor Q:RecyclerView中是如何获取ViewHolder的？有哪些步骤流程?" href="#qrecyclerview%e4%b8%ad%e6%98%af%e5%a6%82%e4%bd%95%e8%8e%b7%e5%8f%96viewholder%e7%9a%84%e6%9c%89%e5%93%aa%e4%ba%9b%e6%ad%a5%e9%aa%a4%e6%b5%81%e7%a8%8b">
@@ -1661,7 +1685,7 @@ mCachedViews是 ArrayList ，默认存储最多2个 ViewHolder ，当它放不�
 
 
 
-<script defer src="/js/en.search.min.d1300fa43c8b3ddb741038e2a85fdfbce3723906b87fd971f6a365b26465b1af.js"></script>
+<script defer src="/js/en.search.min.58ab25ba3337c795b6546571208f19ff74f6f8b69cd0e291e7de44c5c62dda35.js"></script>
 
 
 

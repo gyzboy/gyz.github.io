@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="二叉树">
 
-<title>二叉树 | 十万个为什么</title>
+<title>二叉树 | gyz的十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -57,7 +57,7 @@
         <a class="gdoc-header__link" href="https://gyzboy.github.io/">
             <span class="gdoc-brand flex align-center">
                 <img class="gdoc-brand__img" src="/brand.svg" alt="">
-                十万个为什么
+                gyz的十万个为什么
             </span>
         </a>
     </div>
@@ -971,6 +971,30 @@
             
             
                 <span class="flex">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/temp/" class="gdoc-nav__entry ">
+                        Temp
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="gdoc-nav__entry is-active">
                         二叉树
                     </a>
@@ -1357,7 +1381,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/%E7%AE%97%E6%B3%95/' href='/interview/%E7%AE%97%E6%B3%95/'><span itemprop='name'>算法</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>二叉树</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>gyz的十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/%E7%AE%97%E6%B3%95/' href='/interview/%E7%AE%97%E6%B3%95/'><span itemprop='name'>算法</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>二叉树</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1441,20 +1465,20 @@
 <li>递归</li>
 </ul>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">dfs</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">p</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">q</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span><span class="c1">//定义出口
-</span><span class="c1"></span>    <span class="kt">boolean</span> <span class="n">lson</span> <span class="o">=</span> <span class="n">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">p</span><span class="o">,</span> <span class="n">q</span><span class="o">);</span>
-    <span class="kt">boolean</span> <span class="n">rson</span> <span class="o">=</span> <span class="n">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">p</span><span class="o">,</span> <span class="n">q</span><span class="o">);</span>
-    <span class="k">if</span> <span class="o">((</span><span class="n">lson</span> <span class="o">&amp;&amp;</span> <span class="n">rson</span><span class="o">)</span> <span class="o">||</span> <span class="o">((</span><span class="n">root</span><span class="o">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">p</span><span class="o">.</span><span class="na">val</span> <span class="o">||</span> <span class="n">root</span><span class="o">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">q</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">lson</span> <span class="o">||</span> <span class="n">rson</span><span class="o">)))</span> <span class="o">{</span>
-        <span class="n">ans</span> <span class="o">=</span> <span class="n">root</span><span class="o">;</span>
-    <span class="o">}</span> 
-    <span class="k">return</span> <span class="n">lson</span> <span class="o">||</span> <span class="n">rson</span> <span class="o">||</span> <span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">p</span><span class="o">.</span><span class="na">val</span> <span class="o">||</span> <span class="n">root</span><span class="o">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">q</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
-<span class="o">}</span>
-<span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">lowestCommonAncestor</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">p</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">q</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">p</span><span class="o">,</span> <span class="n">q</span><span class="o">);</span>
-    <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">ans</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">dfs</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">p</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">q</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span><span class="c1">//定义出口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">boolean</span> <span class="n">lson</span> <span class="o">=</span> <span class="n">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">p</span><span class="o">,</span> <span class="n">q</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="n">rson</span> <span class="o">=</span> <span class="n">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">p</span><span class="o">,</span> <span class="n">q</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">((</span><span class="n">lson</span> <span class="o">&amp;&amp;</span> <span class="n">rson</span><span class="o">)</span> <span class="o">||</span> <span class="o">((</span><span class="n">root</span><span class="o">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">p</span><span class="o">.</span><span class="na">val</span> <span class="o">||</span> <span class="n">root</span><span class="o">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">q</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">lson</span> <span class="o">||</span> <span class="n">rson</span><span class="o">)))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ans</span> <span class="o">=</span> <span class="n">root</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">lson</span> <span class="o">||</span> <span class="n">rson</span> <span class="o">||</span> <span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">p</span><span class="o">.</span><span class="na">val</span> <span class="o">||</span> <span class="n">root</span><span class="o">.</span><span class="na">val</span> <span class="o">==</span> <span class="n">q</span><span class="o">.</span><span class="na">val</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">lowestCommonAncestor</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">p</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">q</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">p</span><span class="o">,</span> <span class="n">q</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">ans</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="二叉树的最小深度">
         二叉树的最小深度
         <a data-clipboard-text="https://gyzboy.github.io/interview/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/#二叉树的最小深度" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 二叉树的最小深度" href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%9c%80%e5%b0%8f%e6%b7%b1%e5%ba%a6">
@@ -1477,23 +1501,23 @@
 <li>递归</li>
 </ul>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">minDepth</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">0</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">root</span><span class="o">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">1</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="kt">int</span> <span class="n">min_depth</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">left</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">min_depth</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">minDepth</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">left</span><span class="o">),</span> <span class="n">min_depth</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">min_depth</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">minDepth</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">right</span><span class="o">),</span> <span class="n">min_depth</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">min_depth</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">minDepth</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">root</span><span class="o">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">min_depth</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">left</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">min_depth</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">minDepth</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">left</span><span class="o">),</span> <span class="n">min_depth</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">min_depth</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">minDepth</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">right</span><span class="o">),</span> <span class="n">min_depth</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">min_depth</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div>
 
     </article>
 
@@ -1541,7 +1565,7 @@
 
 
 
-<script defer src="/js/en.search.min.d1300fa43c8b3ddb741038e2a85fdfbce3723906b87fd971f6a365b26465b1af.js"></script>
+<script defer src="/js/en.search.min.58ab25ba3337c795b6546571208f19ff74f6f8b69cd0e291e7de44c5c62dda35.js"></script>
 
 
 

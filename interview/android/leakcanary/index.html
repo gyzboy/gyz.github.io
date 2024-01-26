@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="LeakCanary">
 
-<title>LeakCanary | 十万个为什么</title>
+<title>LeakCanary | gyz的十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -57,7 +57,7 @@
         <a class="gdoc-header__link" href="https://gyzboy.github.io/">
             <span class="gdoc-brand flex align-center">
                 <img class="gdoc-brand__img" src="/brand.svg" alt="">
-                十万个为什么
+                gyz的十万个为什么
             </span>
         </a>
     </div>
@@ -971,6 +971,30 @@
             
             
                 <span class="flex">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/temp/" class="gdoc-nav__entry ">
+                        Temp
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="gdoc-nav__entry ">
                         二叉树
                     </a>
@@ -1357,7 +1381,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>LeakCanary</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>gyz的十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>LeakCanary</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1453,11 +1477,11 @@
 在创建虚引用实例时，可以传入一个引用队列（ReferenceQueue）将该软引用与引用队列关联，这样当软引用所引用的对象被垃圾回收器回收前，Jvm虚拟机就会把这个软引用加入到与之关联的引用队列中</li>
 </ul>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">&#34;abc&#34;</span><span class="o">);</span>
-<span class="n">ReferenceQueue</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReferenceQueue</span><span class="o">();</span>
-<span class="c1">// 创建虚引用，要求必须与一个引用队列关联
-</span><span class="c1"></span><span class="n">PhantomReference</span> <span class="n">pr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PhantomReference</span><span class="o">(</span><span class="n">str</span><span class="o">,</span> <span class="n">queue</span><span class="o">);</span>
-</code></pre></div><div class="gdoc-page__anchorwrap">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">&#34;abc&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ReferenceQueue</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ReferenceQueue</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 创建虚引用，要求必须与一个引用队列关联
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">PhantomReference</span> <span class="n">pr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PhantomReference</span><span class="o">(</span><span class="n">str</span><span class="o">,</span> <span class="n">queue</span><span class="o">);</span>
+</span></span></code></pre></div><div class="gdoc-page__anchorwrap">
     <h2 id="如何通过引用队列判断是否发生内存泄漏">
         如何通过引用队列判断是否发生内存泄漏?
         <a data-clipboard-text="https://gyzboy.github.io/interview/android/leakcanary/#如何通过引用队列判断是否发生内存泄漏" class="gdoc-page__anchor gdoc-page__anchor--right clip" aria-label="Anchor 如何通过引用队列判断是否发生内存泄漏?" href="#%e5%a6%82%e4%bd%95%e9%80%9a%e8%bf%87%e5%bc%95%e7%94%a8%e9%98%9f%e5%88%97%e5%88%a4%e6%96%ad%e6%98%af%e5%90%a6%e5%8f%91%e7%94%9f%e5%86%85%e5%ad%98%e6%b3%84%e6%bc%8f">
@@ -1527,7 +1551,7 @@
 
 
 
-<script defer src="/js/en.search.min.d1300fa43c8b3ddb741038e2a85fdfbce3723906b87fd971f6a365b26465b1af.js"></script>
+<script defer src="/js/en.search.min.58ab25ba3337c795b6546571208f19ff74f6f8b69cd0e291e7de44c5c62dda35.js"></script>
 
 
 

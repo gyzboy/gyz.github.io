@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>JS on 十万个为什么</title>
+    <title>JS on gyz的十万个为什么</title>
     <link>https://gyzboy.github.io/interview/js/</link>
-    <description>Recent content in JS on 十万个为什么</description>
+    <description>Recent content in JS on gyz的十万个为什么</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 13 Apr 2021 16:12:16 +0800</lastBuildDate><atom:link href="https://gyzboy.github.io/interview/js/index.xml" rel="self" type="application/rss+xml" />
@@ -13,12 +13,12 @@
       <pubDate>Tue, 13 Apr 2021 16:12:16 +0800</pubDate>
       
       <guid>https://gyzboy.github.io/interview/js/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
-      <description>Q:JS引擎线程的执行过程的三个阶段?  语法分析 预编译阶段 执行阶段   Q:变量提升的原因? Q:什么是闭包？ Q:什么是解构赋值? Q:yield关键字? Q:Promise函数? Q:Call&amp;amp;Apply方法 Q:await和async调用? Q:箭头函数   Q:JS引擎线程的执行过程的三个阶段?    语法分析    预编译阶段     js的运行环境
+      <description>Q:JS引擎线程的执行过程的三个阶段? 语法分析 预编译阶段 执行阶段 Q:变量提升的原因? Q:什么是闭包？ Q:什么是解构赋值? Q:yield关键字? Q:Promise函数? Q:Call&amp;amp;Apply方法 Q:await和async调用? Q:箭头函数 Q:JS引擎线程的执行过程的三个阶段? 语法分析 预编译阶段 js的运行环境
 1.全局环境（JS代码加载完毕后，进入代码预编译即进入全局环境）
 2.函数环境（函数调用执行时，进入该函数环境，不同的函数则函数环境不同)
 3.eval（不建议使用，会有安全，性能等问题）
-每进入一个不同的运行环境都会创建一个相应的执行上下文（Execution Context），那么在一段JS程序中一般都会创建多个执行上下文，js引擎会以栈的方式对这些执行上下文进行处理，形成函数调用栈（call stack），栈底永远是全局执行上下文（Global Execution Context），栈顶则永远是当前执行上下文。 函数调用栈   首次运行JS代码时，会创建一个全局执行上下文并Push到当前的执行栈中。每当发生函数调用，引擎都会为该函数创建一个新的函数执行上下文并Push到当前执行栈的栈顶。当栈顶函数运行完成后，其对应的函数执行上下文将会从执行栈中Pop出，上下文控制权将移到当前执行栈的下一个执行上下文。
- 执行上下文的创建    创建变量对象（Variable Object） 建立作用域链（Scope Chain）:变量对象（Variable Object）转为活动对象（Active Object）   var num = 30; function test() { var a = 10; function innerTest() { var b = 20; return a + b } innerTest() } test() //innerTest的调用链  innerTestEC = { //变量对象  VO: {b: undefined}, //作用域链  scopeChain: [VO(innerTest), AO(test), AO(global)], //this指向  this: window }    确定this的指向    执行阶段      永远只有JS引擎线程在执行JS脚本程序 宏任务    同步任务指的是在JS引擎主线程上按顺序执行的任务，只有前一个任务执行完毕后，才能执行后一个任务，形成一个执行栈（函数调用栈）。 异步任务指的是不直接进入JS引擎主线程，而是满足触发条件时，相关的线程将该异步任务推进任务队列(task queue)，等待JS引擎主线程上的任务执行完毕，空闲时读取执行的任务，例如异步Ajax，DOM事件，setTimeout等    事件循环    主线程执行栈 异步任务等待触发 任务队列    微任务:微任务（micro-task）的API主要有:Promise， process.</description>
+每进入一个不同的运行环境都会创建一个相应的执行上下文（Execution Context），那么在一段JS程序中一般都会创建多个执行上下文，js引擎会以栈的方式对这些执行上下文进行处理，形成函数调用栈（call stack），栈底永远是全局执行上下文（Global Execution Context），栈顶则永远是当前执行上下文。 函数调用栈 首次运行JS代码时，会创建一个全局执行上下文并Push到当前的执行栈中。每当发生函数调用，引擎都会为该函数创建一个新的函数执行上下文并Push到当前执行栈的栈顶。当栈顶函数运行完成后，其对应的函数执行上下文将会从执行栈中Pop出，上下文控制权将移到当前执行栈的下一个执行上下文。
+执行上下文的创建 创建变量对象（Variable Object） 建立作用域链（Scope Chain）:变量对象（Variable Object）转为活动对象（Active Object） var num = 30; function test() { var a = 10; function innerTest() { var b = 20; return a + b } innerTest() } test() //innerTest的调用链 innerTestEC = { //变量对象 VO: {b: undefined}, //作用域链 scopeChain: [VO(innerTest), AO(test), AO(global)], //this指向 this: window } 确定this的指向 执行阶段 永远只有JS引擎线程在执行JS脚本程序 宏任务 同步任务指的是在JS引擎主线程上按顺序执行的任务，只有前一个任务执行完毕后，才能执行后一个任务，形成一个执行栈（函数调用栈）。 异步任务指的是不直接进入JS引擎主线程，而是满足触发条件时，相关的线程将该异步任务推进任务队列(task queue)，等待JS引擎主线程上的任务执行完毕，空闲时读取执行的任务，例如异步Ajax，DOM事件，setTimeout等 事件循环 主线程执行栈 异步任务等待触发 任务队列 微任务:微任务（micro-task）的API主要有:Promise， process.</description>
     </item>
     
   </channel>

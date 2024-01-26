@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="注解">
 
-<title>注解 | 十万个为什么</title>
+<title>注解 | gyz的十万个为什么</title>
 
 <link rel="icon" href="/favicon/favicon-32x32.png" type="image/x-icon">
 
@@ -57,7 +57,7 @@
         <a class="gdoc-header__link" href="https://gyzboy.github.io/">
             <span class="gdoc-brand flex align-center">
                 <img class="gdoc-brand__img" src="/brand.svg" alt="">
-                十万个为什么
+                gyz的十万个为什么
             </span>
         </a>
     </div>
@@ -971,6 +971,30 @@
             
             
                 <span class="flex">
+                    <a href="/interview/%E7%AE%97%E6%B3%95/temp/" class="gdoc-nav__entry ">
+                        Temp
+                    </a>
+                </span>
+            
+            
+
+            
+            </li>
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            <li>
+            
+            
+                <span class="flex">
                     <a href="/interview/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="gdoc-nav__entry ">
                         二叉树
                     </a>
@@ -1357,7 +1381,7 @@
         
     
     
-        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>注解</span><meta itemprop='position' content='4' /></li>
+        <li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/' href='/'><span itemprop='name'>gyz的十万个为什么</span></a><meta itemprop='position' content='1' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/' href='/interview/'><span itemprop='name'>Interviews</span></a><meta itemprop='position' content='2' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><a itemscope itemtype='https://schema.org/WebPage' itemprop='item' itemid='/interview/android/' href='/interview/android/'><span itemprop='name'>Android</span></a><meta itemprop='position' content='3' /></li><li> / </li><li itemprop='itemListElement' itemscope itemtype='https://schema.org/ListItem'><span itemprop='name'>注解</span><meta itemprop='position' content='4' /></li>
     
 
     
@@ -1589,108 +1613,108 @@ AdviceAdapter 是 MethodVisitor 的子类，使用 AdviceAdapter 可以更方便
 <li>然后需要一个 ClassWriter 的对象将操作之后的字节码的字节数组回写</li>
 <li>需要事件过滤器 ClassVisitor。在调用 ClassVisitor 的某些方法时会产生一个新的 XXXVisitor 对象，当我们需要修改对应的内容时只要实现自己的 XXXVisitor 并返回就可以了</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//HelloWorld.class
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sayHello</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">2</span> <span class="o">*</span> <span class="n">1000</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1">//执行方法
-</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CostTime</span> <span class="o">{</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">redefinePersonClass</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">redefinePersonClass</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">String</span> <span class="n">className</span> <span class="o">=</span> <span class="s">&#34;com.lijiankun24.asmpractice.demo.HelloWorld&#34;</span><span class="o">;</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="s">&#34;/Users/lijiankun/Desktop/HelloWorld.class&#34;</span><span class="o">);</span>
-            <span class="n">ClassReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassReader</span><span class="o">(</span><span class="n">inputStream</span><span class="o">);</span>                               <span class="c1">// 1. 创建 ClassReader 读入 .class 文件到内存中
-</span><span class="c1"></span>            <span class="n">ClassWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassWriter</span><span class="o">(</span><span class="n">reader</span><span class="o">,</span> <span class="n">ClassWriter</span><span class="o">.</span><span class="na">COMPUTE_MAXS</span><span class="o">);</span>                 <span class="c1">// 2. 创建 ClassWriter 对象，将操作之后的字节码的字节数组回写
-</span><span class="c1"></span>            <span class="n">ClassVisitor</span> <span class="n">change</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ChangeVisitor</span><span class="o">(</span><span class="n">writer</span><span class="o">);</span>                                        <span class="c1">// 3. 创建自定义的 ClassVisitor 对象
-</span><span class="c1"></span>            <span class="n">reader</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">change</span><span class="o">,</span> <span class="n">ClassReader</span><span class="o">.</span><span class="na">EXPAND_FRAMES</span><span class="o">);</span>                                       <span class="c1">// 4. 将 ClassVisitor 对象传入 ClassReader 中
-</span><span class="c1"></span>
-            <span class="n">Class</span> <span class="n">clazz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyClassLoader</span><span class="o">().</span><span class="na">defineClass</span><span class="o">(</span><span class="n">className</span><span class="o">,</span> <span class="n">writer</span><span class="o">.</span><span class="na">toByteArray</span><span class="o">());</span>
-            <span class="n">Object</span> <span class="n">personObj</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
-            <span class="n">Method</span> <span class="n">nameMethod</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">&#34;sayHello&#34;</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-            <span class="n">nameMethod</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">personObj</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Success!&#34;</span><span class="o">);</span>
-            <span class="kt">byte</span><span class="o">[]</span> <span class="n">code</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="na">toByteArray</span><span class="o">();</span>                                                               <span class="c1">// 获取修改后的 class 文件对应的字节数组
-</span><span class="c1"></span>            <span class="k">try</span> <span class="o">{</span>
-                <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="s">&#34;/Users/lijiankun/Desktop/HelloWorld2.class&#34;</span><span class="o">);</span>    <span class="c1">// 将二进制流写到本地磁盘上
-</span><span class="c1"></span>                <span class="n">fos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">code</span><span class="o">);</span>
-                <span class="n">fos</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-            <span class="o">}</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Failure!&#34;</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">ChangeVisitor</span> <span class="kd">extends</span> <span class="n">ClassVisitor</span> <span class="o">{</span>
-
-        <span class="n">ChangeVisitor</span><span class="o">(</span><span class="n">ClassVisitor</span> <span class="n">classVisitor</span><span class="o">)</span> <span class="o">{</span>
-            <span class="kd">super</span><span class="o">(</span><span class="n">Opcodes</span><span class="o">.</span><span class="na">ASM5</span><span class="o">,</span> <span class="n">classVisitor</span><span class="o">);</span>
-        <span class="o">}</span>
-
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="n">MethodVisitor</span> <span class="nf">visitMethod</span><span class="o">(</span><span class="kt">int</span> <span class="n">access</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">desc</span><span class="o">,</span> <span class="n">String</span> <span class="n">signature</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">exceptions</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">MethodVisitor</span> <span class="n">methodVisitor</span> <span class="o">=</span> <span class="kd">super</span><span class="o">.</span><span class="na">visitMethod</span><span class="o">(</span><span class="n">access</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">desc</span><span class="o">,</span> <span class="n">signature</span><span class="o">,</span> <span class="n">exceptions</span><span class="o">);</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;&lt;init&gt;&#34;</span><span class="o">))</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="n">methodVisitor</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="n">ChangeAdapter</span><span class="o">(</span><span class="n">Opcodes</span><span class="o">.</span><span class="na">ASM4</span><span class="o">,</span> <span class="n">methodVisitor</span><span class="o">,</span> <span class="n">access</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">desc</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">ChangeAdapter</span> <span class="kd">extends</span> <span class="n">AdviceAdapter</span> <span class="o">{</span>
-        <span class="kd">private</span> <span class="kt">int</span> <span class="n">startTimeId</span> <span class="o">=</span> <span class="o">-</span><span class="n">1</span><span class="o">;</span>
-
-        <span class="kd">private</span> <span class="n">String</span> <span class="n">methodName</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-
-        <span class="n">ChangeAdapter</span><span class="o">(</span><span class="kt">int</span> <span class="n">api</span><span class="o">,</span> <span class="n">MethodVisitor</span> <span class="n">mv</span><span class="o">,</span> <span class="kt">int</span> <span class="n">access</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">desc</span><span class="o">)</span> <span class="o">{</span>
-            <span class="kd">super</span><span class="o">(</span><span class="n">api</span><span class="o">,</span> <span class="n">mv</span><span class="o">,</span> <span class="n">access</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">desc</span><span class="o">);</span>
-            <span class="n">methodName</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="nd">@Override</span>
-        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onMethodEnter</span><span class="o">()</span> <span class="o">{</span>
-            <span class="kd">super</span><span class="o">.</span><span class="na">onMethodEnter</span><span class="o">();</span>
-            <span class="n">startTimeId</span> <span class="o">=</span> <span class="n">newLocal</span><span class="o">(</span><span class="n">Type</span><span class="o">.</span><span class="na">LONG_TYPE</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKESTATIC</span><span class="o">,</span> <span class="s">&#34;java/lang/System&#34;</span><span class="o">,</span> <span class="s">&#34;currentTimeMillis&#34;</span><span class="o">,</span> <span class="s">&#34;()J&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitIntInsn</span><span class="o">(</span><span class="n">LSTORE</span><span class="o">,</span> <span class="n">startTimeId</span><span class="o">);</span>
-        <span class="o">}</span>
-
-        <span class="nd">@Override</span>
-        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onMethodExit</span><span class="o">(</span><span class="kt">int</span> <span class="n">opcode</span><span class="o">)</span> <span class="o">{</span>
-            <span class="kd">super</span><span class="o">.</span><span class="na">onMethodExit</span><span class="o">(</span><span class="n">opcode</span><span class="o">);</span>
-            <span class="kt">int</span> <span class="n">durationId</span> <span class="o">=</span> <span class="n">newLocal</span><span class="o">(</span><span class="n">Type</span><span class="o">.</span><span class="na">LONG_TYPE</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKESTATIC</span><span class="o">,</span> <span class="s">&#34;java/lang/System&#34;</span><span class="o">,</span> <span class="s">&#34;currentTimeMillis&#34;</span><span class="o">,</span> <span class="s">&#34;()J&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitVarInsn</span><span class="o">(</span><span class="n">LLOAD</span><span class="o">,</span> <span class="n">startTimeId</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitInsn</span><span class="o">(</span><span class="n">LSUB</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitVarInsn</span><span class="o">(</span><span class="n">LSTORE</span><span class="o">,</span> <span class="n">durationId</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitFieldInsn</span><span class="o">(</span><span class="n">GETSTATIC</span><span class="o">,</span> <span class="s">&#34;java/lang/System&#34;</span><span class="o">,</span> <span class="s">&#34;out&#34;</span><span class="o">,</span> <span class="s">&#34;Ljava/io/PrintStream;&#34;</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitTypeInsn</span><span class="o">(</span><span class="n">NEW</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitInsn</span><span class="o">(</span><span class="n">DUP</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKESPECIAL</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">,</span> <span class="s">&#34;&lt;init&gt;&#34;</span><span class="o">,</span> <span class="s">&#34;()V&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitLdcInsn</span><span class="o">(</span><span class="s">&#34;The cost time of &#34;</span> <span class="o">+</span> <span class="n">methodName</span> <span class="o">+</span> <span class="s">&#34; is &#34;</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKEVIRTUAL</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">,</span> <span class="s">&#34;append&#34;</span><span class="o">,</span> <span class="s">&#34;(Ljava/lang/String;)Ljava/lang/StringBuilder;&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitVarInsn</span><span class="o">(</span><span class="n">LLOAD</span><span class="o">,</span> <span class="n">durationId</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKEVIRTUAL</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">,</span> <span class="s">&#34;append&#34;</span><span class="o">,</span> <span class="s">&#34;(J)Ljava/lang/StringBuilder;&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKEVIRTUAL</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">,</span> <span class="s">&#34;toString&#34;</span><span class="o">,</span> <span class="s">&#34;()Ljava/lang/String;&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKEVIRTUAL</span><span class="o">,</span> <span class="s">&#34;java/io/PrintStream&#34;</span><span class="o">,</span> <span class="s">&#34;println&#34;</span><span class="o">,</span> <span class="s">&#34;(Ljava/lang/String;)V&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//HelloWorld.class
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sayHello</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">2</span> <span class="o">*</span> <span class="n">1000</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//执行方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CostTime</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">redefinePersonClass</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">redefinePersonClass</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">className</span> <span class="o">=</span> <span class="s">&#34;com.lijiankun24.asmpractice.demo.HelloWorld&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="s">&#34;/Users/lijiankun/Desktop/HelloWorld.class&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ClassReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassReader</span><span class="o">(</span><span class="n">inputStream</span><span class="o">);</span>                               <span class="c1">// 1. 创建 ClassReader 读入 .class 文件到内存中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">ClassWriter</span> <span class="n">writer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ClassWriter</span><span class="o">(</span><span class="n">reader</span><span class="o">,</span> <span class="n">ClassWriter</span><span class="o">.</span><span class="na">COMPUTE_MAXS</span><span class="o">);</span>                 <span class="c1">// 2. 创建 ClassWriter 对象，将操作之后的字节码的字节数组回写
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">ClassVisitor</span> <span class="n">change</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ChangeVisitor</span><span class="o">(</span><span class="n">writer</span><span class="o">);</span>                                        <span class="c1">// 3. 创建自定义的 ClassVisitor 对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">reader</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">change</span><span class="o">,</span> <span class="n">ClassReader</span><span class="o">.</span><span class="na">EXPAND_FRAMES</span><span class="o">);</span>                                       <span class="c1">// 4. 将 ClassVisitor 对象传入 ClassReader 中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">            <span class="n">Class</span> <span class="n">clazz</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyClassLoader</span><span class="o">().</span><span class="na">defineClass</span><span class="o">(</span><span class="n">className</span><span class="o">,</span> <span class="n">writer</span><span class="o">.</span><span class="na">toByteArray</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Object</span> <span class="n">personObj</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Method</span> <span class="n">nameMethod</span> <span class="o">=</span> <span class="n">clazz</span><span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">&#34;sayHello&#34;</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">nameMethod</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">personObj</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Success!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">byte</span><span class="o">[]</span> <span class="n">code</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="na">toByteArray</span><span class="o">();</span>                                                               <span class="c1">// 获取修改后的 class 文件对应的字节数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="s">&#34;/Users/lijiankun/Desktop/HelloWorld2.class&#34;</span><span class="o">);</span>    <span class="c1">// 将二进制流写到本地磁盘上
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">fos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">code</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">fos</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Failure!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">ChangeVisitor</span> <span class="kd">extends</span> <span class="n">ClassVisitor</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">ChangeVisitor</span><span class="o">(</span><span class="n">ClassVisitor</span> <span class="n">classVisitor</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">super</span><span class="o">(</span><span class="n">Opcodes</span><span class="o">.</span><span class="na">ASM5</span><span class="o">,</span> <span class="n">classVisitor</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="n">MethodVisitor</span> <span class="nf">visitMethod</span><span class="o">(</span><span class="kt">int</span> <span class="n">access</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">desc</span><span class="o">,</span> <span class="n">String</span> <span class="n">signature</span><span class="o">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">exceptions</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">MethodVisitor</span> <span class="n">methodVisitor</span> <span class="o">=</span> <span class="kd">super</span><span class="o">.</span><span class="na">visitMethod</span><span class="o">(</span><span class="n">access</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">desc</span><span class="o">,</span> <span class="n">signature</span><span class="o">,</span> <span class="n">exceptions</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;&lt;init&gt;&#34;</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">methodVisitor</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">new</span> <span class="n">ChangeAdapter</span><span class="o">(</span><span class="n">Opcodes</span><span class="o">.</span><span class="na">ASM4</span><span class="o">,</span> <span class="n">methodVisitor</span><span class="o">,</span> <span class="n">access</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">desc</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="kd">class</span> <span class="nc">ChangeAdapter</span> <span class="kd">extends</span> <span class="n">AdviceAdapter</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="kt">int</span> <span class="n">startTimeId</span> <span class="o">=</span> <span class="o">-</span><span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="n">String</span> <span class="n">methodName</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">ChangeAdapter</span><span class="o">(</span><span class="kt">int</span> <span class="n">api</span><span class="o">,</span> <span class="n">MethodVisitor</span> <span class="n">mv</span><span class="o">,</span> <span class="kt">int</span> <span class="n">access</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">desc</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">super</span><span class="o">(</span><span class="n">api</span><span class="o">,</span> <span class="n">mv</span><span class="o">,</span> <span class="n">access</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">desc</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">methodName</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onMethodEnter</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">super</span><span class="o">.</span><span class="na">onMethodEnter</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">startTimeId</span> <span class="o">=</span> <span class="n">newLocal</span><span class="o">(</span><span class="n">Type</span><span class="o">.</span><span class="na">LONG_TYPE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKESTATIC</span><span class="o">,</span> <span class="s">&#34;java/lang/System&#34;</span><span class="o">,</span> <span class="s">&#34;currentTimeMillis&#34;</span><span class="o">,</span> <span class="s">&#34;()J&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitIntInsn</span><span class="o">(</span><span class="n">LSTORE</span><span class="o">,</span> <span class="n">startTimeId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onMethodExit</span><span class="o">(</span><span class="kt">int</span> <span class="n">opcode</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">super</span><span class="o">.</span><span class="na">onMethodExit</span><span class="o">(</span><span class="n">opcode</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">durationId</span> <span class="o">=</span> <span class="n">newLocal</span><span class="o">(</span><span class="n">Type</span><span class="o">.</span><span class="na">LONG_TYPE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKESTATIC</span><span class="o">,</span> <span class="s">&#34;java/lang/System&#34;</span><span class="o">,</span> <span class="s">&#34;currentTimeMillis&#34;</span><span class="o">,</span> <span class="s">&#34;()J&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitVarInsn</span><span class="o">(</span><span class="n">LLOAD</span><span class="o">,</span> <span class="n">startTimeId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitInsn</span><span class="o">(</span><span class="n">LSUB</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitVarInsn</span><span class="o">(</span><span class="n">LSTORE</span><span class="o">,</span> <span class="n">durationId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitFieldInsn</span><span class="o">(</span><span class="n">GETSTATIC</span><span class="o">,</span> <span class="s">&#34;java/lang/System&#34;</span><span class="o">,</span> <span class="s">&#34;out&#34;</span><span class="o">,</span> <span class="s">&#34;Ljava/io/PrintStream;&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitTypeInsn</span><span class="o">(</span><span class="n">NEW</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitInsn</span><span class="o">(</span><span class="n">DUP</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKESPECIAL</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">,</span> <span class="s">&#34;&lt;init&gt;&#34;</span><span class="o">,</span> <span class="s">&#34;()V&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitLdcInsn</span><span class="o">(</span><span class="s">&#34;The cost time of &#34;</span> <span class="o">+</span> <span class="n">methodName</span> <span class="o">+</span> <span class="s">&#34; is &#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKEVIRTUAL</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">,</span> <span class="s">&#34;append&#34;</span><span class="o">,</span> <span class="s">&#34;(Ljava/lang/String;)Ljava/lang/StringBuilder;&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitVarInsn</span><span class="o">(</span><span class="n">LLOAD</span><span class="o">,</span> <span class="n">durationId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKEVIRTUAL</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">,</span> <span class="s">&#34;append&#34;</span><span class="o">,</span> <span class="s">&#34;(J)Ljava/lang/StringBuilder;&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKEVIRTUAL</span><span class="o">,</span> <span class="s">&#34;java/lang/StringBuilder&#34;</span><span class="o">,</span> <span class="s">&#34;toString&#34;</span><span class="o">,</span> <span class="s">&#34;()Ljava/lang/String;&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mv</span><span class="o">.</span><span class="na">visitMethodInsn</span><span class="o">(</span><span class="n">INVOKEVIRTUAL</span><span class="o">,</span> <span class="s">&#34;java/io/PrintStream&#34;</span><span class="o">,</span> <span class="s">&#34;println&#34;</span><span class="o">,</span> <span class="s">&#34;(Ljava/lang/String;)V&#34;</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div>
 
     </article>
 
@@ -1738,7 +1762,7 @@ AdviceAdapter 是 MethodVisitor 的子类，使用 AdviceAdapter 可以更方便
 
 
 
-<script defer src="/js/en.search.min.d1300fa43c8b3ddb741038e2a85fdfbce3723906b87fd971f6a365b26465b1af.js"></script>
+<script defer src="/js/en.search.min.58ab25ba3337c795b6546571208f19ff74f6f8b69cd0e291e7de44c5c62dda35.js"></script>
 
 
 
